@@ -1,4 +1,4 @@
-import * as THREE from "/three.module.js";
+import * as THREE from "./three.module.js";
 
 export const createChromaMaterial = (texture, keyColor) => {
   const keyColorObject = new THREE.Color(keyColor);
