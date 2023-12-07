@@ -6,11 +6,11 @@ const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener('DOMContentLoaded', () => {
   const start = async() => {
-    mockWithVideo('https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/course-banner1.mp4?v=1701962148008');
+    mockWithVideo("https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/course-banner1.mp4?v=1701962148008");
     
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.body,
-      imageTargetSrc: 'https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/course-banner.mind?v=1701962173820',
+      imageTargetSrc: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/course-banner.mind?v=1701962173820",
     });
     const {renderer, scene, camera} = mindarThree;
 
