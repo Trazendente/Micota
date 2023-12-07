@@ -1,20 +1,20 @@
-import {loadGLTF, loadVideo} from "./loader.js";
-import {mockWithVideo} from './camera-mock';
-import {createChromaMaterial} from './chroma-video.js';
+import {loadGLTF, loadVideo} from "/loader.js";
+import {mockWithVideo} from '/camera-mock';
+import {createChromaMaterial} from '/chroma-video.js';
 
 const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener('DOMContentLoaded', () => {
   const start = async() => {
-    mockWithVideo('../../assets/mock-videos/course-banner1.mp4');
+    mockWithVideo('https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/course-banner1.mp4?v=1701962148008');
     
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.body,
-      imageTargetSrc: '../../assets/targets/course-banner.mind',
+      imageTargetSrc: 'https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/course-banner.mind?v=1701962173820',
     });
     const {renderer, scene, camera} = mindarThree;
 
-    const video = await loadVideo("../../assets/videos/guitar-player.mp4");
+    const video = await loadVideo("https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/guitar-player.mp4?v=1701962207762");
     video.play();
     video.pause();
     const texture = new THREE.VideoTexture(video);
