@@ -1,38 +1,30 @@
 export const mockWithVideo = (path) => {
-  navigator.mediaDevices.getUserMedia = async () => {
-    return new Promise(async (resolve, reject) => {
+  navigator.mediaDevices.getUserMedia = () => {
+    return new Promise((resolve, reject) => {
       const video = document.createElement("video");
-      video.setAttribute('loop', '');
-      video.setAttribute("src", path);
 
-      const startButton = document.createElement("button");
-      startButton.innerHTML = "Start";
-      startButton.style.position = 'fixed';
-      startButton.style.zIndex = 10000;
-      document.body.appendChild(startButton);
+      video.oncanplay = () => {
+        const startButton = document.createElement("button");
+        startButton.innerHTML = "start";
+        startButton.style.position = 'fixed';
+        startButton.style.zIndex = 10000;
+        document.body.appendChild(startButton);
 
-      const playVideo = async () => {
-        try {
+        startButton.addEventListener('click', () => {
           const stream = video.captureStream();
-          await video.play();
+          video.play();
           document.body.removeChild(startButton);
           resolve(stream);
-        } catch (error) {
-          reject(error);
-        }
+        });
       };
 
-      // Agregar evento de clic al botón para iniciar la reproducción
-      startButton.addEventListener('click', playVideo);
+      video.setAttribute('loop', '');
 
-      // Opcional: Agregar evento de clic en cualquier lugar de la página para iniciar la reproducción
-      document.body.addEventListener('click', playVideo);
+      // Cambia esto para cargar el video desde tu servidor Glitch
+      video.setAttribute("src", path);
 
-      // Opcional: Pausar el video al principio
-      video.pause();
-
-      // Cargar el video después de la interacción del usuario
-      await video.load();
+      // Asegúrate de añadir el elemento de video al DOM
+      document.body.appendChild(video);
     });
   };
-};
+}
