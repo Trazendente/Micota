@@ -5,7 +5,7 @@ import {createChromaMaterial} from './chroma-video.js';
 const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener('DOMContentLoaded', () => {
-  const start = async() => {
+  const start = async () => {
     mockWithVideo("https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/course-banner1.mp4?v=1701962148008");
     
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
@@ -15,8 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const {renderer, scene, camera} = mindarThree;
 
     const video = await loadVideo("https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/guitar-player.mp4?v=1701962207762");
-    video.play();
-    video.pause();
+    video.pause(); // Pausar el video al principio
     const texture = new THREE.VideoTexture(video);
 
     const geometry = new THREE.PlaneGeometry(1, 1080/1920);
@@ -31,10 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
     anchor.group.add(plane);
 
     anchor.onTargetFound = () => {
-      video.play();
+      video.play(); // Iniciar la reproducción al encontrar el objetivo
     }
     anchor.onTargetLost = () => {
-      video.pause();
+      video.pause(); // Pausar la reproducción al perder el objetivo
     }
 
     await mindarThree.start();
@@ -42,5 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
       renderer.render(scene, camera);
     });
   }
-  start();
+
+  // Agregar botón de inicio
+  const startButton = document.createElement("button");
+  startButton.textContent = "Start";
+  startButton.addEventListener("click", start);
+  document.body.appendChild(startButton);
 });
