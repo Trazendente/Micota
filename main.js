@@ -1,3 +1,4 @@
+// main.js
 import {loadGLTF, loadVideo} from "./loader.js";
 import {mockWithVideo} from './camera-mock.js';
 import {createChromaMaterial} from './chroma-video.js';
@@ -14,14 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     const {renderer, scene, camera} = mindarThree;
 
-    const video = await loadVideo("https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/guitar-player.mp4?v=1701962207762");
-    video.play();
-    video.pause();
-    const texture = new THREE.VideoTexture(video);
+    const videoTexture = await loadVideo("https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/guitar-player.mp4?v=1701962207762");
+    const video = videoTexture.image;
 
     const geometry = new THREE.PlaneGeometry(1, 1080/1920);
-    //const material = new THREE.MeshBasicMaterial({map: texture});
-    const material = createChromaMaterial(texture, 0x00ff00);
+    const material = createChromaMaterial(videoTexture, 0x00ff00);
     const plane = new THREE.Mesh(geometry, material);
     plane.rotation.x = Math.PI/2;
     plane.position.y = 0.7;
@@ -42,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
       renderer.render(scene, camera);
     });
   }
- // start();
+
   const startButton = document.createElement("button");
   startButton.textContent = "Start";
   startButton.addEventListener("click", start);

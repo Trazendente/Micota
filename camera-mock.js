@@ -6,6 +6,9 @@ export const mockWithVideo = async (path) => {
   return new Promise((resolve, reject) => {
     const video = document.createElement("video");
 
+    // Configurar el atributo crossorigin
+    video.setAttribute("crossorigin", "anonymous");
+
     video.oncanplay = () => {
       const startButton = document.createElement("button");
       startButton.innerHTML = "start";
@@ -21,7 +24,7 @@ export const mockWithVideo = async (path) => {
       });
     };
 
-    video.setAttribute('loop', '');
+    // Asegúrate de que el atributo loop esté desactivado antes de asignar la fuente
     video.src = videoUrl;
 
     // Asegúrate de añadir el elemento de video al DOM
