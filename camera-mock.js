@@ -1,30 +1,30 @@
-export const mockWithVideo = (path) => {
-  navigator.mediaDevices.getUserMedia = () => {
-    return new Promise((resolve, reject) => {
-      const video = document.createElement("video");
+export const mockWithVideo = async (path) => {
+  const response = await fetch(path);
+  const blob = await response.blob();
+  const videoUrl = URL.createObjectURL(blob);
 
-      video.oncanplay = () => {
-        const startButton = document.createElement("button");
-        startButton.innerHTML = "start";
-        startButton.style.position = 'fixed';
-        startButton.style.zIndex = 10000;
-        document.body.appendChild(startButton);
+  return new Promise((resolve, reject) => {
+    const video = document.createElement("video");
 
-        startButton.addEventListener('click', () => {
-          const stream = video.captureStream();
-          video.play();
-          document.body.removeChild(startButton);
-          resolve(stream);
-        });
-      };
+    video.oncanplay = () => {
+      const startButton = document.createElement("button");
+      startButton.innerHTML = "start";
+      startButton.style.position = 'fixed';
+      startButton.style.zIndex = 10000;
+      document.body.appendChild(startButton);
 
-      video.setAttribute('loop', '');
+      startButton.addEventListener('click', () => {
+        const stream = video.captureStream();
+        video.play();
+        document.body.removeChild(startButton);
+        resolve(stream);
+      });
+    };
 
-      // Cambia esto para cargar el video desde tu servidor Glitch
-      video.setAttribute("src", path);
+    video.setAttribute('loop', '');
+    video.src = videoUrl;
 
-      // Asegúrate de añadir el elemento de video al DOM
-      document.body.appendChild(video);
-    });
-  };
-}
+    // Asegúrate de añadir el elemento de video al DOM
+    document.body.appendChild(video);
+  });
+};
