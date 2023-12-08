@@ -15,20 +15,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const videosData = [
       {
         url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_CR_PLANO_00-converted.mp4?v=1702066807268",
-        position: new THREE.Vector3(-1, 0, -2),  // Ajusta la posición según sea necesario
+        position: new THREE.Vector3(0, 0, 0),  // Ajusta la posición según sea necesario
       },
       {
         url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_CR_PLANO_01-converted.mp4?v=1702066807656",
-        position: new THREE.Vector3(0, 0, 0),
+        position: new THREE.Vector3(0, 0, 0.1),
       },
-      // Agrega más videos según sea necesario
+       {
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_CR_PLANO_02-converted.mp4?v=1702066808076",
+        position: new THREE.Vector3(0, 0, 0.2),  // Ajusta la posición según sea necesario
+      },
+      {
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_CR_PLANO_03-converted.mp4?v=1702066808378",
+        position: new THREE.Vector3(0, 0, 0.4),
+      },
+       {
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_CR_PLANO_04-converted.mp4?v=1702066808762",
+        position: new THREE.Vector3(0, 0, 0.6),  // Ajusta la posición según sea necesario
+      },
+      {
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_CR_PLANO_05-converted.mp4?v=1702066806844",
+        position: new THREE.Vector3(0, 0, 0.8),  // Ajusta la posición según sea necesario
+      },
     ];
 
     const videos = await Promise.all(videosData.map(async (videoData) => {
       const videoTexture = await loadVideo(videoData.url);
       const video = videoTexture.image;
 
-      const geometry = new THREE.PlaneGeometry(1, 1080/1920);
+      const geometry = new THREE.PlaneGeometry(1, 1080/1080);
       const material = createChromaMaterial(videoTexture, 0x00ff00);
       const plane = new THREE.Mesh(geometry, material);
       plane.rotation.x = 0;
