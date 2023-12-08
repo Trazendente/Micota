@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const video = videoTexture.image;
 
       const geometry = new THREE.PlaneGeometry(1, 1080/1080);
-      const material = createChromaMaterial(videoTexture, 0x14FF09, 0.2, 1);
+      const material = createChromaMaterial(videoTexture, 0x14FF09, 0.4, 0.2);
       const plane = new THREE.Mesh(geometry, material);
       plane.rotation.x = 0;
       plane.position.copy(videoData.position);  // Copia la posición desde la estructura de datos
