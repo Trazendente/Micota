@@ -4,17 +4,106 @@
     <script src="./mindar-image-three.prod.js"></script>
     <script src="./main.js" type="module"></script>
     <style>
-      html, body {position: relative; margin: 0; width: 100%; height: 100%; overflow: hidden}
+      html, body {
+        position: relative;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      #scanning {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: transparent;
+        z-index: 2;
+        visibility: hidden; /* Ocultamos el elemento inicialmente */
+      }
+
+      @media (min-aspect-ratio: 1/1) {
+        #scanning .inner {
+          width: 50vh;
+          height: 50vh;
+        }
+      }
+
+      @media (max-aspect-ratio: 1/1) {
+        #scanning .inner {
+          width: 80vw;
+          height: 80vw;
+        }
+      }
+
+      #scanning .inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+
+        background:
+          linear-gradient(to right, white 10px, transparent 10px) 0 0,
+          linear-gradient(to right, white 10px, transparent 10px) 0 100%,
+          linear-gradient(to left, white 10px, transparent 10px) 100% 0,
+          linear-gradient(to left, white 10px, transparent 10px) 100% 100%,
+          linear-gradient(to bottom, white 10px, transparent 10px) 0 0,
+          linear-gradient(to bottom, white 10px, transparent 10px) 100% 0,
+          linear-gradient(to top, white 10px, transparent 10px) 0 100%,
+          linear-gradient(to top, white 10px, transparent 10px) 100% 100%;
+        background-repeat: no-repeat;
+        background-size: 40px 40px;
+      }
+
+      #scanning img {
+        opacity: 0.6;
+        width: 90%;
+        align-self: center;
+      }
+
+      #scanning .inner .scanline {
+        position: absolute;
+        width: 100%;
+        height: 10px;
+        background: white;
+        animation: move 2s linear infinite;
+      }
+
+      @keyframes move {
+        0%, 100% { top: 0% }
+        50% { top: calc(100% - 10px) }
+      }
+
+      #startButton {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 3;
+      }
+
+      #infoText {
+        position: absolute;
+        top: 40px;
+        left: 10px;
+        z-index: 3;
+      }
     </style>
   </head>
- <body>
-    <div id="scanning" class="hidden">
+  <body>
+    <div id="scanning">
       <div class="inner">
-	<img src="https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/target-cr.mind?v=1701976017267"/>
-	<div class="scanline"></div>
+        <img src="https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/target_image.jpg?v=1702319608147"/>
+        <div class="scanline"></div>
       </div>
     </div>
 
     <div id="container"></div>
+
+    <button id="startButton">Start</button>
+    <p id="infoText">Presiona 'Start' para empezar</p>
   </body>
 </html>
