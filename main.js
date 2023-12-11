@@ -14,27 +14,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const {renderer, scene, camera} = mindarThree;
     const videosData = [
       {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_CR_PLANO_00-converted.mp4?v=1702066807268",
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_CR_PLANO_00-converted.mp4?v=1702302179156",
         position: new THREE.Vector3(0, 0, 0),  // Ajusta la posición según sea necesario
       },
       {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_CR_PLANO_01-converted.mp4?v=1702066807656",
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_CR_PLANO_01-converted.mp4?v=1702302200412",
         position: new THREE.Vector3(0, 0, 0.1),  // Ajusta la posición según sea necesario
       },
        {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_CR_PLANO_02-converted.mp4?v=1702066808076",
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_CR_PLANO_02-converted.mp4?v=1702302210504",
         position: new THREE.Vector3(0, 0, 0.2),  // Ajusta la posición según sea necesario
       },
       {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_CR_PLANO_03-converted.mp4?v=1702066808378",
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_CR_PLANO_03-converted.mp4?v=1702302218360",
         position: new THREE.Vector3(0, 0, 0.3),
       },
        {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_CR_PLANO_04-converted.mp4?v=1702066808762",
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_CR_PLANO_04-converted.mp4?v=1702302238560",
         position: new THREE.Vector3(0, 0, 0.4),  // Ajusta la posición según sea necesario
       },
       {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_CR_PLANO_05-converted.mp4?v=1702066806844",
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_CR_PLANO_05-converted.mp4?v=1702302248596",
         position: new THREE.Vector3(0, 0, .5),  // Ajusta la posición según sea necesario
       },
     ];
