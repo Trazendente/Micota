@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
       imageTargetSrc:
         "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/target-cr.mind?v=1701976017267",
        uiScanning: "#scanning",
-      uiLoading: "no",
+      uiLoading: "yes",
     });
 
     const { renderer, scene, camera } = mindarThree;
