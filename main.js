@@ -1,5 +1,5 @@
 // main.js
-import {loadVideo} from "./loader.js";
+import {loadVideo.loadAudio} from "./loader.js";
 import {createChromaMaterial} from './chroma-video.js';
 
 const THREE = window.MINDAR.IMAGE.THREE;
@@ -63,6 +63,26 @@ document.addEventListener('DOMContentLoaded', () => {
       return { video, plane };
     }));
 
+    const audioClip = await loadAudio('https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AUDIO_CR_V1_2.mp3?v=1702306241238');
+
+    const listener = new THREE.AudioListener();
+    camera.add(listener);
+
+    const audio = new THREE.PositionalAudio(listener);
+    anchor.group.add(audio);
+
+    audio.setBuffer(audioClip);
+    audio.setRefDistance(100);
+    audio.setLoop(true);
+
+    anchor.onTargetFound = () => {
+      audio.play();
+    }
+    anchor.onTargetLost = () => {
+      audio.pause();
+    }
+    
+    
     await mindarThree.start();
 
     renderer.setAnimationLoop(() => {
