@@ -37,27 +37,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const videosData = [
       {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_CR_PLANO_00-converted.mp4?v=1702302179156",
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2000-MAIN.mp4?v=1702332451877",
         position: new THREE.Vector3(0, 0, 0),
       },
       {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_CR_PLANO_01-converted.mp4?v=1702302200412",
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2001-MAIN.mp4?v=1702332455111",
         position: new THREE.Vector3(0, 0, 0.1),
       },
       {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_CR_PLANO_02-converted.mp4?v=1702302210504",
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2002-MAIN.mp4?v=1702332455784",
         position: new THREE.Vector3(0, 0, 0.2),
       },
       {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_CR_PLANO_03-converted.mp4?v=1702302218360",
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2003-MAIN.mp4?v=1702332456514",
         position: new THREE.Vector3(0, 0, 0.3),
       },
       {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_CR_PLANO_04-converted.mp4?v=1702302238560",
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2004-MAIN.mp4?v=1702332457314",
         position: new THREE.Vector3(0, 0, 0.4),
       },
       {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_CR_PLANO_05-converted.mp4?v=1702302248596",
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2005-MAIN.mp4?v=1702332458527",
         position: new THREE.Vector3(0, 0, 0.5),
       },
     ];
