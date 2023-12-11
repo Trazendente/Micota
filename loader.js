@@ -31,7 +31,7 @@ export const loadVideo = async (url) => {
       resolve(new THREE.VideoTexture(video));
     });
     video.src = url;
-    video.load();
+   // video.load();
   });
 }
 
