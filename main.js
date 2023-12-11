@@ -1,5 +1,7 @@
 // main.js
 import {loadVideo} from "./loader.js";
+import {loadAudio} from "./loader.js";
+
 import {createChromaMaterial} from './chroma-video.js';
 
 const THREE = window.MINDAR.IMAGE.THREE;
@@ -43,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const videoTexture = await loadVideo(videoData.url);
       const video = videoTexture.image;
 
-      const geometry = new THREE.PlaneGeometry(1, 1080/1080);
+      const geometry = new THREE.PlaneGeometry(1, 1080 / 1080);
       const material = createChromaMaterial(videoTexture, 0x14FF09, 0.4, 0.2);
       const plane = new THREE.Mesh(geometry, material);
       plane.rotation.x = 0;
@@ -81,8 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     anchor.onTargetLost = () => {
       audio.pause();
     }
-    
-    
+
     await mindarThree.start();
 
     renderer.setAnimationLoop(() => {
@@ -92,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       renderer.render(scene, camera);
     });
-  }
+  };
 
   const startButton = document.createElement("button");
   startButton.textContent = "Start";
