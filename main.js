@@ -26,6 +26,13 @@ document.addEventListener("DOMContentLoaded", () => {
     audio.setRefDistance(100);
     // Ajustar el volumen
     audio.setVolume(9.0);
+    
+    const startButton = document.getElementById("startButton");
+    const infoText = document.getElementById("infoText");
+
+    // Oculta o elimina el botón y el texto después de iniciar
+    startButton.style.display = "none";
+    infoText.style.display = "none";
 
     const videosData = [
       {
@@ -94,7 +101,13 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const startButton = document.createElement("button");
-  startButton.textContent = "Start";
+  startButton.textContent = "Empezar AR";
+  startButton.id = "startButton";
   startButton.addEventListener("click", start);
   document.body.appendChild(startButton);
+
+  const infoText = document.createElement("p");
+  infoText.textContent = "Presiona 'Start' para empezar";
+  infoText.id = "infoText";
+  document.body.appendChild(infoText);
 });
