@@ -59,7 +59,12 @@ document.addEventListener("DOMContentLoaded", () => {
         url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2005-MAIN.mp4?v=1702332458527",
         position: new THREE.Vector3(0, 0, 0.5),
       },
-                
+      {
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Piso-V1-MAIN.mp4?v=1702396063612",
+        position: new THREE.Vector3(0, -0.5, 0),
+    rotation: new THREE.Euler(Math.PI / 2, 0, 0), // Rotación de 90 grados en el eje Y
+  },
+            
       
     ];
 
@@ -74,6 +79,10 @@ document.addEventListener("DOMContentLoaded", () => {
         plane.rotation.x = 0;
         plane.position.copy(videoData.position);
         plane.scale.multiplyScalar(0.5);
+        
+        if (videoData.rotation) {
+      plane.rotation.copy(videoData.rotation);
+    }
 
         const anchor = mindarThree.addAnchor(0);
         anchor.group.add(plane);
