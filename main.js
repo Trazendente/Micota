@@ -61,9 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       {
         url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Piso-V1-MAIN.mp4?v=1702396063612",
-        position: new THREE.Vector3(0, -0.25, 0.3),
+        position: new THREE.Vector3(0, -0.25, 0.35),
     rotation: new THREE.Euler(-Math.PI / 2, 0, Math.PI), // Rotación de 90 grados en el eje Y
-  scale: new THREE.Vector3(2, 1, 1), // Agregar escala
+  scale: new THREE.Vector3(0.5, 0.7, 0.5), // Agregar escala
 
       },
             
@@ -84,6 +84,9 @@ document.addEventListener("DOMContentLoaded", () => {
         
         if (videoData.rotation) {
       plane.rotation.copy(videoData.rotation);
+    }
+       if (videoData.scale) {
+      plane.scale.copy(videoData.scale);
     }
 
         const anchor = mindarThree.addAnchor(0);
