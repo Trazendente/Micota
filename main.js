@@ -59,6 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
         url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2005-MAIN.mp4?v=1702332458527",
         position: new THREE.Vector3(0, 0, 0.5),
       },
+                
+      
     ];
 
     const videos = await Promise.all(
