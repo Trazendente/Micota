@@ -42,11 +42,11 @@ document.addEventListener("DOMContentLoaded", () => {
         position: new THREE.Vector3(0, 0, 0),
       },
       {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2001-MAIN.mp4?v=1702332455111",
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2001-Main-Punto.mp4?v=1702581311594",
         position: new THREE.Vector3(0, 0, 0.1),
       },
       {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2002-MAIN.mp4?v=1702332455784",
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2002-Main-Punto.mp4?v=1702581088879",
         position: new THREE.Vector3(0, 0, 0.2),
       },
       {
@@ -77,6 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const geometry = new THREE.PlaneGeometry(1, 1080 / 1080);
         const material = createChromaMaterial(videoTexture, 0x14ff09, 0.4, 0.2);
         const plane = new THREE.Mesh(geometry, material);
+        
         plane.rotation.x = 0;
         plane.position.copy(videoData.position);
         plane.scale.multiplyScalar(0.5);
