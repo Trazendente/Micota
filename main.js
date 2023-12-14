@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
         "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/target-cr.mind?v=1701976017267",
       uiScanning: "#scanning",
       uiLoading: "no",
-    
     });
 
     const { renderer, scene, camera } = mindarThree;
@@ -21,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const audioClipPromise = loadAudio(
       "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AUDIO_CR_V1_2.mp3?v=1702306241238"
     );
-   const audioClip = await audioClipPromise;
+    const audioClip = await audioClipPromise;
     const listener = new THREE.AudioListener();
     camera.add(listener);
     const audio = new THREE.PositionalAudio(listener);
@@ -29,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     audio.setRefDistance(100);
     // Volumen
     audio.setVolume(9.0);
-    
+
     const startButton = document.getElementById("startButton");
     const infoText = document.getElementById("infoText");
 
@@ -64,13 +63,10 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       {
         url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Piso-V1-MAINv2.mp4?v=1702499962115",
-        position: new THREE.Vector3(0, -0.28, 0.30),
-    rotation: new THREE.Euler(-Math.PI / 2, 0, Math.PI), // Rotación de 90 grados en el eje Y
-  scale: new THREE.Vector3(0.5, 0.7, 0.5), // Agregar escala
-
-      },  
-            
-      
+        position: new THREE.Vector3(0, -0.28, 0.3),
+        rotation: new THREE.Euler(-Math.PI / 2, 0, Math.PI), // Rotación de 90 grados en el eje Y
+        scale: new THREE.Vector3(0.5, 0.7, 0.5), // Agregar escala
+      },
     ];
 
     const videos = await Promise.all(
@@ -84,13 +80,13 @@ document.addEventListener("DOMContentLoaded", () => {
         plane.rotation.x = 0;
         plane.position.copy(videoData.position);
         plane.scale.multiplyScalar(0.5);
-        
+
         if (videoData.rotation) {
-      plane.rotation.copy(videoData.rotation);
-    }
-       if (videoData.scale) {
-      plane.scale.copy(videoData.scale);
-    }
+          plane.rotation.copy(videoData.rotation);
+        }
+        if (videoData.scale) {
+          plane.scale.copy(videoData.scale);
+        }
 
         const anchor = mindarThree.addAnchor(0);
         anchor.group.add(plane);
