@@ -18,9 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const { renderer, scene, camera } = mindarThree;
 
     // Configuración del audio
-    const audioClip = await loadAudio(
+    const audioClipPromise = loadAudio(
       "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AUDIO_CR_V1_2.mp3?v=1702306241238"
     );
+   const audioClip = await audioClipPromise;
     const listener = new THREE.AudioListener();
     camera.add(listener);
     const audio = new THREE.PositionalAudio(listener);
