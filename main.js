@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
       },
       {
         url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2002-MAIN.mp4?v=1702332455784",
-        position: new THREE.Vector3(0, 0, 0.2),
+        position: new THREE.Vector3(0, -0.03, 0.2),
       },
       {
         url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2003-MAIN.mp4?v=1702332456514",
