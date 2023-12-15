@@ -21,7 +21,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const { renderer, scene, camera } = mindarThree;
-    
+    // Configuración de la cámara
+  camera.near = 0.01; // Ajusta según sea necesario
+  camera.far = 5000; // Ajusta según sea necesario
+
 
     // Configuración del audio
     const audioClipPromise = loadAudio(
@@ -83,6 +86,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const geometry = new THREE.PlaneGeometry(1, 1080 / 1080);
         const material = createChromaMaterial(videoTexture, 0x14ff09, 0.4, 0.2);
+        material.side = THREE.DoubleSide;
+        material.transparent = false;
         const plane = new THREE.Mesh(geometry, material);
         
         plane.rotation.x = 0;
