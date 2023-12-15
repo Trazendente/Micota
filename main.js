@@ -88,67 +88,78 @@ document.addEventListener("DOMContentLoaded", () => {
                 const videoTexture = await loadVideo(videoData.url);
                 const video = videoTexture.image;
 
-                const geometry = new THREE.BoxGeometry(1, 1080 / 1080);
+                const geometry = new THREE.BoxGeometry(1, 1080 / 1080, 0.05);
 
                 let material;
 
                 if (videoData.chromaKey) {
-                    material = createChromaMaterial(videoTexture, 0x14ff09, 0.4, 0.2);
-                } else {
-                    material = createBasicMaterial(videoTexture);
-                }
+          material = createChromaMaterial(videoTexture, 0x14ff09, 0.4, 0.2);
+        } else {
+          // Use MeshStandardMaterial for the floor
+          material = new THREE.MeshStandardMaterial({
+            map: videoTexture,
+            transparent: true,
+            alphaTest: 0.5, // Experimenta con este valor
+          });
+        }
 
-                const plane = new THREE.Mesh(geometry, material);
+        const plane = new THREE.Mesh(geometry, material);
 
-                plane.rotation.x = 0;
-                plane.position.copy(videoData.position);
-                plane.scale.multiplyScalar(0.5);
+        plane.rotation.x = 0;
+        plane.position.copy(videoData.position);
+        plane.scale.multiplyScalar(0.5);
 
-                if (videoData.rotation) {
-                    plane.rotation.copy(videoData.rotation);
-                }
-                if (videoData.scale) {
-                    plane.scale.copy(videoData.scale);
-                }
+        if (videoData.rotation) {
+          plane.rotation.copy(videoData.rotation);
+        }
+        if (videoData.scale) {
+          plane.scale.copy(videoData.scale);
+        }
 
-                const anchor = mindarThree.addAnchor(0);
-                anchor.group.add(plane);
-                anchor.group.add(audio);
+        const anchor = mindarThree.addAnchor(0);
+        anchor.group.add(plane);
+        anchor.group.add(audio);
 
-                anchor.onTargetFound = () => {
-                    video.play();
-                    audio.play();
-                };
+        anchor.onTargetFound = () => {
+          video.play();
+          audio.play();
+        };
 
-                anchor.onTargetLost = () => {
-                    video.pause();
-                    audio.pause();
-                };
+        anchor.onTargetLost = () => {
+          video.pause();
+          audio.pause();
+        };
 
-                return { video, plane, chromaKey: videoData.chromaKey };
-            })
-        );
+        return { video, plane, chromaKey: videoData.chromaKey };
+      })
+    );
 
-        // Ordenar los videos para que el video del piso esté al final
-        videos.sort((a, b) => (a.chromaKey ? -1 : 1));
+    // Ordenar los videos para que el video del piso esté al final
+    videos.sort((a, b) => (a.chromaKey ? -1 : 1));
 
-        await mindarThree.start();
+    await mindarThree.start();
 
-        renderer.setAnimationLoop(() => {
-            videos.forEach(({ video, plane }) => {});
+    renderer.setAnimationLoop(() => {
+      // Ajustar la mezcla de materiales para evitar huecos mate
+      const [floor, ...parallaxVideos] = videos;
+      parallaxVideos.forEach(({ video, plane }) => {
+        // Establecer opacidad basada en el canal alfa del material del suelo
+        const opacity = floor.plane.material.opacity;
+        plane.material.opacity = opacity;
+      });
 
-            renderer.render(scene, camera);
-        });
-    };
+      renderer.render(scene, camera);
+    });
+  };
 
-    const startButton = document.createElement("button");
-    startButton.textContent = "Empezar AR";
-    startButton.id = "startButton";
-    startButton.addEventListener("click", start);
-    document.body.appendChild(startButton);
+  const startButton = document.createElement("button");
+  startButton.textContent = "Empezar AR";
+  startButton.id = "startButton";
+  startButton.addEventListener("click", start);
+  document.body.appendChild(startButton);
 
-    const infoText = document.createElement("p");
-    infoText.textContent = "Presiona 'Empezar AR' para comenzar";
-    infoText.id = "infoText";
-    document.body.appendChild(infoText);
+  const infoText = document.createElement("p");
+  infoText.textContent = "Presiona 'Empezar AR' para comenzar";
+  infoText.id = "infoText";
+  document.body.appendChild(infoText);
 });
