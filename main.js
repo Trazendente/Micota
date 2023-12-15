@@ -71,13 +71,38 @@ document.addEventListener("DOMContentLoaded", () => {
         url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2005-MAIN.mp4?v=1702332458527",
         position: new THREE.Vector3(0, 0, 0.5),
       },
-      {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Piso-V1-MAINv2.mp4?v=1702499962115",
-        position: new THREE.Vector3(0, -0.26, 0.3),
-        rotation: new THREE.Euler(-Math.PI / 2, 0, Math.PI), // Rotación de 90 grados en el eje Y
-        scale: new THREE.Vector3(0.5, 0.7, 0.5), // Agregar escala
-      },
+    
+    
     ];
+    
+    const newVideoUrl = "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Piso-V1-MAINv2.mp4?v=1702499962115";
+    const newVideoPosition = new THREE.Vector3(0, -0.26, 0.3); // Reemplaza X, Y, Z con las coordenadas deseadas
+    const newVideoTexture = await loadVideo(newVideoUrl);
+    const newVideo = newVideoTexture.image;
+
+    const newGeometry = new THREE.PlaneGeometry(1, 1080 / 1080);
+    const newMaterial = createChromaMaterial(newVideoTexture, 0x14ff09, 0.4, 0.2);
+    newMaterial.side = THREE.DoubleSide;
+
+    const newPlane = new THREE.Mesh(newGeometry, newMaterial);
+
+    newPlane.rotation.x = 0;
+    newPlane.position.copy(newVideoPosition);
+    newPlane.scale.multiplyScalar(0.5);
+
+    const newAnchor = mindarThree.addAnchor(0);
+    newAnchor.group.add(newPlane);
+    newAnchor.group.add(audio);
+
+    newAnchor.onTargetFound = () => {
+      newVideo.play();
+      audio.play();
+    };
+
+    newAnchor.onTargetLost = () => {
+      newVideo.pause();
+      audio.pause();
+    };
 
     const videos = await Promise.all(
       videosData.map(async (videoData) => {
@@ -87,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const geometry = new THREE.PlaneGeometry(1, 1080 / 1080);
         const material = createChromaMaterial(videoTexture, 0x14ff09, 0.4, 0.2);
         material.side = THREE.DoubleSide;
-        material.transparent = false;
+        
         const plane = new THREE.Mesh(geometry, material);
         
         plane.rotation.x = 0;
