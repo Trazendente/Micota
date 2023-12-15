@@ -43,7 +43,11 @@ export const createChromaMaterial = (texture, keyColor, tolerance = 0.2, choker 
       "  mediump float a = smoothstep(tolerance, tolerance + choker, d);\n" +
       "  gl_FragColor = vec4(tColor, a);\n" +
       "}",
-    transparent: true
+    transparent: true,
+    opacity: 0.8,  // Ajusta este valor según sea necesario
+    blending: THREE.NormalBlending,  // O prueba con otros modos de blending
+    alphaTest: 0.5  // Ajusta este valor según sea necesario
+
   });
   return material;
 };

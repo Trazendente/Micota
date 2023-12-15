@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Piso-V1-MAINv2.mp4?v=1702499962115",
         position: new THREE.Vector3(0, -0.25, 0.3),
-        rotation: new THREE.Euler(Math.PI / 2, 0, Math.PI), // Rotación de 90 grados en el eje Y
+        rotation: new THREE.Euler(-Math.PI / 2, 0, Math.PI), // Rotación de 90 grados en el eje Y
         scale: new THREE.Vector3(0.5, 0.7, 0.5), // Agregar escala
       },
     ];
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const videoTexture = await loadVideo(videoData.url);
         const video = videoTexture.image;
 
-        const geometry = new THREE.PlaneGeometry(1, 1080 / 1080);
+        const geometry = new THREE.BoxGeometry(1, 1080 / 1080, 0.05);
         const material = createChromaMaterial(videoTexture, 0x14ff09, 0.4, 0.2);
         const plane = new THREE.Mesh(geometry, material);
         
