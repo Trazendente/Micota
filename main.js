@@ -2,14 +2,11 @@ import { loadVideo } from "./loader.js";
 import { loadAudio } from "./loader.js";
 import { createChromaMaterial } from "./chroma-video.js";
 
-//const THREE = window.MINDAR.IMAGE.THREE;
-import * as THREE from 'three';
-import { MindARThree } from 'mindar-image-three';
+const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener("DOMContentLoaded", () => {
   const start = async () => {
-    //const mindarThree = new window.MINDAR.IMAGE.MindARThree({
-    const mindarThree = new MindARThree({
+    const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.body,
       imageTargetSrc:
         "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/target-cr.mind?v=1701976017267",
