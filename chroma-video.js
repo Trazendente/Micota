@@ -1,7 +1,5 @@
 // chroma-video.js
 import * as THREE from "./three.module.js";
-const { ShaderMaterial, Color, MeshBasicMaterial } = THREE;
-
 
 export const createChromaMaterial = (texture, keyColor, tolerance = 0.2, choker = 0.1) => {
   const keyColorObject = new THREE.Color(keyColor);
@@ -48,4 +46,9 @@ export const createChromaMaterial = (texture, keyColor, tolerance = 0.2, choker 
     transparent: true
   });
   return material;
+  };
+  
+  export const createBasicMaterial = (texture) => {
+  return new THREE.MeshBasicMaterial({ map: texture, transparent: true });
+
 };

@@ -1,6 +1,6 @@
 import { loadVideo } from "./loader.js";
 import { loadAudio } from "./loader.js";
-import { createChromaMaterial } from "./chroma-video.js";
+import { createChromaMaterial, createBasicMaterial } from "./chroma-video.js";
 
 const THREE = window.MINDAR.IMAGE.THREE;
 
@@ -88,14 +88,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 const videoTexture = await loadVideo(videoData.url);
                 const video = videoTexture.image;
 
-                const geometry = new THREE.PlaneGeometry(1, 1080 / 1080);
+                const geometry = new THREE.BoxGeometry(1, 1080 / 1080);
 
                 let material;
 
                 if (videoData.chromaKey) {
                     material = createChromaMaterial(videoTexture, 0x14ff09, 0.4, 0.2);
                 } else {
-                    material = meshBasicMaterial(videoTexture);
+                    material = createBasicMaterial(videoTexture);
                 }
 
                 const plane = new THREE.Mesh(geometry, material);
