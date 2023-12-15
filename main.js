@@ -5,7 +5,13 @@ import { createChromaMaterial } from "./chroma-video.js";
 const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener("DOMContentLoaded", () => {
+    let experienceStarted = false;
   const start = async () => {
+    if (experienceStarted) {
+      return;
+    }
+
+    experienceStarted = true;
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.body,
       imageTargetSrc:
