@@ -83,62 +83,72 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     ];
 
-    const videos = await Promise.all(
-      videosData.map(async (videoData) => {
-        const videoTexture = await loadVideo(videoData.url);
-        const video = videoTexture.image;
+     const videos = await Promise.all(
+            videosData.map(async (videoData) => {
+                const videoTexture = await loadVideo(videoData.url);
+                const video = videoTexture.image;
 
-        const geometry = new THREE.BoxGeometry(1, 1080 / 1080, 0.05);
-       
-        const material = createChromaMaterial(videoTexture, 0x14ff09, 0.4, 0.2);
-        const plane = new THREE.Mesh(geometry, material);
-        
-        plane.rotation.x = 0;
-        plane.position.copy(videoData.position);
-        plane.scale.multiplyScalar(0.5);
+                const geometry = new THREE.PlaneGeometry(1, 1080 / 1080);
 
-        if (videoData.rotation) {
-          plane.rotation.copy(videoData.rotation);
-        }
-        if (videoData.scale) {
-          plane.scale.copy(videoData.scale);
-        }
+                let material;
 
-        const anchor = mindarThree.addAnchor(0);
-        anchor.group.add(plane);
-        anchor.group.add(audio);
+                if (videoData.chromaKey) {
+                    material = createChromaMaterial(videoTexture, 0x14ff09, 0.4, 0.2);
+                } else {
+                    material = meshBasicMaterial(videoTexture);
+                }
 
-        anchor.onTargetFound = () => {
-          video.play();
-          audio.play();
-        };
+                const plane = new THREE.Mesh(geometry, material);
 
-        anchor.onTargetLost = () => {
-          video.pause();
-          audio.pause();
-        };
+                plane.rotation.x = 0;
+                plane.position.copy(videoData.position);
+                plane.scale.multiplyScalar(0.5);
 
-        return { video, plane };
-      })
-    );
+                if (videoData.rotation) {
+                    plane.rotation.copy(videoData.rotation);
+                }
+                if (videoData.scale) {
+                    plane.scale.copy(videoData.scale);
+                }
 
-    await mindarThree.start();
+                const anchor = mindarThree.addAnchor(0);
+                anchor.group.add(plane);
+                anchor.group.add(audio);
 
-    renderer.setAnimationLoop(() => {
-      videos.forEach(({ video, plane }) => {});
+                anchor.onTargetFound = () => {
+                    video.play();
+                    audio.play();
+                };
 
-      renderer.render(scene, camera);
-    });
-  };
+                anchor.onTargetLost = () => {
+                    video.pause();
+                    audio.pause();
+                };
 
-  const startButton = document.createElement("button");
-  startButton.textContent = "Empezar AR";
-  startButton.id = "startButton";
-  startButton.addEventListener("click", start);
-  document.body.appendChild(startButton);
+                return { video, plane, chromaKey: videoData.chromaKey };
+            })
+        );
 
-  const infoText = document.createElement("p");
-  infoText.textContent = "Presiona 'Empezar AR' para comenzar";
-  infoText.id = "infoText";
-  document.body.appendChild(infoText);
+        // Ordenar los videos para que el video del piso esté al final
+        videos.sort((a, b) => (a.chromaKey ? -1 : 1));
+
+        await mindarThree.start();
+
+        renderer.setAnimationLoop(() => {
+            videos.forEach(({ video, plane }) => {});
+
+            renderer.render(scene, camera);
+        });
+    };
+
+    const startButton = document.createElement("button");
+    startButton.textContent = "Empezar AR";
+    startButton.id = "startButton";
+    startButton.addEventListener("click", start);
+    document.body.appendChild(startButton);
+
+    const infoText = document.createElement("p");
+    infoText.textContent = "Presiona 'Empezar AR' para comenzar";
+    infoText.id = "infoText";
+    document.body.appendChild(infoText);
 });
