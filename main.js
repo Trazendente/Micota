@@ -76,7 +76,8 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
     
     const newVideoUrl = "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Piso-V1-MAINv2.mp4?v=1702499962115";
-    const newVideoPosition = new THREE.Vector3(0, -0.26, 0.3); // Reemplaza X, Y, Z con las coordenadas deseadas
+    const newVideoPosition = new THREE.Vector3(0, -0.26, 0.3); 
+    // Reemplaza X, Y, Z con las coordenadas deseadas
     const newVideoTexture = await loadVideo(newVideoUrl);
     const newVideo = newVideoTexture.image;
 
@@ -87,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const newPlane = new THREE.Mesh(newGeometry, newMaterial);
 
     newPlane.rotation.x = 0;
+    newPlane.rotation.y = Math.PI / 2;
     newPlane.position.copy(newVideoPosition);
     newPlane.scale.multiplyScalar(0.5);
 
