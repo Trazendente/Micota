@@ -46,9 +46,4 @@ export const createChromaMaterial = (texture, keyColor, tolerance = 0.2, choker 
     transparent: true
   });
   return material;
-  };
-  
-  export const createBasicMaterial = (texture) => {
-  return new THREE.MeshBasicMaterial({ map: texture, transparent: true });
-
 };

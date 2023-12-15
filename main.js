@@ -1,6 +1,6 @@
 import { loadVideo } from "./loader.js";
 import { loadAudio } from "./loader.js";
-import { createChromaMaterial, createBasicMaterial } from "./chroma-video.js";
+import { createChromaMaterial } from "./chroma-video.js";
 
 const THREE = window.MINDAR.IMAGE.THREE;
 
@@ -21,6 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const { renderer, scene, camera } = mindarThree;
+    // Configuración de la cámara
+  camera.near = 0.01; // Ajusta según sea necesario
+  camera.far = 5000; // Ajusta según sea necesario
 
 
     // Configuración del audio
@@ -47,64 +50,44 @@ document.addEventListener("DOMContentLoaded", () => {
       {
         url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2000-MAIN.mp4?v=1702332451877",
         position: new THREE.Vector3(0, 0, 0),
-        chromaKey: true, // Este es un video en parallax
-            },
+      },
       {
         url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2001-Main-Punto.mp4?v=1702581311594",
         position: new THREE.Vector3(0, 0, 0.1),
-        chromaKey: true, // Este es un video en parallax
       },
       {
         url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2002-Main-Punto.mp4?v=1702581088879",
         position: new THREE.Vector3(0, 0, 0.2),
-        chromaKey: true, // Este es un video en parallax
       },
       {
         url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2003-MAIN.mp4?v=1702332456514",
         position: new THREE.Vector3(0, 0, 0.3),
-        chromaKey: true, // Este es un video en parallax
       },
       {
         url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2004-MAIN.mp4?v=1702332457314",
         position: new THREE.Vector3(0, 0, 0.4),
-        chromaKey: true, // Este es un video en parallax
       },
       {
         url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2005-MAIN.mp4?v=1702332458527",
         position: new THREE.Vector3(0, 0, 0.5),
-        chromaKey: true, // Este es un video en parallax
       },
       {
         url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Piso-V1-MAINv2.mp4?v=1702499962115",
         position: new THREE.Vector3(0, -0.25, 0.3),
         rotation: new THREE.Euler(-Math.PI / 2, 0, Math.PI), // Rotación de 90 grados en el eje Y
         scale: new THREE.Vector3(0.5, 0.7, 0.5), // Agregar escala
-        chromaKey: false, // Este es un video del piso
       },
     ];
 
-     const videos = await Promise.all(
-            videosData.map(async (videoData) => {
-                const videoTexture = await loadVideo(videoData.url);
-                const video = videoTexture.image;
+    const videos = await Promise.all(
+      videosData.map(async (videoData) => {
+        const videoTexture = await loadVideo(videoData.url);
+        const video = videoTexture.image;
 
-                const geometry = new THREE.BoxGeometry(1, 1080 / 1080, 0.05);
-
-                let material;
-
-                if (videoData.chromaKey) {
-          material = createChromaMaterial(videoTexture, 0x14ff09, 0.4, 0.2);
-        } else {
-          // Use MeshStandardMaterial for the floor
-          material = new THREE.MeshStandardMaterial({
-            map: videoTexture,
-            transparent: true,
-            alphaTest: 0.5, // Experimenta con este valor
-          });
-        }
-
+        const geometry = new THREE.PlaneGeometry(1, 1080 / 1080);
+        const material = createChromaMaterial(videoTexture, 0x14ff09, 0.4, 0.2);
         const plane = new THREE.Mesh(geometry, material);
-
+        
         plane.rotation.x = 0;
         plane.position.copy(videoData.position);
         plane.scale.multiplyScalar(0.5);
@@ -130,23 +113,14 @@ document.addEventListener("DOMContentLoaded", () => {
           audio.pause();
         };
 
-        return { video, plane, chromaKey: videoData.chromaKey };
+        return { video, plane };
       })
     );
-
-    // Ordenar los videos para que el video del piso esté al final
-    videos.sort((a, b) => (a.chromaKey ? -1 : 1));
 
     await mindarThree.start();
 
     renderer.setAnimationLoop(() => {
-      // Ajustar la mezcla de materiales para evitar huecos mate
-      const [floor, ...parallaxVideos] = videos;
-      parallaxVideos.forEach(({ video, plane }) => {
-        // Establecer opacidad basada en el canal alfa del material del suelo
-        const opacity = floor.plane.material.opacity;
-        plane.material.opacity = opacity;
-      });
+      videos.forEach(({ video, plane }) => {});
 
       renderer.render(scene, camera);
     });
