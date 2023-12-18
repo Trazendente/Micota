@@ -48,8 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const videosData = [
       {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2000-MAIN.mp4?v=1702332451877",
-        position: new THREE.Vector3(0, 0, 0),
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Pared-MAIN.mp4?v=1702941626823",
+        position: new THREE.Vector3(0, 0, -0.1),
       },
       
       {
@@ -57,23 +57,23 @@ document.addEventListener("DOMContentLoaded", () => {
         position: new THREE.Vector3(0, 0, 0),
       },
       {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2001-Main-Punto.mp4?v=1702581311594",
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2001-MAIN.mp4?v=1702941428799",
         position: new THREE.Vector3(0, 0, 0.1),
       },
       {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2002-Main-Punto.mp4?v=1702581088879",
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2002-MAIN.mp4?v=1702941430455",
         position: new THREE.Vector3(0, 0, 0.2),
       },
       {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2003-MAIN.mp4?v=1702332456514",
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2003-MAIN.mp4?v=1702941431809",
         position: new THREE.Vector3(0, 0, 0.3),
       },
       {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2004-MAIN.mp4?v=1702332457314",
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2004-MAIN.mp4?v=1702941432689",
         position: new THREE.Vector3(0, 0, 0.4),
       },
       {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2005-MAIN.mp4?v=1702332458527",
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2005-MAIN.mp4?v=1702941434862",
         position: new THREE.Vector3(0, 0, 0.5),
       },
     
@@ -81,12 +81,12 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
     
     const newVideoUrl = "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Piso-V1-MAINv2.mp4?v=1702499962115";
-    const newVideoPosition = new THREE.Vector3(0, -0.28, 0.3); 
+    const newVideoPosition = new THREE.Vector3(0, -0.26, 0.3); 
     // Reemplaza X, Y, Z con las coordenadas deseadas
     const newVideoTexture = await loadVideo(newVideoUrl);
     const newVideo = newVideoTexture.image;
 
-    const newGeometry = new THREE.PlaneGeometry(1, 1080 / 1080);
+    const newGeometry = new THREE.PlaneGeometry(1231 / 514, 1);
     const newMaterial = createChromaMaterial(newVideoTexture, 0x14ff09, 0.4, 0.2);
     newMaterial.side = THREE.DoubleSide;
 
@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const videoTexture = await loadVideo(videoData.url);
         const video = videoTexture.image;
 
-        const geometry = new THREE.PlaneGeometry(1, 1080 / 1080);
+        const geometry = new THREE.PlaneGeometry(1231 / 514, 1);
         const material = createChromaMaterial(videoTexture, 0x14ff09, 0.4, 0.2);
         material.side = THREE.DoubleSide;
         
