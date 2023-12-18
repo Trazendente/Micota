@@ -5,7 +5,7 @@ import { createChromaMaterial } from "./chroma-video.js";
 const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener("DOMContentLoaded", () => {
-  let experienceStarted = false;
+    let experienceStarted = false;
   const start = async () => {
     if (experienceStarted) {
       return;
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     experienceStarted = true;
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
-      container: document.querySelector("#my-ar-container"),
+      container: document.body,
       imageTargetSrc:
         "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/target-cr-opcion4.mind?v=1702930452080",
       uiScanning: "#scanning",
@@ -21,22 +21,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const { renderer, scene, camera } = mindarThree;
+    // Configuración de la cámara
+  camera.near = 0.01; // Ajusta según sea necesario
+  camera.far = 5000; // Ajusta según sea necesario
 
-    const geometry = new THREE.PlaneGeometry(1, 1);
-    const material = new THREE.MeshBasicMaterial({
-      color: 0x00ffff,
-      transparent: true,
-      opacity: 0.5,
-    });
-    const plane = new THREE.Mesh(geometry, material);
-
-    const anchor = mindarThree.addAnchor(0);
-    anchor.group.add(plane);
-
-    await mindarThree.start();
-    renderer.setAnimationLoop(() => {
-      renderer.render(scene, camera);
-    });
 
     // Configuración del audio
     const audioClipPromise = loadAudio(
@@ -44,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     const audioClip = await audioClipPromise;
     const listener = new THREE.AudioListener();
-    camera.add(listener);
+    camera.add(listener); 
     const audio = new THREE.PositionalAudio(listener);
     audio.setBuffer(audioClip);
     audio.setRefDistance(100);
@@ -61,6 +49,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const videosData = [
       {
         url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2000-MAIN.mp4?v=1702332451877",
+        position: new THREE.Vector3(0, 0, 0),
+      },
+      
+      {
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_Cr_Plano_00-MAIN.mp4?v=1702941437037",
         position: new THREE.Vector3(0, 0, 0),
       },
       {
@@ -83,28 +76,24 @@ document.addEventListener("DOMContentLoaded", () => {
         url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2005-MAIN.mp4?v=1702332458527",
         position: new THREE.Vector3(0, 0, 0.5),
       },
+    
+    
     ];
-
-    const newVideoUrl =
-      "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Piso-V1-MAINv2.mp4?v=1702499962115";
-    const newVideoPosition = new THREE.Vector3(0, -0.26, 0.3);
+    
+    const newVideoUrl = "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Piso-V1-MAINv2.mp4?v=1702499962115";
+    const newVideoPosition = new THREE.Vector3(0, -0.28, 0.3); 
     // Reemplaza X, Y, Z con las coordenadas deseadas
     const newVideoTexture = await loadVideo(newVideoUrl);
     const newVideo = newVideoTexture.image;
 
     const newGeometry = new THREE.PlaneGeometry(1, 1080 / 1080);
-    const newMaterial = createChromaMaterial(
-      newVideoTexture,
-      0x14ff09,
-      0.4,
-      0.2
-    );
+    const newMaterial = createChromaMaterial(newVideoTexture, 0x14ff09, 0.4, 0.2);
     newMaterial.side = THREE.DoubleSide;
 
     const newPlane = new THREE.Mesh(newGeometry, newMaterial);
 
     newPlane.rotation.x = Math.PI / 2;
-
+ 
     newPlane.position.copy(newVideoPosition);
     newPlane.scale.multiplyScalar(0.5);
 
@@ -130,9 +119,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const geometry = new THREE.PlaneGeometry(1, 1080 / 1080);
         const material = createChromaMaterial(videoTexture, 0x14ff09, 0.4, 0.2);
         material.side = THREE.DoubleSide;
-
+        
         const plane = new THREE.Mesh(geometry, material);
-
+        
         plane.rotation.x = 0;
         plane.position.copy(videoData.position);
         plane.scale.multiplyScalar(0.5);
