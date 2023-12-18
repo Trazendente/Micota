@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Configuración del audio
     const audioClipPromise = loadAudio(
-      "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AUDIO_CR_V1_2.mp3?v=1702306241238"
+      "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/target_cre_opcion3.jpg?v=1702921433349"
     );
     const audioClip = await audioClipPromise;
     const listener = new THREE.AudioListener();
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
     
     const newVideoUrl = "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Piso-V1-MAINv2.mp4?v=1702499962115";
-    const newVideoPosition = new THREE.Vector3(0, -0.2, 0.3); 
+    const newVideoPosition = new THREE.Vector3(0, -0.26, 0.3); 
     // Reemplaza X, Y, Z con las coordenadas deseadas
     const newVideoTexture = await loadVideo(newVideoUrl);
     const newVideo = newVideoTexture.image;
