@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     const audioClip = await audioClipPromise;
     const listener = new THREE.AudioListener();
-    camera.add(listener);
+    camera.add(listener); 
     const audio = new THREE.PositionalAudio(listener);
     audio.setBuffer(audioClip);
     audio.setRefDistance(100);
