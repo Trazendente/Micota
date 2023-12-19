@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const firstAnchor = mindarThree.addAnchor(0);
     firstAnchor.group.add(firstPlane);
-    firstAnchor.group.add(audio);
+    //firstAnchor.group.add(audio);
 
     firstAnchor.onTargetFound = () => {
       firstVideo.play();
@@ -86,11 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const videosData = [
-      //{
-      // url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Pared-MAIN.mp4?v=1702941626823",
-      // position: new THREE.Vector3(0, 0, -0.1),
-
-      // },
+  
 
       {
         url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_Cr_Plano_00-MAIN.mp4?v=1702941437037",
@@ -147,12 +143,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     newAnchor.onTargetFound = () => {
       newVideo.play();
-      audio.play();
+     // audio.play();
     };
 
     newAnchor.onTargetLost = () => {
       newVideo.pause();
-      audio.pause();
+     // audio.pause();
     };
 
     const videos = await Promise.all(
