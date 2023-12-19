@@ -47,11 +47,47 @@ document.addEventListener("DOMContentLoaded", () => {
       audio.setVolume(9.0);
     });
 
+    const firstVideoData = {
+  url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Pared-MAIN.mp4?v=1702941626823",
+  position: new THREE.Vector3(0, 0.2, -0.1),
+  scale: 1.0,  // Ajusta la escala según sea necesario
+  rotation: new THREE.Euler(0, 0, 0),  // Ajusta la rotación según sea necesario
+};
+
+const firstVideoTexture = await loadVideo(firstVideoData.url);
+const firstVideo = firstVideoTexture.image;
+
+const firstGeometry = new THREE.PlaneGeometry(1, 1);
+const firstMaterial = createChromaMaterial(firstVideoTexture, 0x14ff09, 0.4, 0.2);
+firstMaterial.side = THREE.DoubleSide;
+
+const firstPlane = new THREE.Mesh(firstGeometry, firstMaterial);
+
+firstPlane.rotation.x = firstVideoData.rotation.x;
+firstPlane.position.copy(firstVideoData.position);
+firstPlane.scale.multiplyScalar(firstVideoData.scale);
+
+const firstAnchor = mindarThree.addAnchor(0);
+firstAnchor.group.add(firstPlane);
+firstAnchor.group.add(audio);
+
+firstAnchor.onTargetFound = () => {
+  firstVideo.play();
+  audio.play();
+};
+
+firstAnchor.onTargetLost = () => {
+  firstVideo.pause();
+  audio.pause();
+};
+    
     const videosData = [
-      {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Pared-MAIN.mp4?v=1702941626823",
-        position: new THREE.Vector3(0, 0, -0.1),
-      },
+      //{
+       // url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Pared-MAIN.mp4?v=1702941626823",
+       // position: new THREE.Vector3(0, 0, -0.1),
+        
+        
+     // },
 
       {
         url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_Cr_Plano_00-MAIN.mp4?v=1702941437037",
