@@ -38,11 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
       audio.setRefDistance(100);
       // Volumen
       audio.setVolume(9.0);
-
-      // Reproducir audio después de 8 segundos
-      setTimeout(() => {
-        audio.play();
-      }, 8000);
+     
     });
     const startButton = document.getElementById("startButton");
     const infoText = document.getElementById("infoText");
@@ -50,6 +46,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // Oculta o elimina el botón y el texto después de iniciar
     startButton.style.display = "none";
     infoText.style.display = "none";
+    
+    setTimeout(() => {
+      startButton.addEventListener("click", () => {
+        // Reproducir audio cuando el usuario hace clic en el botón
+        audio.play();
+      });
+    }, 8000);
 
     const videosData = [
       {
@@ -179,4 +182,5 @@ document.addEventListener("DOMContentLoaded", () => {
   infoText.textContent = "Presiona 'Empezar AR' para comenzar";
   infoText.id = "infoText";
   document.body.appendChild(infoText);
+  
 });
