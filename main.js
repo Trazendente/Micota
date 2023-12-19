@@ -26,17 +26,12 @@ document.addEventListener("DOMContentLoaded", () => {
     camera.far = 5000; // Ajusta según sea necesario
 
     // Configuración del audio
-    const audioClipPromise = loadAudio(
+ const audioClipPromise = loadAudio(
       "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/audio_fix_cre.mp3?v=1702940215215"
     );
-    const audioClip = await audioClipPromise;
     const listener = new THREE.AudioListener();
     camera.add(listener);
     const audio = new THREE.PositionalAudio(listener);
-    audio.setBuffer(audioClip);
-    audio.setRefDistance(100);
-    // Volumen
-    audio.setVolume(9.0);
 
     const startButton = document.getElementById("startButton");
     const infoText = document.getElementById("infoText");
@@ -44,6 +39,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // Oculta o elimina el botón y el texto después de iniciar
     startButton.style.display = "none";
     infoText.style.display = "none";
+
+    audioClipPromise.then((audioClip) => {
+      audio.setBuffer(audioClip);
+      audio.setRefDistance(100);
+      // Volumen
+      audio.setVolume(9.0);
+    });
 
     const videosData = [
       {
@@ -76,6 +78,12 @@ document.addEventListener("DOMContentLoaded", () => {
         position: new THREE.Vector3(0, 0, 0.5),
       },
     ];
+    const onTargetFound = () => {
+      // Reproducir audio después de 8 segundos
+      setTimeout(() => {
+        audio.play();
+      }, 8000);
+    };
 
     const newVideoUrl =
       "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Piso-V1-MAINv2.mp4?v=1702499962115";
@@ -142,7 +150,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         anchor.onTargetFound = () => {
           video.play();
-          audio.play();
         };
 
         anchor.onTargetLost = () => {
@@ -172,6 +179,6 @@ document.addEventListener("DOMContentLoaded", () => {
   infoText.textContent = "Presiona 'Empezar AR' para comenzar";
   infoText.id = "infoText";
   document.body.appendChild(infoText);
-  
-   startButton.addEventListener("click", start);
+
+  startButton.addEventListener("click", start);
 });
