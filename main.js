@@ -29,30 +29,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const audioClipPromise = loadAudio(
       "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/audio_fix_cre.mp3?v=1702940215215"
     );
+    const audioClip = await audioClipPromise;
     const listener = new THREE.AudioListener();
     camera.add(listener);
     const audio = new THREE.PositionalAudio(listener);
+    audio.setBuffer(audioClip);
+    audio.setRefDistance(100);
+    // Volumen
+    audio.setVolume(9.0);
 
-    audioClipPromise.then((audioClip) => {
-      audio.setBuffer(audioClip);
-      audio.setRefDistance(100);
-      // Volumen
-      audio.setVolume(9.0);
-     
-    });
     const startButton = document.getElementById("startButton");
     const infoText = document.getElementById("infoText");
 
     // Oculta o elimina el botón y el texto después de iniciar
     startButton.style.display = "none";
     infoText.style.display = "none";
-    
-    setTimeout(() => {
-      startButton.addEventListener("click", () => {
-        // Reproducir audio cuando el usuario hace clic en el botón
-        audio.play();
-      });
-    }, 8000);
 
     const videosData = [
       {
@@ -175,7 +166,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const startButton = document.createElement("button");
   startButton.textContent = "Empezar AR";
   startButton.id = "startButton";
-  startButton.addEventListener("click", start);
   document.body.appendChild(startButton);
 
   const infoText = document.createElement("p");
@@ -183,4 +173,5 @@ document.addEventListener("DOMContentLoaded", () => {
   infoText.id = "infoText";
   document.body.appendChild(infoText);
   
+   startButton.addEventListener("click", start);
 });
