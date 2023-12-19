@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     infoText.style.display = "none";
 
     const firstVideoData = {
-      url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Pared-MAIN.mp4?v=1702941626823",
+      url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Pared-v2_MAIN.mp4?v=1703002526892",
       position: new THREE.Vector3(0, 0.2, -0.1),
       scale: 1.0, // Ajusta la escala según sea necesario
       rotation: new THREE.Euler(0, 0, 0), // Ajusta la rotación según sea necesario
