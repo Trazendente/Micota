@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     audioClipPromise.then((audioClip) => {
       audio.setBuffer(audioClip);
       // Volumen
-      audio.setVolume(9.0);
+      audio.setVolume(1.0);
     });
     const startButton = document.getElementById("startButton");
     const infoText = document.getElementById("infoText");
