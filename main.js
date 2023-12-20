@@ -31,11 +31,10 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     const listener = new THREE.AudioListener();
     camera.add(listener);
-    const audio = new THREE.PositionalAudio(listener);
+    const audio = new THREE.Audio(listener); // Utiliza THREE.Audio en lugar de THREE.PositionalAudio
 
     audioClipPromise.then((audioClip) => {
       audio.setBuffer(audioClip);
-      audio.setRefDistance(100);
       // Volumen
       audio.setVolume(9.0);
     });
