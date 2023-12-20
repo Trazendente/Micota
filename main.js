@@ -86,8 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const videosData = [
-  
-
       {
         url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/AR_Cr_Plano_00-MAIN.mp4?v=1702941437037",
         position: new THREE.Vector3(0, 0, 0),
@@ -130,14 +128,13 @@ document.addEventListener("DOMContentLoaded", () => {
     newMaterial.side = THREE.DoubleSide;
     newMaterial.transparent = true; // Asegura que el material sea transparente
 
-
     const newPlane = new THREE.Mesh(newGeometry, newMaterial);
     newPlane.renderOrder = 2; // Ajusta el orden de representación
 
     newPlane.rotation.x = Math.PI / 2;
     newPlane.position.copy(newVideoPosition);
     newPlane.scale.set(0.43, 0.8, 1);
-   //newPlane.scale.multiplyScalar(0.8);
+    //newPlane.scale.multiplyScalar(0.8);
 
     const newAnchor = mindarThree.addAnchor(0);
     newAnchor.group.add(newPlane);
@@ -145,12 +142,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     newAnchor.onTargetFound = () => {
       newVideo.play();
-     // audio.play();
+      // audio.play();
     };
 
     newAnchor.onTargetLost = () => {
       newVideo.pause();
-     // audio.pause();
+      // audio.pause();
     };
 
     const videos = await Promise.all(
@@ -162,7 +159,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const material = createChromaMaterial(videoTexture, 0x14ff09, 0.4, 0.2);
         material.side = THREE.DoubleSide;
         material.transparent = true; // Asegura que el material sea transparente
-
 
         const plane = new THREE.Mesh(geometry, material);
         plane.renderOrder = 3; // Ajusta el orden de representación
