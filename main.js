@@ -204,6 +204,8 @@ document.addEventListener("DOMContentLoaded", () => {
   startButton.style.backgroundColor = "#CB4A5A"; // Color de fondo del botón
   startButton.style.color = "#FFFFFF"; // Color del texto del botón
   startButton.id = "startButton";
+  startButton.style.fontFamily = "Segoe, sans-serif"; // Aplicar la fuente
+
   
   startButton.addEventListener("click", start);
   document.body.appendChild(startButton);
@@ -211,5 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const infoText = document.createElement("p");
   infoText.textContent = "Presiona 'Empezar AR' para comenzar";
   infoText.id = "infoText";
+    infoText.style.fontFamily = "Segoe, sans-serif"; // Aplicar la fuente
+
   document.body.appendChild(infoText);
 });
