@@ -111,41 +111,40 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     ];
 
-    const newVideoUrl =
+    const pisoVideoUrl =
       "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Piso-V1-MAINv2.mp4?v=1702499962115";
-    const newVideoPosition = new THREE.Vector3(0, -0.26, 0.3);
-    const newVideoTexture = await loadVideo(newVideoUrl);
-    const newVideo = newVideoTexture.image;
+    const pisoVideoPosition = new THREE.Vector3(0, -0.26, 0.3);
+    const pisoVideoTexture = await loadVideo(pisoVideoUrl);
+    const pisoVideo = pisoVideoTexture.image;
 
-    const newGeometry = new THREE.PlaneGeometry(1231 / 514, 1);
-    const newMaterial = createChromaMaterial(
-      newVideoTexture,
+    const pisoGeometry = new THREE.PlaneGeometry(1231 / 514, 1);
+    const pisoMaterial = createChromaMaterial(
+      pisoVideoTexture,
       0x14ff09,
       0.4,
       0.2
     );
-    newMaterial.side = THREE.DoubleSide;
-    newMaterial.transparent = true; // Asegura que el material sea transparente
+    pisoMaterial.side = THREE.DoubleSide;
+    pisoMaterial.transparent = true; // Asegura que el material sea transparente
 
-    const newPlane = new THREE.Mesh(newGeometry, newMaterial);
-    newPlane.renderOrder = 2; // Ajusta el orden de representación
+    const pisoPlane = new THREE.Mesh(pisoGeometry, pisoMaterial);
+    pisoPlane.renderOrder = 2; // Ajusta el orden de representación
 
-    newPlane.rotation.x = Math.PI / 2;
-    newPlane.position.copy(newVideoPosition);
-    newPlane.scale.set(0.43, 0.8, 1);
-    //newPlane.scale.multiplyScalar(0.8);
+    pisoPlane.rotation.x = Math.PI / 2;
+    pisoPlane.position.copy(pisoVideoPosition);
+    pisoPlane.scale.set(0.52, 0.8, 1);
 
-    const newAnchor = mindarThree.addAnchor(0);
-    newAnchor.group.add(newPlane);
-    newAnchor.group.add(audio);
+    const pisoAnchor = mindarThree.addAnchor(0);
+    pisoAnchor.group.add(pisoPlane);
+    pisoAnchor.group.add(audio);
 
-    newAnchor.onTargetFound = () => {
-      newVideo.play();
+    pisoAnchor.onTargetFound = () => {
+      pisoVideo.play();
       // audio.play();
     };
 
-    newAnchor.onTargetLost = () => {
-      newVideo.pause();
+    pisoAnchor.onTargetLost = () => {
+      pisoVideo.pause();
       // audio.pause();
     };
 
