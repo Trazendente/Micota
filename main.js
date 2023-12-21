@@ -45,42 +45,42 @@ document.addEventListener("DOMContentLoaded", () => {
     startButton.style.display = "none";
     infoText.style.display = "none";
 
-    const firstVideoData = {
+    const paredVideoData = {
       url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Pared-v2_MAIN.mp4?v=1703002526892",
       position: new THREE.Vector3(0, 0.23, -0.1),
       scale: 1.0, // Ajusta la escala según sea necesario
       rotation: new THREE.Euler(0, 0, 0), // Ajusta la rotación según sea necesario
     };
 
-    const firstVideoTexture = await loadVideo(firstVideoData.url);
-    const firstVideo = firstVideoTexture.image;
+    const paredVideoTexture = await loadVideo(paredVideoData.url);
+    const paredVideo = paredVideoTexture.image;
 
-    const firstGeometry = new THREE.PlaneGeometry(1, 1);
-    const firstMaterial = createChromaMaterial(
-      firstVideoTexture,
+    const paredGeometry = new THREE.PlaneGeometry(1, 1);
+    const paredMaterial = createChromaMaterial(
+      paredVideoTexture,
       0x14ff09,
       0.4,
       0.2
     );
-    firstMaterial.side = THREE.DoubleSide;
+    paredMaterial.side = THREE.DoubleSide;
 
-    const firstPlane = new THREE.Mesh(firstGeometry, firstMaterial);
-    firstPlane.renderOrder = 1; // Ajusta el orden de representación
-    firstPlane.rotation.x = firstVideoData.rotation.x;
-    firstPlane.position.copy(firstVideoData.position);
-    firstPlane.scale.multiplyScalar(firstVideoData.scale);
+    const paredPlane = new THREE.Mesh(paredGeometry, paredMaterial);
+    paredPlane.renderOrder = 1; // Ajusta el orden de representación
+    paredPlane.rotation.x = paredVideoData.rotation.x;
+    paredPlane.position.copy(paredVideoData.position);
+    paredPlane.scale.multiplyScalar(paredVideoData.scale);
 
-    const firstAnchor = mindarThree.addAnchor(0);
-    firstAnchor.group.add(firstPlane);
-    //firstAnchor.group.add(audio);
+    const paredAnchor = mindarThree.addAnchor(0);
+    paredAnchor.group.add(paredPlane);
+    //paredAnchor.group.add(audio);
 
-    firstAnchor.onTargetFound = () => {
-      firstVideo.play();
+    paredAnchor.onTargetFound = () => {
+      paredVideo.play();
       audio.play();
     };
 
-    firstAnchor.onTargetLost = () => {
-      firstVideo.pause();
+    paredAnchor.onTargetLost = () => {
+      paredVideo.pause();
       audio.pause();
     };
 
