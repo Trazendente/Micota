@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
     const pisoVideoUrl =
-      "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Piso-V2-Main.mp4?v=1703188196055";
+      "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/PisoV3-MAIN.mp4?v=1703193624768";
     const pisoVideoPosition = new THREE.Vector3(0, -0.26, 0.3);
     const pisoVideoTexture = await loadVideo(pisoVideoUrl);
     const pisoVideo = pisoVideoTexture.image;
