@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
     const pisoVideoUrl =
-      "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Piso-V1-MAINv2.mp4?v=1702499962115";
+      "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Piso-V2-Main.mp4?v=1703188196055";
     const pisoVideoPosition = new THREE.Vector3(0, -0.26, 0.3);
     const pisoVideoTexture = await loadVideo(pisoVideoUrl);
     const pisoVideo = pisoVideoTexture.image;
@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
     pisoMaterial.transparent = true; // Asegura que el material sea transparente
 
     const pisoPlane = new THREE.Mesh(pisoGeometry, pisoMaterial);
-    pisoPlane.renderOrder = 2; // Ajusta el orden de representación
+    pisoPlane.renderOrder = 1; // Ajusta el orden de representación
 
     pisoPlane.rotation.x = Math.PI / 2;
     pisoPlane.position.copy(pisoVideoPosition);
