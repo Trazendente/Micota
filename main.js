@@ -211,7 +211,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.appendChild(startButton);
 
   const infoText = document.createElement("p");
-  infoText.textContent = "Presiona 'Empezar AR' para comenzar";
+  infoText.textContent = "Presiona para comenzar";
   infoText.id = "infoText";
     infoText.style.fontFamily = "Segoe, sans-serif"; // Aplicar la fuente
 
