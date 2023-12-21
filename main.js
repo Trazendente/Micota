@@ -201,6 +201,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const startButton = document.createElement("button");
   startButton.textContent = "Empezar AR";
   startButton.id = "startButton";
+  startButton.style.backgroundColor = "#CB4A5A"; // Color de fondo del botón
+  startButton.style.color = "#FFFFFF"; // Color del texto del botón
+  startButton.id = "startButton";
+  
   startButton.addEventListener("click", start);
   document.body.appendChild(startButton);
 
