@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Configuración del audio
     const audioClipPromise = loadAudio(
-      "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/audio_fix_cre_v3_high.mp3?v=1703001585354"
+      "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/audio_fix_cre_V5_1.mp3?v=1704495193474"
     );
     const listener = new THREE.AudioListener();
     camera.add(listener);
