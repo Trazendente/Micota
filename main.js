@@ -86,27 +86,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const videosData = [
       {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2000-MAIN_V3.mp4?v=1703184989844",
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2000-MAIN_V4.mp4?v=1704494655171",
         position: new THREE.Vector3(0, 0, 0),
       },
       {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2001-MAIN_V3.mp4?v=1703194210840",
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2001-MAIN_V4.mp4?v=1704494657301",
         position: new THREE.Vector3(0, 0, 0.1),
       },
       {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2002-MAIN_V3.mp4?v=1703194211541",
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2002-MAIN_V4.mp4?v=1704494656780",
         position: new THREE.Vector3(0, 0, 0.2),
       },
       {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2003-MAIN_V3.mp4?v=1703194211207",
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2003-MAIN_V4.mp4?v=1704494656481",
         position: new THREE.Vector3(0, 0, 0.3),
       },
       {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2004-MAIN_V3.mp4?v=1703184990979",
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2004-MAIN_V4.mp4?v=1704494655917",
         position: new THREE.Vector3(0, 0, 0.4),
       },
       {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2005-MAIN_V3.mp4?v=1703184990617",
+        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2005-MAIN_V4.mp4?v=1704494655600",
         position: new THREE.Vector3(0, 0, 0.5),
       },
     ];
