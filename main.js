@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", () => {
     experienceStarted = true;
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.body,
+      
+//IMAGEN PARA APUNTAR
       imageTargetSrc:
         "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/target-cr-opcion4.mind?v=1702930452080",
       uiScanning: "#scanning",
@@ -22,10 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const { renderer, scene, camera } = mindarThree;
     // Configuración de la cámara
-    camera.near = 0.01; // Ajusta según sea necesario
-    camera.far = 5000; // Ajusta según sea necesario
+    camera.near = 0.01; 
+    camera.far = 5000; 
 
-    // Configuración del audio
+ // CONFIGURACION DEL AUDIO
     const audioClipPromise = loadAudio(
       "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/audio_fix_cre_V5_1.mp3?v=1704495193474"
     );
@@ -41,10 +43,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const startButton = document.getElementById("startButton");
     const infoText = document.getElementById("infoText");
 
-    // Oculta o elimina el botón y el texto después de iniciar
     startButton.style.display = "none";
     infoText.style.display = "none";
-
+    
+ //VIDEO DE LA PARED-FONDO
     const paredVideoData = {
       url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Pared-v2_MAIN.mp4?v=1703002526892",
       position: new THREE.Vector3(0, 0.365, -0.1),
@@ -72,7 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const paredAnchor = mindarThree.addAnchor(0);
     paredAnchor.group.add(paredPlane);
-    //paredAnchor.group.add(audio);
 
     paredAnchor.onTargetFound = () => {
       paredVideo.play();
@@ -84,6 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
       audio.pause();
     };
 
+//VIDEOS PARALLAX
     const videosData = [
       {
         url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2000-MAIN_V4.mp4?v=1704494655171",
@@ -111,6 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
       },
     ];
 
+  //VIDEO DEL PISO
     const pisoVideoUrl =
       "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/PisoV3-MAIN.mp4?v=1703193624768";
     const pisoVideoPosition = new THREE.Vector3(0, -0.26, 0.3);
