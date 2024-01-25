@@ -5,7 +5,6 @@ const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener("DOMContentLoaded", () => {
   let experienceStarted = false;
-
   const start = async () => {
     if (experienceStarted) {
       return;
@@ -23,23 +22,14 @@ document.addEventListener("DOMContentLoaded", () => {
     camera.near = 0.01;
     camera.far = 5000;
 
-    const audioClipPromisePared = loadAudio("https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/audio_fix_cre_V5_1.mp3?v=1704495193474");
-    const audioClipPromiseSegunda = loadAudio("https://cdn.glitch.global/4dee2655-f2f5-4285-ba64-c81951daa167/Audio_Locu2.mp3?v=1704735051489"); // Replace with the actual URL for the second audio
-
+    const audioClipPromise = loadAudio("https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/audio_fix_cre_V5_1.mp3?v=1704495193474");
     const listener = new THREE.AudioListener();
     camera.add(listener);
+    const audio = new THREE.Audio(listener);
 
-    const audioPared = new THREE.Audio(listener);
-    const audioSegunda = new THREE.Audio(listener);
-
-    audioClipPromisePared.then((audioClip) => {
-      audioPared.setBuffer(audioClip);
-      audioPared.setVolume(1.0);
-    });
-
-    audioClipPromiseSegunda.then((audioClip) => {
-      audioSegunda.setBuffer(audioClip);
-      audioSegunda.setVolume(1.0);
+    audioClipPromise.then((audioClip) => {
+      audio.setBuffer(audioClip);
+      audio.setVolume(1.0);
     });
 
     const startButton = document.getElementById("startButton");
@@ -50,14 +40,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // VIDEO DE LA PARED-FONDO
     const paredVideoData = {
-      url: "https://cdn.glitch.global/ffc5cd79-eafc-4d77-9023-e1e60c9cc79f/Portada1anim%20V1-MAIN.mp4?v=1706201030385",
+      url: "https://cdn.glitch.global/ab9aea4b-3174-43cc-8f71-4e9ed0475f6b/portada1anim_V2-converted.mp4?v=1706203006619",
       position: new THREE.Vector3(0, 0.365, -0.1),
       scale: 1.25,
       rotation: new THREE.Euler(0, 0, 0),
     };
 
     const segundaVideoData = {
-      url: "https://cdn.glitch.global/ffc5cd79-eafc-4d77-9023-e1e60c9cc79f/Portada2anim%20V1-MAIN.mp4?v=1706201029700",
+      url: "https://cdn.glitch.global/ab9aea4b-3174-43cc-8f71-4e9ed0475f6b/portada2anim_V2-converted.mp4?v=1706203008331",
       position: new THREE.Vector3(0, 0, -0.1), // Adjust the position as needed
       scale: 1, // Adjust the scale as needed
       rotation: new THREE.Euler(0, 0, 0),
@@ -94,22 +84,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     paredAnchor.onTargetFound = () => {
       paredVideo.play();
-      audioPared.play();
+      audio.play();
     };
 
     segundaAnchor.onTargetFound = () => {
       segundaVideo.play();
-      audioSegunda.play();
+      audio.play(); // Adjust if you want the same audio for both videos
     };
 
     paredAnchor.onTargetLost = () => {
       paredVideo.pause();
-      audioPared.pause();
+      audio.pause();
     };
 
     segundaAnchor.onTargetLost = () => {
       segundaVideo.pause();
-      audioSegunda.pause();
+      audio.pause();
     };
 
     await mindarThree.start();
