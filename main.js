@@ -14,60 +14,48 @@ document.addEventListener("DOMContentLoaded", () => {
     experienceStarted = true;
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.body,
-      
-//IMAGEN PARA APUNTAR
-      imageTargetSrc:
-        "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/target-cr-opcion4.mind?v=1702930452080",
+      imageTargetSrc: "https://cdn.glitch.global/ffc5cd79-eafc-4d77-9023-e1e60c9cc79f/targets.mind?v=1706201047098",
       uiScanning: "#scanning",
       uiLoading: "no",
     });
 
     const { renderer, scene, camera } = mindarThree;
-    // Configuración de la cámara
-    camera.near = 0.01; 
-    camera.far = 5000; 
+    camera.near = 0.01;
+    camera.far = 5000;
 
- // CONFIGURACION DEL AUDIO
-    const audioClipPromise = loadAudio(
-      "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/audio_fix_cre_V5_1.mp3?v=1704495193474"
-    );
+    const audioClipPromise = loadAudio("https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/audio_fix_cre_V5_1.mp3?v=1704495193474");
     const listener = new THREE.AudioListener();
     camera.add(listener);
-    const audio = new THREE.Audio(listener); // Utiliza THREE.Audio en lugar de THREE.PositionalAudio
+    const audio = new THREE.Audio(listener);
 
     audioClipPromise.then((audioClip) => {
       audio.setBuffer(audioClip);
-      // Volumen
       audio.setVolume(1.0);
     });
+
     const startButton = document.getElementById("startButton");
     const infoText = document.getElementById("infoText");
 
     startButton.style.display = "none";
     infoText.style.display = "none";
-    
- //VIDEO DE LA PARED-FONDO
+
+    // VIDEO DE LA PARED-FONDO
     const paredVideoData = {
-      url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Pared-v2_MAIN.mp4?v=1703002526892",
+      url: "https://cdn.glitch.global/ffc5cd79-eafc-4d77-9023-e1e60c9cc79f/Portada1anim%20V1-MAIN.mp4?v=1706201030385",
       position: new THREE.Vector3(0, 0.365, -0.1),
-      scale: 1.25, // Ajusta la escala según sea necesario
-      rotation: new THREE.Euler(0, 0, 0), // Ajusta la rotación según sea necesario
+      scale: 1.25,
+      rotation: new THREE.Euler(0, 0, 0),
     };
 
     const paredVideoTexture = await loadVideo(paredVideoData.url);
     const paredVideo = paredVideoTexture.image;
 
     const paredGeometry = new THREE.PlaneGeometry(1, 1);
-    const paredMaterial = createChromaMaterial(
-      paredVideoTexture,
-      0x14ff09,
-      0.4,
-      0.2
-    );
+    const paredMaterial = createChromaMaterial(paredVideoTexture, 0x14ff09, 0.4, 0.2);
     paredMaterial.side = THREE.DoubleSide;
 
     const paredPlane = new THREE.Mesh(paredGeometry, paredMaterial);
-    paredPlane.renderOrder = 1; // Ajusta el orden de representación
+    paredPlane.renderOrder = 1;
     paredPlane.rotation.x = paredVideoData.rotation.x;
     paredPlane.position.copy(paredVideoData.position);
     paredPlane.scale.multiplyScalar(paredVideoData.scale);
@@ -85,118 +73,9 @@ document.addEventListener("DOMContentLoaded", () => {
       audio.pause();
     };
 
-//VIDEOS PARALLAX
-    const videosData = [
-      {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2000-MAIN_V4.mp4?v=1704494655171",
-        position: new THREE.Vector3(0, 0, 0),
-      },
-      {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2001-MAIN_V4.mp4?v=1704494657301",
-        position: new THREE.Vector3(0, 0, 0.1),
-      },
-      {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2002-MAIN_V4.mp4?v=1704494656780",
-        position: new THREE.Vector3(0, 0, 0.2),
-      },
-      {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2003-MAIN_V4.mp4?v=1704494656481",
-        position: new THREE.Vector3(0, 0, 0.3),
-      },
-      {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2004-MAIN_V4.mp4?v=1704494655917",
-        position: new THREE.Vector3(0, 0, 0.4),
-      },
-      {
-        url: "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/Ar%20Cr%20Plano%2005-MAIN_V4.mp4?v=1704494655600",
-        position: new THREE.Vector3(0, 0, 0.5),
-      },
-    ];
-
-  //VIDEO DEL PISO
-    const pisoVideoUrl =
-      "https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/PisoV3-MAIN.mp4?v=1703193624768";
-    const pisoVideoPosition = new THREE.Vector3(0, -0.26, 0.3);
-    const pisoVideoTexture = await loadVideo(pisoVideoUrl);
-    const pisoVideo = pisoVideoTexture.image;
-
-    const pisoGeometry = new THREE.PlaneGeometry(1231 / 514, 1);
-    const pisoMaterial = createChromaMaterial(
-      pisoVideoTexture,
-      0x14ff09,
-      0.4,
-      0.2
-    );
-    pisoMaterial.side = THREE.DoubleSide;
-    pisoMaterial.transparent = true; // Asegura que el material sea transparente
-
-    const pisoPlane = new THREE.Mesh(pisoGeometry, pisoMaterial);
-    pisoPlane.renderOrder = 1; // Ajusta el orden de representación
-
-    pisoPlane.rotation.x = Math.PI / 2;
-    pisoPlane.position.copy(pisoVideoPosition);
-    pisoPlane.scale.set(0.52, 0.8, 1);
-
-    const pisoAnchor = mindarThree.addAnchor(0);
-    pisoAnchor.group.add(pisoPlane);
-    pisoAnchor.group.add(audio);
-
-    pisoAnchor.onTargetFound = () => {
-      pisoVideo.play();
-      // audio.play();
-    };
-
-    pisoAnchor.onTargetLost = () => {
-      pisoVideo.pause();
-      // audio.pause();
-    };
-
-    const videos = await Promise.all(
-      videosData.map(async (videoData) => {
-        const videoTexture = await loadVideo(videoData.url);
-        const video = videoTexture.image;
-
-        const geometry = new THREE.PlaneGeometry(1231 / 514, 1);
-        const material = createChromaMaterial(videoTexture, 0x14ff09, 0.4, 0.2);
-        material.side = THREE.DoubleSide;
-        material.transparent = true; // Asegura que el material sea transparente
-
-        const plane = new THREE.Mesh(geometry, material);
-        plane.renderOrder = 3; // Ajusta el orden de representación
-        plane.rotation.x = 0;
-        plane.position.copy(videoData.position);
-        plane.scale.multiplyScalar(0.5);
-
-        if (videoData.rotation) {
-          plane.rotation.copy(videoData.rotation);
-        }
-        if (videoData.scale) {
-          plane.scale.copy(videoData.scale);
-        }
-
-        const anchor = mindarThree.addAnchor(0);
-        anchor.group.add(plane);
-        anchor.group.add(audio);
-
-        anchor.onTargetFound = () => {
-          video.play();
-          audio.play();
-        };
-
-        anchor.onTargetLost = () => {
-          video.pause();
-          audio.pause();
-        };
-
-        return { video, plane };
-      })
-    );
-
     await mindarThree.start();
 
     renderer.setAnimationLoop(() => {
-      videos.forEach(({ video, plane }) => {});
-
       renderer.render(scene, camera);
     });
   };
@@ -204,19 +83,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const startButton = document.createElement("button");
   startButton.textContent = "Empezar AR";
   startButton.id = "startButton";
-  startButton.style.backgroundColor = "#CB4A5A"; // Color de fondo del botón
-  startButton.style.color = "#FFFFFF"; // Color del texto del botón
-  startButton.id = "startButton";
-  startButton.style.fontFamily = "Segoe, sans-serif"; // Aplicar la fuente
+  startButton.style.backgroundColor = "#CB4A5A";
+  startButton.style.color = "#FFFFFF";
+  startButton.style.fontFamily = "Segoe, sans-serif";
 
-  
   startButton.addEventListener("click", start);
   document.body.appendChild(startButton);
 
   const infoText = document.createElement("p");
-  //infoText.textContent = "Presiona para comenzar";
   infoText.id = "infoText";
-    infoText.style.fontFamily = "Segoe, sans-serif"; // Aplicar la fuente
+  infoText.style.fontFamily = "Segoe, sans-serif";
 
   document.body.appendChild(infoText);
 });
