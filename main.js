@@ -5,6 +5,7 @@ const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener("DOMContentLoaded", () => {
   let experienceStarted = false;
+
   const start = async () => {
     if (experienceStarted) {
       return;
@@ -22,14 +23,23 @@ document.addEventListener("DOMContentLoaded", () => {
     camera.near = 0.01;
     camera.far = 5000;
 
-    const audioClipPromise = loadAudio("https://cdn.glitch.global/5b7a1209-5438-4fcd-96dc-ba81f0837a93/audio_fix_cre_V5_1.mp3?v=1704495193474");
+    const audioClipPromisePared = loadAudio("https://cdn.glitch.global/ab9aea4b-3174-43cc-8f71-4e9ed0475f6b/1.Documentary%20Piano%20Loop_1.mp3?v=1706202845698");
+    const audioClipPromiseSegunda = loadAudio("https://cdn.glitch.global/ab9aea4b-3174-43cc-8f71-4e9ed0475f6b/loop_bg.mp3?v=1706202898010");
+
     const listener = new THREE.AudioListener();
     camera.add(listener);
-    const audio = new THREE.Audio(listener);
 
-    audioClipPromise.then((audioClip) => {
-      audio.setBuffer(audioClip);
-      audio.setVolume(1.0);
+    const audioPared = new THREE.Audio(listener);
+    const audioSegunda = new THREE.Audio(listener);
+
+    audioClipPromisePared.then((audioClip) => {
+      audioPared.setBuffer(audioClip);
+      audioPared.setVolume(1.0);
+    });
+
+    audioClipPromiseSegunda.then((audioClip) => {
+      audioSegunda.setBuffer(audioClip);
+      audioSegunda.setVolume(1.0);
     });
 
     const startButton = document.getElementById("startButton");
@@ -39,67 +49,68 @@ document.addEventListener("DOMContentLoaded", () => {
     infoText.style.display = "none";
 
     // VIDEO DE LA PARED-FONDO
-    const paredVideoData = {
-      url: "https://cdn.glitch.global/ab9aea4b-3174-43cc-8f71-4e9ed0475f6b/portada1anim_V2-converted.mp4?v=1706203006619",
-      position: new THREE.Vector3(0, 0.365, -0.1),
-      scale: 1.25,
+    const Portada1 = {
+      url: "https://cdn.glitch.global/ab9aea4b-3174-43cc-8f71-4e9ed0475f6b/Portada1anim%20V2-MAIN.mp4?v=17062033995425",
+      position: new THREE.Vector3(0, 0, -0.1),
+      scale: new THREE.Vector3(764 / 1002, 1, 1), // Ajusta la escala según las dimensiones originales
       rotation: new THREE.Euler(0, 0, 0),
     };
 
-    const segundaVideoData = {
-      url: "https://cdn.glitch.global/ab9aea4b-3174-43cc-8f71-4e9ed0475f6b/portada2anim_V2-converted.mp4?v=1706203008331",
-      position: new THREE.Vector3(0, 0, -0.1), // Adjust the position as needed
-      scale: 1, // Adjust the scale as needed
+    // VIDEO DE LA SEGUNDA PORTADA
+    const Portada2 = {
+      url: "https://cdn.glitch.global/ab9aea4b-3174-43cc-8f71-4e9ed0475f6b/Portada2anim%20V2-MAIN.mp4?v=1706203398665",
+      position: new THREE.Vector3(0, 0, -0.1),
+      scale: new THREE.Vector3(764 / 1002, 1, 1), // Ajusta la escala según las dimensiones originales
       rotation: new THREE.Euler(0, 0, 0),
     };
 
-    const paredVideoTexture = await loadVideo(paredVideoData.url);
-    const segundaVideoTexture = await loadVideo(segundaVideoData.url);
+    const Portada1Texture = await loadVideo(Portada1.url);
+    const Portada2Texture = await loadVideo(Portada2.url);
 
-    const paredVideo = paredVideoTexture.image;
-    const segundaVideo = segundaVideoTexture.image;
+    const Portada1Video = Portada1Texture.image;
+    const Portada2Video = Portada2Texture.image;
 
-    const paredGeometry = new THREE.PlaneGeometry(1, 1);
-    const segundaGeometry = new THREE.PlaneGeometry(1, 1); // Use appropriate geometry
+    const Portada1Geometry = new THREE.PlaneGeometry(1, 1);
+    const Portada2Geometry = new THREE.PlaneGeometry(1, 1);
 
-    const paredMaterial = new THREE.MeshBasicMaterial({ map: paredVideoTexture });
-    const segundaMaterial = new THREE.MeshBasicMaterial({ map: segundaVideoTexture });
+    const Portada1Material = new THREE.MeshBasicMaterial({ map: Portada1Texture });
+    const Portada2Material = new THREE.MeshBasicMaterial({ map: Portada2Texture });
 
-    const paredPlane = new THREE.Mesh(paredGeometry, paredMaterial);
-    const segundaPlane = new THREE.Mesh(segundaGeometry, segundaMaterial);
+    const Portada1Plane = new THREE.Mesh(Portada1Geometry, Portada1Material);
+    const Portada2Plane = new THREE.Mesh(Portada2Geometry, Portada2Material);
 
-    paredPlane.rotation.x = paredVideoData.rotation.x;
-    paredPlane.position.copy(paredVideoData.position);
-    paredPlane.scale.multiplyScalar(paredVideoData.scale);
+    Portada1Plane.rotation.x = Portada1.rotation.x;
+    Portada1Plane.position.copy(Portada1.position);
+    Portada1Plane.scale.copy(Portada1.scale);
 
-    segundaPlane.rotation.x = segundaVideoData.rotation.x;
-    segundaPlane.position.copy(segundaVideoData.position);
-    segundaPlane.scale.multiplyScalar(segundaVideoData.scale);
+    Portada2Plane.rotation.x = Portada2.rotation.x;
+    Portada2Plane.position.copy(Portada2.position);
+    Portada2Plane.scale.copy(Portada2.scale);
 
-    const paredAnchor = mindarThree.addAnchor(0);
-    const segundaAnchor = mindarThree.addAnchor(1); // Use a different index for the second anchor
+    const Portada1Anchor = mindarThree.addAnchor(0);
+    const Portada2Anchor = mindarThree.addAnchor(1);
 
-    paredAnchor.group.add(paredPlane);
-    segundaAnchor.group.add(segundaPlane);
+    Portada1Anchor.group.add(Portada1Plane);
+    Portada2Anchor.group.add(Portada2Plane);
 
-    paredAnchor.onTargetFound = () => {
-      paredVideo.play();
-      audio.play();
+    Portada1Anchor.onTargetFound = () => {
+      Portada1Video.play();
+      audioPared.play();
     };
 
-    segundaAnchor.onTargetFound = () => {
-      segundaVideo.play();
-      audio.play(); // Adjust if you want the same audio for both videos
+    Portada2Anchor.onTargetFound = () => {
+      Portada2Video.play();
+      audioSegunda.play();
     };
 
-    paredAnchor.onTargetLost = () => {
-      paredVideo.pause();
-      audio.pause();
+    Portada1Anchor.onTargetLost = () => {
+      Portada1Video.pause();
+      audioPared.pause();
     };
 
-    segundaAnchor.onTargetLost = () => {
-      segundaVideo.pause();
-      audio.pause();
+    Portada2Anchor.onTargetLost = () => {
+      Portada2Video.pause();
+      audioSegunda.pause();
     };
 
     await mindarThree.start();
