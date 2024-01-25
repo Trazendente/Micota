@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const Portada1 = {
       url: "https://cdn.glitch.global/ab9aea4b-3174-43cc-8f71-4e9ed0475f6b/Portada1anim%20V2-MAIN.mp4?v=17062033995425",
       position: new THREE.Vector3(0, 0, -0.1),
-      scale: new THREE.Vector3(764 / 1002, 1, 1), // Ajusta la escala según las dimensiones originales
+      scale: new THREE.Vector3(764 / 1002 * 1.4, 1.4, 1), // Ajusta la escala según las dimensiones originales
       rotation: new THREE.Euler(0, 0, 0),
     };
 
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const Portada2 = {
       url: "https://cdn.glitch.global/ab9aea4b-3174-43cc-8f71-4e9ed0475f6b/Portada2anim%20V2-MAIN.mp4?v=1706203398665",
       position: new THREE.Vector3(0, 0, -0.1),
-      scale: new THREE.Vector3(764 / 1002, 1, 1), // Ajusta la escala según las dimensiones originales
+      scale: new THREE.Vector3(764 / 1002 * 1.4, 1.4, 1),  // Ajusta la escala según las dimensiones originales
       rotation: new THREE.Euler(0, 0, 0),
     };
 
