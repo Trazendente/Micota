@@ -23,23 +23,23 @@ document.addEventListener("DOMContentLoaded", () => {
     camera.near = 0.01;
     camera.far = 5000;
 
-    const audioClipPromisePared = loadAudio("https://cdn.glitch.global/ab9aea4b-3174-43cc-8f71-4e9ed0475f6b/1.Documentary%20Piano%20Loop_1.mp3?v=1706202845698");
+    const audioClipPromisePrimero = loadAudio("https://cdn.glitch.global/ab9aea4b-3174-43cc-8f71-4e9ed0475f6b/1.Documentary%20Piano%20Loop_1.mp3?v=1706202845698");
     const audioClipPromiseSegunda = loadAudio("https://cdn.glitch.global/ab9aea4b-3174-43cc-8f71-4e9ed0475f6b/loop_bg.mp3?v=1706202898010");
 
     const listener = new THREE.AudioListener();
     camera.add(listener);
 
-    const audioPared = new THREE.Audio(listener);
+    const audioPrimero = new THREE.Audio(listener);
     const audioSegunda = new THREE.Audio(listener);
 
-    audioClipPromisePared.then((audioClip) => {
-      audioPared.setBuffer(audioClip);
-      audioPared.setVolume(1.0);
+    audioClipPromisePrimero.then((audioClip) => {
+      audioPrimero.setBuffer(audioClip);
+      audioPrimero.setVolume(1.0);
     });
 
     audioClipPromiseSegunda.then((audioClip) => {
       audioSegunda.setBuffer(audioClip);
-      audioSegunda.setVolume(0.5);
+      audioSegunda.setVolume(0.1);
     });
 
     const startButton = document.getElementById("startButton");
@@ -51,15 +51,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // VIDEO DE LA PARED-FONDO
     const Portada1 = {
       url: "https://cdn.glitch.global/ab9aea4b-3174-43cc-8f71-4e9ed0475f6b/Portada1anim%20V2-MAIN.mp4?v=17062033995425",
-      position: new THREE.Vector3(0, 0, -0.1),
-      scale: new THREE.Vector3(764 / 1002 * 1.4, 1.4, 1), // Ajusta la escala según las dimensiones originales
+      position: new THREE.Vector3(0, 0, 0),
+      scale: new THREE.Vector3(764 / 1002 * 1.32, 1.32, 1), // Ajusta la escala según las dimensiones originales
       rotation: new THREE.Euler(0, 0, 0),
     };
 
     // VIDEO DE LA SEGUNDA PORTADA
     const Portada2 = {
       url: "https://cdn.glitch.global/ab9aea4b-3174-43cc-8f71-4e9ed0475f6b/Portada2anim%20V2-MAIN.mp4?v=1706203398665",
-      position: new THREE.Vector3(0, 0, -0.1),
+      position: new THREE.Vector3(0, 0, 0),
       scale: new THREE.Vector3(764 / 1002 * 1.4, 1.4, 1),  // Ajusta la escala según las dimensiones originales
       rotation: new THREE.Euler(0, 0, 0),
     };
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     Portada1Anchor.onTargetFound = () => {
       Portada1Video.play();
-      audioPared.play();
+      audioPrimero.play();
     };
 
     Portada2Anchor.onTargetFound = () => {
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     Portada1Anchor.onTargetLost = () => {
       Portada1Video.pause();
-      audioPared.pause();
+      audioPrimero.pause();
     };
 
     Portada2Anchor.onTargetLost = () => {
