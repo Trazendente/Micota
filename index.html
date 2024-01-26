@@ -93,26 +93,35 @@
           top: calc(100% - 10px);
         }
       }
-      
-       #startButton {
-        background-color: #000000;
-        color: #FFFFFF;
-        border: none;
-        padding: 15px 255px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        border-radius: 88px; /* Esquinas redondeadas */
-        cursor: pointer;
-         
-         /* Ajustes para centrar y mover hacia abajo */
-    margin-top: 20px; /* Puedes ajustar el valor según sea necesario */
+#startButton {
+    background-color: #000000;
+    color: #FFFFFF;
+    border: none;
+    padding: 3% 5%; /* Utiliza porcentajes para hacerlo más adaptable */
+    max-width: 392px; /* Establece un ancho máximo para evitar que se extienda demasiado en pantallas grandes */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    border-radius: 0px; /* Esquinas redondeadas */
+    cursor: pointer;
+    box-sizing: border-box; /* Mantiene el ancho total incluyendo el padding y el borde */
+    
+    /* Ajustes para mover hacia abajo */
+    margin-top: 25%; /* Utiliza porcentajes para hacerlo más adaptable */
     margin-left: auto;
     margin-right: auto;
 }
-        
-      }
+
+/* Media query para realizar ajustes específicos en pantallas más pequeñas */
+@media screen and (max-width: 600px) {
+    #startButton {
+        width: 100%; /* Ocupa todo el ancho en pantallas más pequeñas */
+        max-width: none; /* Elimina el ancho máximo en pantallas más pequeñas */
+    }
+}
+
+
 
       
     </style>
