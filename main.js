@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     audioClipPromiseSegunda.then((audioClip) => {
       audioSegunda.setBuffer(audioClip);
-      audioSegunda.setVolume(1.0);
+      audioSegunda.setVolume(0.5);
     });
 
     const startButton = document.getElementById("startButton");
