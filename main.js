@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const Portada2 = {
       url: "https://cdn.glitch.global/ab9aea4b-3174-43cc-8f71-4e9ed0475f6b/Portada2anim%20V2-MAIN.mp4?v=1706203398665",
       position: new THREE.Vector3(0, 0, 0),
-      scale: new THREE.Vector3(764 / 1002 * 1.4, 1.4, 1),  // Ajusta la escala según las dimensiones originales
+      scale: new THREE.Vector3(764 / 1002 * 1.32, 1.325, 1),  // Ajusta la escala según las dimensiones originales
       rotation: new THREE.Euler(0, 0, 0),
     };
 
@@ -121,9 +121,9 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const startButton = document.createElement("button");
-  startButton.textContent = "Empezar AR";
+  startButton.textContent = "COMENZAR";
   startButton.id = "startButton";
-  startButton.style.backgroundColor = "#CB4A5A";
+  startButton.style.backgroundColor = "#C9262E";
   startButton.style.color = "#FFFFFF";
   startButton.style.fontFamily = "Segoe, sans-serif";
 
