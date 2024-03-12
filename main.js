@@ -21,11 +21,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const { renderer, cssRenderer, scene, cssScene, camera } = mindarThree;
-    
-    
-    const light = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
-    scene.add(light);
-    
+
+    const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x000000, 3);
+
+    // Agregar la luz de entorno a la escena
+    scene.add(hemisphereLight);
+
     camera.near = 0.01;
     camera.far = 5000;
 
@@ -40,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/1GIN_anim_V1.glb?v=1710253081220"
     );
     Portada1Model.scene.scale.set(1, 1, 1);
-    Portada1Model.scene.position.set(0, 0, 0);
+    Portada1Model.scene.position.set(0, -10, 0);
 
     const Portada2Model = await loadGLTF(
       "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/2MARGARITA_anim_V1.glb?v=1710253082050"
