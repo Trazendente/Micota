@@ -1,5 +1,6 @@
 import { loadVideo } from "./loader.js";
 import { loadAudio } from "./loader.js";
+import { loadGLTF, loadTextures } from "./loader.js";
 
 const THREE = window.MINDAR.IMAGE.THREE;
 
