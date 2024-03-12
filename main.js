@@ -1,5 +1,3 @@
-import { loadVideo } from "./loader.js";
-import { loadAudio } from "./loader.js";
 import { loadGLTF, loadTextures } from "./loader.js";
 
 const THREE = window.MINDAR.IMAGE.THREE;
@@ -15,7 +13,8 @@ document.addEventListener("DOMContentLoaded", () => {
     experienceStarted = true;
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.body,
-      imageTargetSrc: "https://cdn.glitch.global/ffc5cd79-eafc-4d77-9023-e1e60c9cc79f/targets.mind?v=1706201047098",
+      imageTargetSrc:
+        "https://cdn.glitch.global/ffc5cd79-eafc-4d77-9023-e1e60c9cc79f/targets.mind?v=1706201047098",
       uiScanning: "#scanning",
       uiLoading: "no",
     });
@@ -31,8 +30,15 @@ document.addEventListener("DOMContentLoaded", () => {
     infoText.style.display = "none";
 
     // Modelos GLB
-    const Portada1Model = await loadGLTF("https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/1GIN_anim_V1.glb?v=1710253081220");
-    const Portada2Model = await loadGLTF("https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/2MARGARITA_anim_V1.glb?v=1710253082050");
+    const Portada1Model = await loadGLTF(
+      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/1GIN_anim_V1.glb?v=1710253081220"
+    );
+    Portada1Model.scene.scale.set(1, 1, 1);
+    Portada1Model.scene.position.set(0, 0, 0);
+
+    const Portada2Model = await loadGLTF(
+      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/2MARGARITA_anim_V1.glb?v=1710253082050"
+    );
 
     const Portada1Anchor = mindarThree.addAnchor(0);
     const Portada2Anchor = mindarThree.addAnchor(1);
@@ -62,6 +68,24 @@ document.addEventListener("DOMContentLoaded", () => {
       renderer.render(scene, camera);
     });
   };
+
+  const mixer1 = new THREE.AnimationMixer(Portada1Model.scene);
+  const action1 = mixer1.clipAction(Portada1Model.animations[0]);
+  action1.play();
+
+  const mixer2 = new THREE.AnimationMixer(Portada2Model.scene);
+  const action2 = mixer2.clipAction(Portada2Model.animations[0]);
+  action2.play();
+
+  const clock = new THREE.Clock();
+  await mindarThree.start();
+  renderer.setAnimationLoop(() => {
+    const delta = clock.getDelta();
+    mixer1.update(delta);
+    mixer2.update(delta);
+    renderer.render(scene, camera);
+    cssRenderer.render(cssScene, camera);
+  });
 
   const startButton = document.createElement("button");
   startButton.textContent = "COMENZAR";
