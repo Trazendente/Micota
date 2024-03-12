@@ -24,94 +24,36 @@ document.addEventListener("DOMContentLoaded", () => {
     camera.near = 0.01;
     camera.far = 5000;
 
-    const audioClipPromisePrimero = loadAudio("https://cdn.glitch.global/ab9aea4b-3174-43cc-8f71-4e9ed0475f6b/1.Documentary%20Piano%20Loop_1.mp3?v=1706202845698");
-    const audioClipPromiseSegunda = loadAudio("https://cdn.glitch.global/ab9aea4b-3174-43cc-8f71-4e9ed0475f6b/loop_bg.mp3?v=1706202898010");
-
-    const listener = new THREE.AudioListener();
-    camera.add(listener);
-
-    const audioPrimero = new THREE.Audio(listener);
-    const audioSegunda = new THREE.Audio(listener);
-
-    audioClipPromisePrimero.then((audioClip) => {
-      audioPrimero.setBuffer(audioClip);
-      audioPrimero.setVolume(1.0);
-    });
-
-    audioClipPromiseSegunda.then((audioClip) => {
-      audioSegunda.setBuffer(audioClip);
-      audioSegunda.setVolume(0.1);
-    });
-
     const startButton = document.getElementById("startButton");
     const infoText = document.getElementById("infoText");
 
     startButton.style.display = "none";
     infoText.style.display = "none";
 
-    // VIDEO DE LA PARED-FONDO
-    const Portada1 = {
-      url: "https://cdn.glitch.global/ab9aea4b-3174-43cc-8f71-4e9ed0475f6b/Portada1anim%20V2-MAIN.mp4?v=17062033995425",
-      position: new THREE.Vector3(0, 0, 0),
-      scale: new THREE.Vector3(764 / 1002 * 1.33, 1.335, 1), // Ajusta la escala según las dimensiones originales
-      rotation: new THREE.Euler(0, 0, 0),
-    };
-
-    // VIDEO DE LA SEGUNDA PORTADA
-    const Portada2 = {
-      url: "https://cdn.glitch.global/ab9aea4b-3174-43cc-8f71-4e9ed0475f6b/Portada2anim%20V2-MAIN.mp4?v=1706203398665",
-      position: new THREE.Vector3(0, 0, 0),
-      scale: new THREE.Vector3(764 / 1002 * 1.33, 1.335, 1),  // Ajusta la escala según las dimensiones originales
-      rotation: new THREE.Euler(0, 0, 0),
-    };
-
-    const Portada1Texture = await loadVideo(Portada1.url);
-    const Portada2Texture = await loadVideo(Portada2.url);
-
-    const Portada1Video = Portada1Texture.image;
-    const Portada2Video = Portada2Texture.image;
-
-    const Portada1Geometry = new THREE.PlaneGeometry(1, 1);
-    const Portada2Geometry = new THREE.PlaneGeometry(1, 1);
-
-    const Portada1Material = new THREE.MeshBasicMaterial({ map: Portada1Texture });
-    const Portada2Material = new THREE.MeshBasicMaterial({ map: Portada2Texture });
-
-    const Portada1Plane = new THREE.Mesh(Portada1Geometry, Portada1Material);
-    const Portada2Plane = new THREE.Mesh(Portada2Geometry, Portada2Material);
-
-    Portada1Plane.rotation.x = Portada1.rotation.x;
-    Portada1Plane.position.copy(Portada1.position);
-    Portada1Plane.scale.copy(Portada1.scale);
-
-    Portada2Plane.rotation.x = Portada2.rotation.x;
-    Portada2Plane.position.copy(Portada2.position);
-    Portada2Plane.scale.copy(Portada2.scale);
+    // Modelos GLB
+    const Portada1Model = await loadGLTF("https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/1GIN_anim_V1.glb?v=1710253081220");
+    const Portada2Model = await loadGLTF("https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/2MARGARITA_anim_V1.glb?v=1710253082050");
 
     const Portada1Anchor = mindarThree.addAnchor(0);
     const Portada2Anchor = mindarThree.addAnchor(1);
 
-    Portada1Anchor.group.add(Portada1Plane);
-    Portada2Anchor.group.add(Portada2Plane);
+    Portada1Anchor.group.add(Portada1Model.scene);
+    Portada2Anchor.group.add(Portada2Model.scene);
 
     Portada1Anchor.onTargetFound = () => {
-      Portada1Video.play();
-      audioPrimero.play();
+      // Acciones al encontrar el primer objetivo
     };
 
     Portada2Anchor.onTargetFound = () => {
-      Portada2Video.play();
-      audioSegunda.play();
+      // Acciones al encontrar el segundo objetivo
     };
 
     Portada1Anchor.onTargetLost = () => {
-      Portada1Video.pause();
-      audioPrimero.pause();
+      // Acciones al perder el primer objetivo
     };
 
     Portada2Anchor.onTargetLost = () => {
-      Portada2Video.pause();
-      audioSegunda.pause();
+      // Acciones al perder el segundo objetivo
     };
 
     await mindarThree.start();
