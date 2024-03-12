@@ -123,6 +123,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   startButton.addEventListener("click", start);
   document.body.appendChild(startButton);
+  
+   // Añadir event listener al botón "COMENZAR" después de que se haya creado
+  document.getElementById("startButton").addEventListener("click", () => {
+    document.getElementById("backgroundAudio").play();
+    start();
+  });
 
   const infoText = document.createElement("p");
   infoText.id = "infoText";
