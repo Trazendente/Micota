@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
   startButton.textContent = "COMENZAR";
   startButton.id = "startButton";
   startButton.classList.add("circle-button"); // Agregar una clase para aplicar estilos CSS
-  startButton.style.backgroundColor = "#a62424";
+  startButton.style.backgroundColor = "#e7357b";
   startButton.style.color = "#FFFFFF";
   startButton.style.fontFamily = "Segoe, sans-serif";
 

@@ -102,35 +102,26 @@
         justify-content: center;
         align-items: center;
       }
-
-     #startButton {
-    background-color: #000000;
+#startButton {
+    background-color: #a62424;
     color: #FFFFFF;
     border: none;
-    padding: 3% 5%;
-    width: 100px; /* Ancho y alto iguales para hacer el botón circular */
-    height: 100px;
+    width: 150px; /* Ancho y alto iguales para hacer el botón circular */
+    height: 150px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 20px;
     border-radius: 50%; /* Establece el radio del borde a la mitad del ancho/alto */
     cursor: pointer;
-    box-sizing: border-box;
     position: fixed; /* Fija el botón en la ventana del navegador */
     bottom: 10px; /* Distancia desde la parte inferior */
     right: 10px; /* Distancia desde la derecha */
+    display: flex; /* Utilizamos flexbox para centrar vertical y horizontalmente */
+    justify-content: center;
+    align-items: center;
 }
 
 
-
-      /* Media query para realizar ajustes específicos en pantallas más pequeñas */
-      @media screen and (max-width: 600px) {
-          #startButton {
-              width: 100%; /* Ocupa todo el ancho en pantallas más pequeñas */
-              max-width: none; /* Elimina el ancho máximo en pantallas más pequeñas */
-          }
-      }
     </style>
   </head>
   <body>
