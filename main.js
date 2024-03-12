@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
     
-    
 
     experienceStarted = true;
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
