@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.body,
       imageTargetSrc:
-        "https://cdn.glitch.global/ffc5cd79-eafc-4d77-9023-e1e60c9cc79f/targets.mind?v=1706201047098",
+        "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/targets.mind?v=1710257025773",
       uiScanning: "#scanning",
       uiLoading: "no",
     });
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Reducir la intensidad de la luz
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1); // Reducir la intensidad a 1
     directionalLight.position.set(0, 100, 50);
-    directionalLight.castShadow = true;
+    directionalLight.castShadow = false;
     scene.add(directionalLight);
 
     // Aumentar el tamaño del mapa de sombras
@@ -56,8 +56,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const Portada1Model = await loadGLTF(
       "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/1GIN_anim_V1.glb?v=1710253081220"
     );
-    Portada1Model.scene.scale.set(1, 1, 1);
-    Portada1Model.scene.position.set(0, 0, 0);
+    Portada1Model.scene.scale.set(0.5, 0.5,  0.5);
+    Portada1Model.scene.position.set(0, , 0);
 
     const Portada2Model = await loadGLTF(
       "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/2MARGARITA_anim_V1.glb?v=1710253082050"
