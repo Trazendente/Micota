@@ -56,12 +56,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const Portada1Model = await loadGLTF(
       "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/1GIN_anim_V1.glb?v=1710253081220"
     );
-    Portada1Model.scene.scale.set(0.5, 0.5,  0.5);
-    Portada1Model.scene.position.set(0, , 0);
+    Portada1Model.scene.scale.set(0.3, 0.3, 0.3);
+    Portada1Model.scene.position.set(0, -0.5, 0);
 
     const Portada2Model = await loadGLTF(
       "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/2MARGARITA_anim_V1.glb?v=1710253082050"
     );
+
+    Portada2Model.scene.scale.set(0.3, 0.3, 0.3);
+    Portada2Model.scene.position.set(0, -0.5, 0);
 
     const Portada1Anchor = mindarThree.addAnchor(0);
     const Portada2Anchor = mindarThree.addAnchor(1);
@@ -109,7 +112,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const startButton = document.createElement("button");
   startButton.textContent = "COMENZAR";
   startButton.id = "startButton";
-  startButton.style.backgroundColor = "#C9262E";
+  startButton.classList.add("circle-button"); // Agregar una clase para aplicar estilos CSS
+  startButton.style.backgroundColor = "#a62424";
   startButton.style.color = "#FFFFFF";
   startButton.style.fontFamily = "Segoe, sans-serif";
 
