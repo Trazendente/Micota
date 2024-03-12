@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (experienceStarted) {
       return;
     }
+    
+    
 
     experienceStarted = true;
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
@@ -108,6 +110,8 @@ document.addEventListener("DOMContentLoaded", () => {
       cssRenderer.render(cssScene, camera);
     });
   };
+  
+  
 
   const startButton = document.createElement("button");
   startButton.textContent = "COMENZAR";
