@@ -4,6 +4,7 @@ const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener("DOMContentLoaded", () => {
   let experienceStarted = false;
+  let mixer1, action1, mixer2, action2; // Definimos las variables fuera de la función start para que estén accesibles en toda la función
 
   const start = async () => {
     if (experienceStarted) {
@@ -19,7 +20,12 @@ document.addEventListener("DOMContentLoaded", () => {
       uiLoading: "no",
     });
 
-    const { renderer, scene, camera } = mindarThree;
+    const { renderer, cssRenderer, scene, cssScene, camera } = mindarThree;
+    
+    
+    const light = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
+    scene.add(light);
+    
     camera.near = 0.01;
     camera.far = 5000;
 
@@ -64,28 +70,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     await mindarThree.start();
 
+    // Crear mezcladores y reproducir acciones dentro de la función start
+    mixer1 = new THREE.AnimationMixer(Portada1Model.scene);
+    action1 = mixer1.clipAction(Portada1Model.animations[0]);
+    action1.play();
+
+    mixer2 = new THREE.AnimationMixer(Portada2Model.scene);
+    action2 = mixer2.clipAction(Portada2Model.animations[0]);
+    action2.play();
+
+    const clock = new THREE.Clock();
     renderer.setAnimationLoop(() => {
+      const delta = clock.getDelta();
+      mixer1.update(delta);
+      mixer2.update(delta);
       renderer.render(scene, camera);
+      cssRenderer.render(cssScene, camera);
     });
   };
-
-  const mixer1 = new THREE.AnimationMixer(Portada1Model.scene);
-  const action1 = mixer1.clipAction(Portada1Model.animations[0]);
-  action1.play();
-
-  const mixer2 = new THREE.AnimationMixer(Portada2Model.scene);
-  const action2 = mixer2.clipAction(Portada2Model.animations[0]);
-  action2.play();
-
-  const clock = new THREE.Clock();
-  await mindarThree.start();
-  renderer.setAnimationLoop(() => {
-    const delta = clock.getDelta();
-    mixer1.update(delta);
-    mixer2.update(delta);
-    renderer.render(scene, camera);
-    cssRenderer.render(cssScene, camera);
-  });
 
   const startButton = document.createElement("button");
   startButton.textContent = "COMENZAR";
