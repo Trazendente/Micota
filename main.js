@@ -22,10 +22,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const { renderer, cssRenderer, scene, cssScene, camera } = mindarThree;
 
-    const hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x000000, 3);
+    // Reducir la intensidad de la luz
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1); // Reducir la intensidad a 1
+    directionalLight.position.set(0, 100, 50);
+    directionalLight.castShadow = true;
+    scene.add(directionalLight);
 
-    // Agregar la luz de entorno a la escena
-    scene.add(hemisphereLight);
+    // Aumentar el tamaño del mapa de sombras
+    directionalLight.shadow.mapSize.width = 2048; // Aumentar el tamaño del mapa de sombras
+    directionalLight.shadow.mapSize.height = 2048;
+
+    // Ajustar la posición y dirección de la luz
+    directionalLight.position.set(100, 200, 100); // Cambiar la posición de la luz
+
+    // Ajustar las propiedades de las sombras
+    directionalLight.shadow.bias = -0.002; // Ajustar el bias de las sombras
+    directionalLight.shadow.radius = 5; // Ajustar el radio de las sombras
+
+    // Agregar luces ambientales adicionales si es necesario
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Ajustar la intensidad según sea necesario
+    scene.add(ambientLight);
 
     camera.near = 0.01;
     camera.far = 5000;
@@ -41,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/1GIN_anim_V1.glb?v=1710253081220"
     );
     Portada1Model.scene.scale.set(1, 1, 1);
-    Portada1Model.scene.position.set(0, -10, 0);
+    Portada1Model.scene.position.set(0, 0, 0);
 
     const Portada2Model = await loadGLTF(
       "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/2MARGARITA_anim_V1.glb?v=1710253082050"
