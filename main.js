@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Modelos GLB
     const Portada1Model = await loadGLTF(
-      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/2MARGARITA_anim_V6.glb?v=1710348736272"
+      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/3RONCOLA_anim_V6.glb?v=1710356395844"
     );
     Portada1Model.scene.scale.set(0.3, 0.3, 0.3);
     Portada1Model.scene.position.set(0, -0.5, 0);
