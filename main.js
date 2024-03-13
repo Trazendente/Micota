@@ -26,11 +26,11 @@ document.addEventListener("DOMContentLoaded", () => {
     scene.remove(scene.getObjectByName("directionalLight"));
 
     // Cambiar la configuración de la luz ambiental
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Luz ambiental blanca con intensidad reducida
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8); // Luz ambiental blanca con intensidad aumentada
     scene.add(ambientLight);
 
     // Agregar una luz direccional suave para iluminar la escena desde una dirección específica
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5); // Luz blanca con intensidad reducida
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.7); // Luz blanca con intensidad reducida
     directionalLight.position.set(0, 1, 1); // Posición de la luz
     scene.add(directionalLight);
 
