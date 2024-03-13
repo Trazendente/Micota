@@ -4,7 +4,7 @@ const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener("DOMContentLoaded", () => {
   let experienceStarted = false;
-  let mixer1, action1, mixer2, action2;
+  let mixer1, action1, mixer2, action2; // Definimos las variables fuera de la función start para que estén accesibles en toda la función
 
   const start = async () => {
     if (experienceStarted) {
@@ -22,12 +22,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const { renderer, cssRenderer, scene, cssScene, camera } = mindarThree;
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-    directionalLight.position.set(100, 200, 100);
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1); // Reducir la intensidad a 1
+    directionalLight.position.set(0, 100, 50);
     directionalLight.castShadow = false;
     scene.add(directionalLight);
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+    // Aumentar el tamaño del mapa de sombras
+    directionalLight.shadow.mapSize.width = 2048; // Aumentar el tamaño del mapa de sombras
+    directionalLight.shadow.mapSize.height = 2048;
+
+    // Ajustar la posición y dirección de la luz
+    directionalLight.position.set(100, 200, 100); // Cambiar la posición de la luz
+
+    // Ajustar las propiedades de las sombras
+    directionalLight.shadow.bias = -0.002; // Ajustar el bias de las sombras
+    directionalLight.shadow.radius = 5; // Ajustar el radio de las sombras
+
+    // Agregar luces ambientales adicionales si es necesario
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Ajustar la intensidad según sea necesario
     scene.add(ambientLight);
 
     camera.near = 0.01;
@@ -59,8 +71,25 @@ document.addEventListener("DOMContentLoaded", () => {
     Portada1Anchor.group.add(Portada1Model.scene);
     Portada2Anchor.group.add(Portada2Model.scene);
 
+    Portada1Anchor.onTargetFound = () => {
+      // Acciones al encontrar el primer objetivo
+    };
+
+    Portada2Anchor.onTargetFound = () => {
+      // Acciones al encontrar el segundo objetivo
+    };
+
+    Portada1Anchor.onTargetLost = () => {
+      // Acciones al perder el primer objetivo
+    };
+
+    Portada2Anchor.onTargetLost = () => {
+      // Acciones al perder el segundo objetivo
+    };
+
     await mindarThree.start();
 
+    // Crear mezcladores y reproducir acciones dentro de la función start
     mixer1 = new THREE.AnimationMixer(Portada1Model.scene);
     action1 = mixer1.clipAction(Portada1Model.animations[0]);
     action1.play();
@@ -78,23 +107,27 @@ document.addEventListener("DOMContentLoaded", () => {
       cssRenderer.render(cssScene, camera);
     });
   };
-
-  // Crea el botón "COMENZAR"
+  
   const startButton = document.createElement("button");
   startButton.textContent = "COMENZAR";
   startButton.id = "startButton";
-  startButton.classList.add("circle-button");
+  startButton.classList.add("circle-button"); // Agregar una clase para aplicar estilos CSS
   startButton.style.backgroundColor = "#a62424";
   startButton.style.color = "#FFFFFF";
   startButton.style.fontFamily = "Segoe, sans-serif";
 
-  // Añade el evento de clic al botón "COMENZAR"
-  startButton.addEventListener("click", () => {
+  startButton.addEventListener("click", start);
+  document.body.appendChild(startButton);
+  
+  // Añadir event listener al botón "COMENZAR" después de que se haya creado
+  document.getElementById("startButton").addEventListener("click", () => {
     document.getElementById("backgroundAudio").play();
     start();
   });
 
-  // Agrega el botón al documento
-  document.body.appendChild(startButton);
+  const infoText = document.createElement("p");
+  infoText.id = "infoText";
+  infoText.style.fontFamily = "Segoe, sans-serif";
 
+  document.body.appendChild(infoText);
 });
