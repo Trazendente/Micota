@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
     
-
     experienceStarted = true;
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.body,
@@ -23,26 +22,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const { renderer, cssRenderer, scene, cssScene, camera } = mindarThree;
 
-    // Reducir la intensidad de la luz
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 1); // Reducir la intensidad a 1
-    directionalLight.position.set(0, 100, 50);
-    directionalLight.castShadow = false;
-    scene.add(directionalLight);
+    // Remover la luz direccional
+    scene.remove(scene.getObjectByName("directionalLight"));
 
-    // Aumentar el tamaño del mapa de sombras
-    directionalLight.shadow.mapSize.width = 2048; // Aumentar el tamaño del mapa de sombras
-    directionalLight.shadow.mapSize.height = 2048;
-
-    // Ajustar la posición y dirección de la luz
-    directionalLight.position.set(100, 200, 100); // Cambiar la posición de la luz
-
-    // Ajustar las propiedades de las sombras
-    directionalLight.shadow.bias = -0.002; // Ajustar el bias de las sombras
-    directionalLight.shadow.radius = 5; // Ajustar el radio de las sombras
-
-    // Agregar luces ambientales adicionales si es necesario
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Ajustar la intensidad según sea necesario
+    // Cambiar la configuración de la luz ambiental
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Luz ambiental blanca con intensidad reducida
     scene.add(ambientLight);
+
+    // Agregar una luz direccional suave para iluminar la escena desde una dirección específica
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5); // Luz blanca con intensidad reducida
+    directionalLight.position.set(0, 1, 1); // Posición de la luz
+    scene.add(directionalLight);
 
     camera.near = 0.01;
     camera.far = 5000;
@@ -110,8 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
   
-  
-
   const startButton = document.createElement("button");
   startButton.textContent = "COMENZAR";
   startButton.id = "startButton";
@@ -123,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
   startButton.addEventListener("click", start);
   document.body.appendChild(startButton);
   
-   // Añadir event listener al botón "COMENZAR" después de que se haya creado
+  // Añadir event listener al botón "COMENZAR" después de que se haya creado
   document.getElementById("startButton").addEventListener("click", () => {
     document.getElementById("backgroundAudio").play();
     start();
