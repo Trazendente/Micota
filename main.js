@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const { renderer, cssRenderer, scene, cssScene, camera } = mindarThree;
 
     // Reducir la intensidad de la luz
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0); // Reducir la intensidad a 1
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1); // Reducir la intensidad a 1
     directionalLight.position.set(0, 100, 50);
     directionalLight.castShadow = false;
     scene.add(directionalLight);
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
     directionalLight.shadow.radius = 5; // Ajustar el radio de las sombras
 
     // Agregar luces ambientales adicionales si es necesario
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.1); // Ajustar la intensidad según sea necesario
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Ajustar la intensidad según sea necesario
     scene.add(ambientLight);
 
     camera.near = 0.01;
@@ -55,13 +55,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Modelos GLB
     const Portada1Model = await loadGLTF(
-      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/2MARGARITA_anim_V5.glb?v=1710348085755"
+      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/2MARGARITA_anim_V6.glb?v=1710348736272"
     );
     Portada1Model.scene.scale.set(0.3, 0.3, 0.3);
     Portada1Model.scene.position.set(0, -0.5, 0);
 
     const Portada2Model = await loadGLTF(
-      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/2MARGARITA_anim_V5.glb?v=1710348085755"
+      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/2MARGARITA_anim_V6.glb?v=1710348736272"
     );
 
     Portada2Model.scene.scale.set(0.3, 0.3, 0.3);
