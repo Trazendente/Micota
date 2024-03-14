@@ -99,12 +99,14 @@ document.addEventListener("DOMContentLoaded", () => {
       cssRenderer.render(cssScene, camera);
     });
 
-    // Crear un plano negro detrás de los modelos
-    const planeGeometry = new THREE.PlaneGeometry(10, 10);
-    const planeMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
-    const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-    plane.position.z = -5; // Colocar el plano detrás de los modelos
-    scene.add(plane);
+    const cubeGeometry = new THREE.BoxGeometry(50, 50, 50); // Ajusta el tamaño del cubo según tu escena
+    const cubeMaterial = new THREE.MeshBasicMaterial({
+      color: 0x000000,
+      side: THREE.BackSide,
+    });
+    const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+    cube.position.z = -; // Colocar el cubo detrás de los modelos
+    scene.add(cube);
   };
 
   const startButton = document.createElement("button");
@@ -130,4 +132,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.body.appendChild(infoText);
 });
-
