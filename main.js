@@ -98,6 +98,13 @@ document.addEventListener("DOMContentLoaded", () => {
       renderer.render(scene, camera);
       cssRenderer.render(cssScene, camera);
     });
+
+    // Crear un plano negro detrás de los modelos
+    const planeGeometry = new THREE.PlaneGeometry(10, 10);
+    const planeMaterial = new THREE.MeshBasicMaterial({ color: 0x000000 });
+    const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+    plane.position.z = -5; // Colocar el plano detrás de los modelos
+    scene.add(plane);
   };
 
   const startButton = document.createElement("button");
@@ -123,3 +130,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.body.appendChild(infoText);
 });
+
