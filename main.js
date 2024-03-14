@@ -30,13 +30,11 @@ document.addEventListener("DOMContentLoaded", () => {
     experienceStarted = true;
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.body,
-      imageTargetSrc: [
+      imageTargetSrc: 
         "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/targets%20(5).mind?v=1710443269990",
-        "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/targets%20(6).mind?v=1710443300527",
-      ],
 
       uiScanning: "#scanning",
-      uiLoading: "no",
+      uiLoading: "yes",
     });
 
     const { renderer, cssRenderer, scene, cssScene, camera } = mindarThree;
@@ -72,7 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     Portada2Model.scene.scale.set(0.3, 0.3, 0.3);
     Portada2Model.scene.position.set(0, -0.5, 0);
-    Portada2Model.scene.rotation.x = Math.PI;
 
     const Model3 = await loadGLTF(
       "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/3RONCOLA_anim_V6.glb?v=1710356395844"
