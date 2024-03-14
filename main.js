@@ -22,6 +22,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     const { renderer, cssRenderer, scene, cssScene, camera } = mindarThree;
+    
+      // Cargar el entorno HDRI
+ 
+    const textureLoader = new THREE.TextureLoader();
+  const hdrTexture = await new Promise((resolve, reject) =>
+    textureLoader.load(
+      'https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/kloofendal_43d_clear_puresky_1k.hdr?v=1710429177616',
+      resolve,
+     undefined, // Función de progreso (opcional)
+      reject     // Función de error (opcional)
+    )
+  );
+   
+
+  // Configurar el entorno HDRI
+  scene.environment = hdrTexture;
 
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1); // Reducir la intensidad a 1
     directionalLight.position.set(0, 100, 50);
