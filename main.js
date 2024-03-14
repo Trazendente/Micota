@@ -5,7 +5,22 @@ const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener("DOMContentLoaded", () => {
   let experienceStarted = false;
-  let mixer1, action1, mixer2, action2, mixer3, action3, mixer4, action4, mixer5, action5, mixer6, action6, mixer7, action7, mixer8, action8;
+  let mixer1,
+    action1,
+    mixer2,
+    action2,
+    mixer3,
+    action3,
+    mixer4,
+    action4,
+    mixer5,
+    action5,
+    mixer6,
+    action6,
+    mixer7,
+    action7,
+    mixer8,
+    action8;
 
   const start = async () => {
     if (experienceStarted) {
@@ -15,8 +30,11 @@ document.addEventListener("DOMContentLoaded", () => {
     experienceStarted = true;
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.body,
-      imageTargetSrc:
-        "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/targets%20(4).mind?v=1710442733839",
+      imageTargetSrc: [
+        "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/targets%20(5).mind?v=1710443269990",
+        "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/targets%20(6).mind?v=1710443300527",
+      ],
+
       uiScanning: "#scanning",
       uiLoading: "no",
     });
@@ -32,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     pointLight.position.z = 10;
     scene.add(pointLight);
 
-    const ambientLight2 = new THREE.AmbientLight(0xffffff, 4); 
+    const ambientLight2 = new THREE.AmbientLight(0xffffff, 4);
     scene.add(ambientLight2);
 
     const startButton = document.getElementById("startButton");
