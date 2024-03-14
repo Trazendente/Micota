@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.body,
       imageTargetSrc:
-        "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/targets.mind?v=1710257025773",
+        "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/targets.mind?v=1710436333827",
       uiScanning: "#scanning",
       uiLoading: "no",
     });
