@@ -51,11 +51,13 @@ document.addEventListener("DOMContentLoaded", () => {
     Portada1Model.scene.position.set(0, -0.5, 0);
 
     const Portada2Model = await loadGLTF(
-      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/5MOJITO_anim_V2.glb?v=1710361609255"
+      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/5MOJITO_Anim_V5.glb?v=1710433138987"
     );
 
     Portada2Model.scene.scale.set(0.3, 0.3, 0.3);
     Portada2Model.scene.position.set(0, -0.5, 0);
+    Portada2Model.scene.rotation.x = Math.PI;
+    
 
     const Portada1Anchor = mindarThree.addAnchor(0);
     const Portada2Anchor = mindarThree.addAnchor(1);
@@ -98,15 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
       renderer.render(scene, camera);
       cssRenderer.render(cssScene, camera);
     });
-
-    const cubeGeometry = new THREE.BoxGeometry(50, 50, 50); // Ajusta el tamaño del cubo según tu escena
-    const cubeMaterial = new THREE.MeshBasicMaterial({
-      color: 0x000000,
-      side: THREE.BackSide,
-    });
-    const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-    cube.position.z = -; // Colocar el cubo detrás de los modelos
-    scene.add(cube);
   };
 
   const startButton = document.createElement("button");
