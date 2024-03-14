@@ -30,8 +30,9 @@ document.addEventListener("DOMContentLoaded", () => {
     experienceStarted = true;
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.body,
-      imageTargetSrc: 
+      imageTargetSrc:
         "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/targets%20(5).mind?v=1710443269990",
+      maxTrack: 8,
 
       uiScanning: "#scanning",
       uiLoading: "yes",
@@ -59,26 +60,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Modelos GLB
     const Portada1Model = await loadGLTF(
-      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/1GIN_anim_V1.glb?v=1710253081220"
+      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/1gintonic.jpg?v=1710445251959"
     );
     Portada1Model.scene.scale.set(0.3, 0.3, 0.3);
     Portada1Model.scene.position.set(0, -0.5, 0);
 
     const Portada2Model = await loadGLTF(
-      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/2MARGARITA_anim_V5.glb?v=1710348085755"
+      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/1gintonic.jpg?v=1710445251959"
     );
 
     Portada2Model.scene.scale.set(0.3, 0.3, 0.3);
     Portada2Model.scene.position.set(0, -0.5, 0);
 
     const Model3 = await loadGLTF(
-      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/3RONCOLA_anim_V6.glb?v=1710356395844"
+      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/1gintonic.jpg?v=1710445251959"
     );
     Model3.scene.scale.set(0.3, 0.3, 0.3);
     Model3.scene.position.set(0, -0.5, 0);
 
     const Model4 = await loadGLTF(
-      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/4PALOMA_anim_V1.glb?v=1710435750120"
+      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/1gintonic.jpg?v=1710445251959"
     );
     Model4.scene.scale.set(0.3, 0.3, 0.3);
     Model4.scene.position.set(0, -0.5, 0);
