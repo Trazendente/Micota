@@ -23,28 +23,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const { renderer, cssRenderer, scene, cssScene, camera } = mindarThree;
 
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 4); // Reducir la intensidad a 1
-    directionalLight.position.set(0, 100, 50);
-    directionalLight.castShadow = false;
-    scene.add(directionalLight);
-
-    // Aumentar el tamaño del mapa de sombras
-    directionalLight.shadow.mapSize.width = 2048; // Aumentar el tamaño del mapa de sombras
-    directionalLight.shadow.mapSize.height = 2048;
-
-    // Ajustar la posición y dirección de la luz
-    directionalLight.position.set(100, 200, 100); // Cambiar la posición de la luz
-
-    // Ajustar las propiedades de las sombras
-    directionalLight.shadow.bias = -0.002; // Ajustar el bias de las sombras
-    directionalLight.shadow.radius = 5; // Ajustar el radio de las sombras
-
-    // Agregar luces ambientales adicionales si es necesario
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Ajustar la intensidad según sea necesario
+    var ambientLight = new THREE.AmbientLight(0xcccccc, 0.8);
     scene.add(ambientLight);
 
-    camera.near = 0.01;
-    camera.far = 5000;
+    var pointLight = new THREE.PointLight(0xffffff, 0.4);
+    pointLight.castShadow = true;
+
+    pointLight.position.y = 10;
+    pointLight.position.z = 10;
+    scene.add(pointLight);
+
+    // Agregar luz de ambiente
+    const ambientLight2 = new THREE.AmbientLight(0xffffff, 4); // Color blanco, intensidad 1
+    scene.add(ambientLight);
 
     const startButton = document.getElementById("startButton");
     const infoText = document.getElementById("infoText");
