@@ -5,7 +5,7 @@ const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener("DOMContentLoaded", () => {
   let experienceStarted = false;
-  let mixer1, action1, mixer2, action2, mixer3, action3, mixer4, action4, mixer5, action5;
+  let mixer1, action1, mixer2, action2, mixer3, action3, mixer4, action4;
 
   const start = async () => {
     if (experienceStarted) {
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.body,
       imageTargetSrc:
-        "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/targets%20(5).mind?v=1710443269990",
+        "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/targets%20(6).mind?v=1710443300527",
       uiScanning: "#scanning",
       uiLoading: "no",
     });
@@ -31,9 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
     pointLight.position.y = 10;
     pointLight.position.z = 10;
     scene.add(pointLight);
-
-    const ambientLight2 = new THREE.AmbientLight(0xffffff, 4); 
-    scene.add(ambientLight2);
 
     const startButton = document.getElementById("startButton");
     const infoText = document.getElementById("infoText");
@@ -62,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     Model3.scene.position.set(0, -0.5, 0);
 
     const Model4 = await loadGLTF(
-      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/4PALOMA_anim_V1.glb?v=1710435750120"
+      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/1GIN_anim_V1.glb?v=1710253081220"
     );
     Model4.scene.scale.set(0.3, 0.3, 0.3);
     Model4.scene.position.set(0, -0.5, 0);
@@ -73,7 +70,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const Portada2Anchor = mindarThree.addAnchor(1);
     const Anchor3 = mindarThree.addAnchor(2);
     const Anchor4 = mindarThree.addAnchor(3);
- 
+    const Anchor5 = mindarThree.addAnchor(4);
+
     Portada1Anchor.group.add(Portada1Model.scene);
     Portada2Anchor.group.add(Portada2Model.scene);
     Anchor3.group.add(Model3.scene);
@@ -81,64 +79,55 @@ document.addEventListener("DOMContentLoaded", () => {
    
 
     Portada1Anchor.onTargetFound = () => {
-      // Acciones al encontrar el primer objetivo
+      mixer1 = new THREE.AnimationMixer(Portada1Model.scene);
+      action1 = mixer1.clipAction(Portada1Model.animations[0]);
+      action1.play();
     };
 
     Portada2Anchor.onTargetFound = () => {
-      // Acciones al encontrar el segundo objetivo
+      mixer2 = new THREE.AnimationMixer(Portada2Model.scene);
+      action2 = mixer2.clipAction(Portada2Model.animations[0]);
+      action2.play();
     };
 
     Anchor3.onTargetFound = () => {
-      // Acciones al encontrar el tercer objetivo
+      mixer3 = new THREE.AnimationMixer(Model3.scene);
+      action3 = mixer3.clipAction(Model3.animations[0]);
+      action3.play();
     };
 
     Anchor4.onTargetFound = () => {
-      // Acciones al encontrar el cuarto objetivo
+      mixer4 = new THREE.AnimationMixer(Model4.scene);
+      action4 = mixer4.clipAction(Model4.animations[0]);
+      action4.play();
     };
 
     Portada1Anchor.onTargetLost = () => {
-      // Acciones al perder el primer objetivo
+      mixer1.stopAllAction();
     };
 
     Portada2Anchor.onTargetLost = () => {
-      // Acciones al perder el segundo objetivo
+      mixer2.stopAllAction();
     };
 
     Anchor3.onTargetLost = () => {
-      // Acciones al perder el tercer objetivo
+      mixer3.stopAllAction();
     };
 
     Anchor4.onTargetLost = () => {
-      // Acciones al perder el cuarto objetivo
+      mixer4.stopAllAction();
     };
 
 
     await mindarThree.start();
 
-    mixer1 = new THREE.AnimationMixer(Portada1Model.scene);
-    action1 = mixer1.clipAction(Portada1Model.animations[0]);
-    action1.play();
-
-    mixer2 = new THREE.AnimationMixer(Portada2Model.scene);
-    action2 = mixer2.clipAction(Portada2Model.animations[0]);
-    action2.play();
-
-    mixer3 = new THREE.AnimationMixer(Model3.scene);
-    action3 = mixer3.clipAction(Model3.animations[0]);
-    action3.play();
-
-    mixer4 = new THREE.AnimationMixer(Model4.scene);
-    action4 = mixer4.clipAction(Model4.animations[0]);
-    action4.play();
-
-
     const clock = new THREE.Clock();
     renderer.setAnimationLoop(() => {
       const delta = clock.getDelta();
-      mixer1.update(delta);
-      mixer2.update(delta);
-      mixer3.update(delta);
-      mixer4.update(delta);
+      if (mixer1) mixer1.update(delta);
+      if (mixer2) mixer2.update(delta);
+      if (mixer3) mixer3.update(delta);
+      if (mixer4) mixer4.update(delta);
       renderer.render(scene, camera);
       cssRenderer.render(cssScene, camera);
     });
