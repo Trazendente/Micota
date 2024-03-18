@@ -153,13 +153,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     Anchor6.onTargetFound = () => {
       mixer6 = new THREE.AnimationMixer(Model6.scene);
-      action6 = mixer4.clipAction(Model6.animations[0]);
+      action6 = mixer6.clipAction(Model6.animations[0]);
       action6.play();
     };
 
     Anchor7.onTargetFound = () => {
       mixer7 = new THREE.AnimationMixer(Model7.scene);
-      action7 = mixer4.clipAction(Model7.animations[0]);
+      action7 = mixer7.clipAction(Model7.animations[0]);
       action7.play();
     };
 
@@ -206,14 +206,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const clock = new THREE.Clock();
     renderer.setAnimationLoop(() => {
       const delta = clock.getDelta();
-      mixer1.update(delta);
-      mixer2.update(delta);
-      mixer3.update(delta);
-      mixer4.update(delta);
-      mixer5.update(delta);
-      mixer6.update(delta);
-      mixer7.update(delta);
-      mixer8.update(delta);
+      if (mixer1) mixer1.update(delta);
+      if (mixer2) mixer2.update(delta);
+      if (mixer3) mixer3.update(delta);
+      if (mixer4) mixer4.update(delta);
+      if (mixer5) mixer5.update(delta);
+      if (mixer6) mixer6.update(delta);
+      if (mixer7) mixer7.update(delta);
+      if (mixer8) mixer8.update(delta);
       renderer.render(scene, camera);
       cssRenderer.render(cssScene, camera);
     });
