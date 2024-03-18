@@ -5,7 +5,22 @@ const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener("DOMContentLoaded", () => {
   let experienceStarted = false;
-  let mixer1, action1, mixer2, action2, mixer3, action3, mixer4, action4, mixer5, action5, mixer6, action6, mixer7, action7, mixer8, action8;
+  let mixer1,
+    action1,
+    mixer2,
+    action2,
+    mixer3,
+    action3,
+    mixer4,
+    action4,
+    mixer5,
+    action5,
+    mixer6,
+    action6,
+    mixer7,
+    action7,
+    mixer8,
+    action8;
 
   const start = async () => {
     if (experienceStarted) {
@@ -111,6 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
       action1 = mixer1.clipAction(Portada1Model.animations[0]);
       action1.play();
       action1.setLoop(THREE.LoopOnce);
+      action1.clampWhenFinished = true; // Mantener el estado final de la animación
     };
 
     Portada2Anchor.onTargetFound = () => {
@@ -118,6 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
       action2 = mixer2.clipAction(Portada2Model.animations[0]);
       action2.play();
       action2.setLoop(THREE.LoopOnce);
+      action2.clampWhenFinished = true; // Mantener el estado final de la animación
     };
 
     Anchor3.onTargetFound = () => {
@@ -125,6 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
       action3 = mixer3.clipAction(Model3.animations[0]);
       action3.play();
       action3.setLoop(THREE.LoopOnce);
+      action3.clampWhenFinished = true; // Mantener el estado final de la animación
     };
 
     Anchor4.onTargetFound = () => {
@@ -132,6 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
       action4 = mixer4.clipAction(Model4.animations[0]);
       action4.play();
       action4.setLoop(THREE.LoopOnce);
+      action4.clampWhenFinished = true; // Mantener el estado final de la animación
     };
 
     Anchor5.onTargetFound = () => {
@@ -139,6 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
       action5 = mixer5.clipAction(Model5.animations[0]);
       action5.play();
       action5.setLoop(THREE.LoopOnce);
+      action5.clampWhenFinished = true; // Mantener el estado final de la animación
     };
 
     Anchor6.onTargetFound = () => {
@@ -146,6 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
       action6 = mixer6.clipAction(Model6.animations[0]);
       action6.play();
       action6.setLoop(THREE.LoopOnce);
+      action6.clampWhenFinished = true; // Mantener el estado final de la animación
     };
 
     Anchor7.onTargetFound = () => {
@@ -153,6 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
       action7 = mixer7.clipAction(Model7.animations[0]);
       action7.play();
       action7.setLoop(THREE.LoopOnce);
+      action7.clampWhenFinished = true; // Mantener el estado final de la animación
     };
 
     Anchor8.onTargetFound = () => {
@@ -160,6 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
       action8 = mixer8.clipAction(Model8.animations[0]);
       action8.play();
       action8.setLoop(THREE.LoopOnce);
+      action8.clampWhenFinished = true; // Mantener el estado final de la animación
     };
 
     Portada1Anchor.onTargetLost = () => {
