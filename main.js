@@ -5,7 +5,22 @@ const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener("DOMContentLoaded", () => {
   let experienceStarted = false;
-  let mixer1, action1, mixer2, action2, mixer3, action3, mixer4, action4, mixer5, action5, mixer6, action6, mixer7, action7, mixer8, action8;
+  let mixer1,
+    action1,
+    mixer2,
+    action2,
+    mixer3,
+    action3,
+    mixer4,
+    action4,
+    mixer5,
+    action5,
+    mixer6,
+    action6,
+    mixer7,
+    action7,
+    mixer8,
+    action8;
 
   const start = async () => {
     if (experienceStarted) {
@@ -32,9 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
     pointLight.position.z = 10;
     scene.add(pointLight);
 
-    const ambientLight2 = new THREE.AmbientLight(0xffffff, 4); 
-    scene.add(ambientLight2);
-
     const startButton = document.getElementById("startButton");
     const infoText = document.getElementById("infoText");
 
@@ -54,7 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     Portada2Model.scene.scale.set(0.3, 0.3, 0.3);
     Portada2Model.scene.position.set(0, -0.5, 0);
-    Portada2Model.scene.rotation.x = Math.PI;
 
     const Model3 = await loadGLTF(
       "https://cdn.glitch.global/532f8e34-feb5-4a7c-94c4-2f60eabb529e/3COCAfix_v1.glb?v=1710778507550"
@@ -63,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
     Model3.scene.position.set(0, -0.5, 0);
 
     const Model4 = await loadGLTF(
-      "https://cdn.glitch.global/532f8e34-feb5-4a7c-94c4-2f60eabb529e/3COCAfix_v1.glb?v=1710778507550"
+      "https://cdn.glitch.global/532f8e34-feb5-4a7c-94c4-2f60eabb529e/4PALOMAfix_v1.glb?v=1710778507894"
     );
     Model4.scene.scale.set(0.3, 0.3, 0.3);
     Model4.scene.position.set(0, -0.5, 0);
@@ -142,13 +153,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     Anchor6.onTargetFound = () => {
       mixer6 = new THREE.AnimationMixer(Model6.scene);
-      action6 = mixer6.clipAction(Model6.animations[0]);
+      action6 = mixer4.clipAction(Model6.animations[0]);
       action6.play();
     };
 
     Anchor7.onTargetFound = () => {
       mixer7 = new THREE.AnimationMixer(Model7.scene);
-      action7 = mixer7.clipAction(Model7.animations[0]);
+      action7 = mixer4.clipAction(Model7.animations[0]);
       action7.play();
     };
 
@@ -195,6 +206,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const clock = new THREE.Clock();
     renderer.setAnimationLoop(() => {
       const delta = clock.getDelta();
+      mixer1.update(delta);
+      mixer2.update(delta);
+      mixer3.update(delta);
+      mixer4.update(delta);
+      mixer5.update(delta);
+      mixer6.update(delta);
+      mixer7.update(delta);
+      mixer8.update(delta);
       renderer.render(scene, camera);
       cssRenderer.render(cssScene, camera);
     });
