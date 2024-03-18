@@ -111,114 +111,90 @@ document.addEventListener("DOMContentLoaded", () => {
     Anchor8.group.add(Model8.scene);
 
     Portada1Anchor.onTargetFound = () => {
-      // Acciones al encontrar el primer objetivo
+      mixer1 = new THREE.AnimationMixer(Portada1Model.scene);
+      action1 = mixer1.clipAction(Portada1Model.animations[0]);
+      action1.play();
     };
 
     Portada2Anchor.onTargetFound = () => {
-      // Acciones al encontrar el segundo objetivo
+      mixer2 = new THREE.AnimationMixer(Portada2Model.scene);
+      action2 = mixer2.clipAction(Portada2Model.animations[0]);
+      action2.play();
     };
 
     Anchor3.onTargetFound = () => {
-      // Acciones al encontrar el tercer objetivo
+      mixer3 = new THREE.AnimationMixer(Model3.scene);
+      action3 = mixer3.clipAction(Model3.animations[0]);
+      action3.play();
     };
 
     Anchor4.onTargetFound = () => {
-      // Acciones al encontrar el cuarto objetivo
+      mixer4 = new THREE.AnimationMixer(Model4.scene);
+      action4 = mixer4.clipAction(Model4.animations[0]);
+      action4.play();
     };
 
     Anchor5.onTargetFound = () => {
-      // Acciones al encontrar el quinto objetivo
+      mixer5 = new THREE.AnimationMixer(Model5.scene);
+      action5 = mixer5.clipAction(Model5.animations[0]);
+      action5.play();
     };
 
     Anchor6.onTargetFound = () => {
-      // Acciones al encontrar el sexto objetivo
+      mixer6 = new THREE.AnimationMixer(Model6.scene);
+      action6 = mixer6.clipAction(Model6.animations[0]);
+      action6.play();
     };
 
     Anchor7.onTargetFound = () => {
-      // Acciones al encontrar el séptimo objetivo
+      mixer7 = new THREE.AnimationMixer(Model7.scene);
+      action7 = mixer7.clipAction(Model7.animations[0]);
+      action7.play();
     };
 
     Anchor8.onTargetFound = () => {
-      // Acciones al encontrar el octavo objetivo
+      mixer8 = new THREE.AnimationMixer(Model8.scene);
+      action8 = mixer8.clipAction(Model8.animations[0]);
+      action8.play();
     };
 
     Portada1Anchor.onTargetLost = () => {
-      // Acciones al perder el primer objetivo
+      mixer1.stopAllAction();
     };
 
     Portada2Anchor.onTargetLost = () => {
-      // Acciones al perder el segundo objetivo
+      mixer2.stopAllAction();
     };
 
     Anchor3.onTargetLost = () => {
-      // Acciones al perder el tercer objetivo
+      mixer3.stopAllAction();
     };
 
     Anchor4.onTargetLost = () => {
-      // Acciones al perder el cuarto objetivo
+      mixer4.stopAllAction();
     };
 
     Anchor5.onTargetLost = () => {
-      // Acciones al perder el quinto objetivo
+      mixer5.stopAllAction();
     };
 
     Anchor6.onTargetLost = () => {
-      // Acciones al perder el sexto objetivo
+      mixer6.stopAllAction();
     };
 
     Anchor7.onTargetLost = () => {
-      // Acciones al perder el séptimo objetivo
+      mixer7.stopAllAction();
     };
 
     Anchor8.onTargetLost = () => {
-      // Acciones al perder el octavo objetivo
+      mixer8.stopAllAction();
     };
 
     await mindarThree.start();
 
-    mixer1 = new THREE.AnimationMixer(Portada1Model.scene);
-    action1 = mixer1.clipAction(Portada1Model.animations[0]);
-    action1.play();
-
-    mixer2 = new THREE.AnimationMixer(Portada2Model.scene);
-    action2 = mixer2.clipAction(Portada2Model.animations[0]);
-    action2.play();
-
-    mixer3 = new THREE.AnimationMixer(Model3.scene);
-    action3 = mixer3.clipAction(Model3.animations[0]);
-    action3.play();
-
-    mixer4 = new THREE.AnimationMixer(Model4.scene);
-    action4 = mixer4.clipAction(Model4.animations[0]);
-    action4.play();
-
-    mixer5 = new THREE.AnimationMixer(Model5.scene);
-    action5 = mixer5.clipAction(Model5.animations[0]);
-    action5.play();
-
-    mixer6 = new THREE.AnimationMixer(Model6.scene);
-    action6 = mixer6.clipAction(Model6.animations[0]);
-    action6.play();
-
-    mixer7 = new THREE.AnimationMixer(Model7.scene);
-    action7 = mixer7.clipAction(Model7.animations[0]);
-    action7.play();
-
-    mixer8 = new THREE.AnimationMixer(Model8.scene);
-    action8 = mixer8.clipAction(Model8.animations[0]);
-    action8.play();
-
     const clock = new THREE.Clock();
     renderer.setAnimationLoop(() => {
       const delta = clock.getDelta();
-      mixer1.update(delta);
-      mixer2.update(delta);
-      mixer3.update(delta);
-      mixer4.update(delta);
-      mixer5.update(delta);
-      mixer6.update(delta);
-      mixer7.update(delta);
-      mixer8.update(delta);
       renderer.render(scene, camera);
       cssRenderer.render(cssScene, camera);
     });
