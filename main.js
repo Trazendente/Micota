@@ -5,22 +5,7 @@ const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener("DOMContentLoaded", () => {
   let experienceStarted = false;
-  let mixer1,
-    action1,
-    mixer2,
-    action2,
-    mixer3,
-    action3,
-    mixer4,
-    action4,
-    mixer5,
-    action5,
-    mixer6,
-    action6,
-    mixer7,
-    action7,
-    mixer8,
-    action8;
+  let mixer1, action1, mixer2, action2, mixer3, action3, mixer4, action4, mixer5, action5, mixer6, action6, mixer7, action7, mixer8, action8;
 
   const start = async () => {
     if (experienceStarted) {
@@ -125,80 +110,88 @@ document.addEventListener("DOMContentLoaded", () => {
       mixer1 = new THREE.AnimationMixer(Portada1Model.scene);
       action1 = mixer1.clipAction(Portada1Model.animations[0]);
       action1.play();
+      action1.setLoop(THREE.LoopOnce);
     };
 
     Portada2Anchor.onTargetFound = () => {
       mixer2 = new THREE.AnimationMixer(Portada2Model.scene);
       action2 = mixer2.clipAction(Portada2Model.animations[0]);
       action2.play();
+      action2.setLoop(THREE.LoopOnce);
     };
 
     Anchor3.onTargetFound = () => {
       mixer3 = new THREE.AnimationMixer(Model3.scene);
       action3 = mixer3.clipAction(Model3.animations[0]);
       action3.play();
+      action3.setLoop(THREE.LoopOnce);
     };
 
     Anchor4.onTargetFound = () => {
       mixer4 = new THREE.AnimationMixer(Model4.scene);
       action4 = mixer4.clipAction(Model4.animations[0]);
       action4.play();
+      action4.setLoop(THREE.LoopOnce);
     };
 
     Anchor5.onTargetFound = () => {
       mixer5 = new THREE.AnimationMixer(Model5.scene);
       action5 = mixer5.clipAction(Model5.animations[0]);
       action5.play();
+      action5.setLoop(THREE.LoopOnce);
     };
 
     Anchor6.onTargetFound = () => {
       mixer6 = new THREE.AnimationMixer(Model6.scene);
       action6 = mixer6.clipAction(Model6.animations[0]);
       action6.play();
+      action6.setLoop(THREE.LoopOnce);
     };
 
     Anchor7.onTargetFound = () => {
       mixer7 = new THREE.AnimationMixer(Model7.scene);
       action7 = mixer7.clipAction(Model7.animations[0]);
       action7.play();
+      action7.setLoop(THREE.LoopOnce);
     };
 
     Anchor8.onTargetFound = () => {
       mixer8 = new THREE.AnimationMixer(Model8.scene);
       action8 = mixer8.clipAction(Model8.animations[0]);
       action8.play();
+      action8.setLoop(THREE.LoopOnce);
     };
 
     Portada1Anchor.onTargetLost = () => {
-      mixer1.stopAllAction();
+      if (mixer1) mixer1.stopAllAction();
     };
 
     Portada2Anchor.onTargetLost = () => {
-      mixer2.stopAllAction();
+      if (mixer2) mixer2.stopAllAction();
     };
 
     Anchor3.onTargetLost = () => {
-      mixer3.stopAllAction();
+      if (mixer3) mixer3.stopAllAction();
     };
 
     Anchor4.onTargetLost = () => {
-      mixer4.stopAllAction();
+      if (mixer4) mixer4.stopAllAction();
     };
 
     Anchor5.onTargetLost = () => {
-      mixer5.stopAllAction();
+      if (mixer5) mixer5.stopAllAction();
     };
 
     Anchor6.onTargetLost = () => {
-      mixer6.stopAllAction();
+      if (mixer6) mixer6.stopAllAction();
     };
 
     Anchor7.onTargetLost = () => {
-      mixer7.stopAllAction();
+      if (mixer7) mixer7.stopAllAction();
     };
 
     Anchor8.onTargetLost = () => {
-      mixer8.stopAllAction();
+      if (mixer8) mixer8.stopAllAction();
     };
 
     await mindarThree.start();
@@ -230,14 +223,11 @@ document.addEventListener("DOMContentLoaded", () => {
   startButton.addEventListener("click", start);
   document.body.appendChild(startButton);
 
-  document.getElementById("startButton").addEventListener("click", () => {
-    document.getElementById("backgroundAudio").play();
-    start();
-  });
-
   const infoText = document.createElement("p");
   infoText.id = "infoText";
   infoText.style.fontFamily = "Segoe, sans-serif";
 
   document.body.appendChild(infoText);
+
+  document.getElementById("startButton").addEventListener("click", start);
 });
