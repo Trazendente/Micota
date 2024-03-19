@@ -1,145 +1,184 @@
-<!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="./mindar-image-three.prod.js"></script>
     <script src="./main.js" type="module"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
     <style>
-        html,
-        body {
-            position: relative;
-            margin: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            font-family: "Segoe", sans-serif;
-        }
+      html,
+      body {
+        position: relative;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      body {
+        font-family: "Segoe", sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        /* IMAGEN BLUR DEL FONDO */
+        background: url("https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/portada.jpg?v=1710252685423")
+          center/cover no-repeat;
+        /* Escalar la imagen un poco */
+        background-size: 110%; /* Cambia este valor según lo que consideres un escalado "un poco" */
+      }
 
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: url("https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/portada.jpg?v=1710252685423") center/cover no-repeat;
-            background-size: 110%;
-        }
-
-        #scanning {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            background: transparent;
-            z-index: 2;
-        }
-
-        @media (min-aspect-ratio: 1/1) {
-            #scanning .inner {
-                width: 50vh;
-                height: 50vh;
-            }
-        }
-
-        @media (max-aspect-ratio: 1/1) {
-            #scanning .inner {
-                width: 80vw;
-                height: 80vw
-            }
-        }
-
+      #scanning {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: transparent;
+        z-index: 2;
+      }
+      @media (min-aspect-ratio: 1/1) {
         #scanning .inner {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background: linear-gradient(to right, white 10px, transparent 10px) 0 0,
-            linear-gradient(to right, white 10px, transparent 10px) 0 100%,
-            linear-gradient(to left, white 10px, transparent 10px) 100% 0,
-            linear-gradient(to left, white 10px, transparent 10px) 100% 100%,
-            linear-gradient(to bottom, white 10px, transparent 10px) 0 0,
-            linear-gradient(to bottom, white 10px, transparent 10px) 100% 0,
-            linear-gradient(to top, white 10px, transparent 10px) 0 100%,
-            linear-gradient(to top, white 10px, transparent 10px) 100% 100%;
-            background-repeat: no-repeat;
-            background-size: 40px 40px;
+          width: 50vh;
+          height: 50vh;
         }
-
-        #scanning.hidden {
-            display: none;
+      }
+      @media (max-aspect-ratio: 1/1) {
+        #scanning .inner {
+          width: 80vw;
+          height: 80vw;
         }
+      }
 
-        #scanning img {
-            opacity: 0.6;
-            width: 90%;
-            align-self: center;
+      #scanning .inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background: linear-gradient(to right, white 10px, transparent 10px) 0 0,
+          linear-gradient(to right, white 10px, transparent 10px) 0 100%,
+          linear-gradient(to left, white 10px, transparent 10px) 100% 0,
+          linear-gradient(to left, white 10px, transparent 10px) 100% 100%,
+          linear-gradient(to bottom, white 10px, transparent 10px) 0 0,
+          linear-gradient(to bottom, white 10px, transparent 10px) 100% 0,
+          linear-gradient(to top, white 10px, transparent 10px) 0 100%,
+          linear-gradient(to top, white 10px, transparent 10px) 100% 100%;
+        background-repeat: no-repeat;
+        background-size: 40px 40px;
+      }
+
+      #scanning.hidden {
+        display: none;
+      }
+
+      #scanning img {
+        opacity: 0.6;
+        width: 90%;
+        align-self: center;
+      }
+
+      #scanning .inner .scanline {
+        position: absolute;
+        width: 100%;
+        height: 10px;
+        background: white;
+        animation: move 2s linear infinite;
+      }
+
+      @keyframes move {
+        0%,
+        100% {
+          top: 0%;
         }
-
-        #scanning .inner .scanline {
-            position: absolute;
-            width: 100%;
-            height: 10px;
-            background: white;
-            animation: move 2s linear infinite;
+        50% {
+          top: calc(100% - 10px);
         }
+      }
 
-        @keyframes move {
-            0%,
-            100% {
-                top: 0%;
-            }
-
-            50% {
-                top: calc(100% - 10px);
-            }
-        }
-
-        #backgroundAudio {
-            display: none;
-        }
-
-        #startButton {
-            background-color: #a62424;
-            color: #ffffff;
-            border: none;
-            width: 150px;
-            height: 150px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            position: fixed;
-            bottom: 10px;
-            right: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: "Rabbits-Dummy", sans-serif;
-        }
+      #circle-button {
+        width: 50px; /* Establecer el ancho del botón */
+        height: 50px; /* Establecer la altura del botón */
+        border-radius: 50%; /* Hacer que el borde sea redondeado para que el botón sea un círculo */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #startButton {
+        background-color: #a62424;
+        color: #ffffff;
+        border: none;
+        width: 150px; /* Ancho y alto iguales para hacer el botón circular */
+        height: 150px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 30px;
+        border-radius: 50%; /* Establece el radio del borde a la mitad del ancho/alto */
+        cursor: pointer;
+        position: fixed; /* Fija el botón en la ventana del navegador */
+        bottom: 10px; /* Distancia desde la parte inferior */
+        right: 30px; /* Distancia desde la derecha */
+        display: flex; /* Utilizamos flexbox para centrar vertical y horizontalmente */
+        justify-content: center;
+        align-items: center;
+      }
     </style>
-    <style>
-        @font-face {
-            font-family: "Rabbits-Dummy";
-            src: url("https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/Rabbits-Dummy.ttf?v=1710259693699") format("truetype");
-        }
-    </style>
-</head>
-<body>
-<div id="scanning" class="hidden">
-    <div class="inner">
-        <img src="https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/portada%20v2.JPG?v=1710261294885" alt="Image Alt Text" />
+  </head>
+  <body>
+    <div id="scanning" class="hidden">
+      <div class="inner">
+        <img /* LA IMAGEN QUE APARECE JUNTO AL ESCANER */
+        src="https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/portada%20v2.JPG?v=1710261294885"
+        alt="Image Alt Text" />
         <div class="scanline"></div>
+      </div>
     </div>
-</div>
 
-<div id="container"></div>
+    <div id="container"></div>
 
-<audio id="backgroundAudio" src="https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/happy_reggae_loop.mp3?v=1710858328617" loop></audio>
+    <audio
+      id="backgroundAudio"
+      src="https://cdn.glitch.global/67ab0bf3-4565-4426-9f58-a2ca9a65c7d3/1.Documentary%20Piano%20Loop_1.mp3"
+      loop
+    ></audio>
 
-<button id="startButton" class="circle-button">COMENZAR</button>
-</body>
+    <script>
+      const backgroundAudio = document.getElementById("backgroundAudio");
+      const newAudio = document.getElementById("newAudio");
+
+      // Función para pausar los audios cuando la página se oculta
+      function handleVisibilityChange() {
+        if (document.visibilityState === "hidden") {
+          backgroundAudio.pause();
+          newAudio.pause();
+        } else {
+          backgroundAudio.play();
+          newAudio.play();
+        }
+      }
+
+      // Agregar el event listener para el cambio de visibilidad
+      document.addEventListener("visibilitychange", handleVisibilityChange);
+
+      document.getElementById("startButton").addEventListener("click", () => {
+        backgroundAudio.play();
+        newAudio.play();
+        start();
+      });
+    </script>
+
+    <style>
+      @font-face {
+        font-family: "Segoe";
+        /* LA FUENTE ELEGIDA */
+        src: url("https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/Rabbits-Dummy.ttf?v=1710259693699")
+          format("truetype");
+      }
+
+      body {
+        font-family: "Segoe", sans-serif;
+      }
+    </style>
+  </body>
 </html>
