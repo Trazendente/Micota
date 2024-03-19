@@ -164,12 +164,10 @@
       }
 
       // Agregar el event listener para el cambio de visibilidad
-      document.addEventListener("visibilitychange", handleVisibilityChange);
-
-        document.getElementById("startButton").addEventListener("click", () => {
-        backgroundAudio.play();
-        start();
-    });
+      document.addEventListener("DOMContentLoaded", function () {
+        const backgroundAudio = document.getElementById("backgroundAudio");
+        backgroundAudio.volume = 0.5; // Establecer el volumen al 50%
+      });
     </script>
   </body>
 </html>
