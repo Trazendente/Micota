@@ -5,6 +5,11 @@ const THREE = window.MINDAR.IMAGE.THREE;
 document.addEventListener("DOMContentLoaded", () => {
   let mixers = [];
   let experienceStarted = false;
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchEndX = 0;
+  let touchEndY = 0;
+  let models = [];
 
   const start = async () => {
     if (experienceStarted) {
@@ -21,15 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
       uiLoading: "no",
     });
 
-    const { renderer, cssRenderer, scene, cssScene, camera } = mindarThree;
-
-    // Add lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
-    scene.add(ambientLight);
-    const pointLight = new THREE.PointLight(0xffffff, 0.4);
-    pointLight.castShadow = false;
-    pointLight.position.set(0, 10, 10);
-    scene.add(pointLight);
+    const { renderer, scene, camera } = mindarThree;
 
     const startButton = document.getElementById("startButton");
     startButton.style.display = "none";
@@ -46,18 +43,18 @@ document.addEventListener("DOMContentLoaded", () => {
       "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/8TINTOfix_v1.glb?v=1710854799462",
     ];
 
-    const models = await Promise.all(
-      modelUrls.map(async (url) => await loadGLTF(url))
-    );
+    models = await Promise.all(modelUrls.map(async (url) => await loadGLTF(url)));
 
     // Add anchors and models
     const anchors = models.map((model, index) => {
       const anchor = mindarThree.addAnchor(index);
-      anchor.group.add(model.scene);
-
-      // Establecer la misma escala y posición para todos los modelos
-      model.scene.scale.set(0.3, 0.3, 0.3);
-      model.scene.position.set(0, -0.5, 0);
+      
+      const div = document.createElement('div');
+      div.appendChild(model.domElement);
+      div.style.pointerEvents = 'none';
+      
+      anchor.group.add(div);
+      anchor.group.style.transformStyle = 'preserve-3d';
 
       anchor.onTargetFound = () => {
         mixers[index] = new THREE.AnimationMixer(model.scene);
@@ -83,54 +80,37 @@ document.addEventListener("DOMContentLoaded", () => {
       mixers.forEach((mixer) => {
         if (mixer) mixer.update(delta);
       });
-      renderer.render(scene, camera);
-      cssRenderer.render(cssScene, camera);
-    });
-
-    // Event listeners para el movimiento de rotación al tocar la pantalla
-    let touchStartX = 0;
-    let touchStartY = 0;
-    let touchMoveX = 0;
-    let touchMoveY = 0;
-    let touchDown = false;
-
-    document.body.addEventListener("touchstart", (event) => {
-      touchStartX = event.touches[0].clientX;
-      touchStartY = event.touches[0].clientY;
-      touchDown = true;
-    });
-
-    document.body.addEventListener("touchmove", (event) => {
-      if (!touchDown) return;
-
-      touchMoveX = event.touches[0].clientX;
-      touchMoveY = event.touches[0].clientY;
-
-      const deltaX = touchMoveX - touchStartX;
-      const deltaY = touchMoveY - touchStartY;
-
-      mixers.forEach((mixer) => {
-        if (mixer) {
-          mixer.scene.children.forEach((model) => {
-            model.rotation.y -= deltaX * 0.01; // Rotar el modelo en función del desplazamiento X
-          });
-        }
-      });
-
-      touchStartX = touchMoveX;
-      touchStartY = touchMoveY;
-    });
-
-    document.body.addEventListener("touchend", () => {
-      touchDown = false;
     });
   };
 
   const startButton = document.getElementById("startButton");
   startButton.addEventListener("click", () => {
     document.getElementById("backgroundAudio").play();
-    
     start();
     startButton.style.display = "none"; // Ocultar el botón al hacer clic
+  });
+
+  // Detectar eventos táctiles para rotar modelos
+  document.addEventListener("touchstart", (event) => {
+    touchStartX = event.touches[0].clientX;
+    touchStartY = event.touches[0].clientY;
+  });
+
+  document.addEventListener("touchmove", (event) => {
+    touchEndX = event.touches[0].clientX;
+    touchEndY = event.touches[0].clientY;
+
+    // Calcular la diferencia entre el inicio y el final del toque
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = touchEndY - touchStartY;
+
+    // Rotar los modelos en función del movimiento del dedo
+    models.forEach((model) => {
+      model.scene.style.transform = `rotateY(${deltaX * 0.1}deg) rotateX(${-deltaY * 0.1}deg)`;
+    });
+
+    // Actualizar las coordenadas de inicio del toque
+    touchStartX = touchEndX;
+    touchStartY = touchEndY;
   });
 });
