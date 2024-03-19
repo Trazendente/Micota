@@ -1,10 +1,24 @@
-import { loadGLTF } from "./loader.js";
+import { loadGLTF, loadTextures } from "./loader.js";
 const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener("DOMContentLoaded", () => {
   let experienceStarted = false;
-  let mixers = [];
-  let actions = [];
+  let mixer1,
+    action1,
+    mixer2,
+    action2,
+    mixer3,
+    action3,
+    mixer4,
+    action4,
+    mixer5,
+    action5,
+    mixer6,
+    action6,
+    mixer7,
+    action7,
+    mixer8,
+    action8;
 
   const start = async () => {
     if (experienceStarted) {
@@ -22,65 +36,196 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const { renderer, cssRenderer, scene, cssScene, camera } = mindarThree;
 
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+    var ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
     scene.add(ambientLight);
 
-    const pointLight = new THREE.PointLight(0xffffff, 0.4);
+    var pointLight = new THREE.PointLight(0xffffff, 0.4);
     pointLight.castShadow = false;
     pointLight.position.y = 10;
     pointLight.position.z = 10;
     scene.add(pointLight);
 
     const startButton = document.getElementById("startButton");
+
     startButton.style.display = "none";
 
-    const models = [
-      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/1GINfix_v1.glb?v=1710854799044",
-      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/2MARGARITAfix_v1.glb?v=1710854797901",
-      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/3COCAfix_v1.glb?v=1710854800707",
-      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/4PALOMAfix_v1.glb?v=1710854798650",
-      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/5MOJITOfix_v1.glb?v=1710854801050",
-      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/6VODKAfix_v1.glb?v=1710854799817",
-      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/7SANGRIAfix_v1.glb?v=1710854800226",
+    // Modelos GLB
+    const Portada1Model = await loadGLTF(
+      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/1GINfix_v1.glb?v=1710854799044"
+    );
+    Portada1Model.scene.scale.set(0.3, 0.3, 0.3);
+    Portada1Model.scene.position.set(0, -0.5, 0);
+
+    const Portada2Model = await loadGLTF(
+      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/2MARGARITAfix_v1.glb?v=1710854797901"
+    );
+
+    Portada2Model.scene.scale.set(0.3, 0.3, 0.3);
+    Portada2Model.scene.position.set(0, -0.5, 0);
+
+    const Model3 = await loadGLTF(
+      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/3COCAfix_v1.glb?v=1710854800707"
+    );
+    Model3.scene.scale.set(0.3, 0.3, 0.3);
+    Model3.scene.position.set(0, -0.5, 0);
+
+    const Model4 = await loadGLTF(
+      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/4PALOMAfix_v1.glb?v=1710854798650"
+    );
+    Model4.scene.scale.set(0.3, 0.3, 0.3);
+    Model4.scene.position.set(0, -0.5, 0);
+
+    const Model5 = await loadGLTF(
+      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/5MOJITOfix_v1.glb?v=1710854801050"
+    );
+    Model5.scene.scale.set(0.3, 0.3, 0.3);
+    Model5.scene.position.set(0, -0.5, 0);
+
+    const Model6 = await loadGLTF(
+      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/6VODKAfix_v1.glb?v=1710854799817"
+    );
+    Model6.scene.scale.set(0.3, 0.3, 0.3);
+    Model6.scene.position.set(0, -0.5, 0);
+
+    const Model7 = await loadGLTF(
+      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/7SANGRIAfix_v1.glb?v=1710854800226"
+    );
+    Model7.scene.scale.set(0.3, 0.3, 0.3);
+    Model7.scene.position.set(0, -0.5, 0);
+
+    const Model8 = await loadGLTF(
       "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/8TINTOfix_v1.glb?v=1710854799462"
-    ];
+    );
+    Model8.scene.scale.set(0.3, 0.3, 0.3);
+    Model8.scene.position.set(0, -0.5, 0);
 
-    const anchors = [];
+    const Portada1Anchor = mindarThree.addAnchor(0);
+    const Portada2Anchor = mindarThree.addAnchor(1);
+    const Anchor3 = mindarThree.addAnchor(2);
+    const Anchor4 = mindarThree.addAnchor(3);
+    const Anchor5 = mindarThree.addAnchor(4);
+    const Anchor6 = mindarThree.addAnchor(5);
+    const Anchor7 = mindarThree.addAnchor(6);
+    const Anchor8 = mindarThree.addAnchor(7);
 
-    for (let i = 0; i < models.length; i++) {
-      const model = await loadGLTF(models[i]);
-      model.scene.scale.set(0.3, 0.3, 0.3);
-      model.scene.position.set(0, -0.5, 0);
+    Portada1Anchor.group.add(Portada1Model.scene);
+    Portada2Anchor.group.add(Portada2Model.scene);
+    Anchor3.group.add(Model3.scene);
+    Anchor4.group.add(Model4.scene);
+    Anchor5.group.add(Model5.scene);
+    Anchor6.group.add(Model6.scene);
+    Anchor7.group.add(Model7.scene);
+    Anchor8.group.add(Model8.scene);
 
-      const anchor = mindarThree.addAnchor(i);
-      anchor.group.add(model.scene);
-      anchors.push(anchor);
+    Portada1Anchor.onTargetFound = () => {
+      mixer1 = new THREE.AnimationMixer(Portada1Model.scene);
+      action1 = mixer1.clipAction(Portada1Model.animations[0]);
+      action1.play();
+      action1.setLoop(THREE.LoopOnce);
+      action1.clampWhenFinished = true; // Mantener el estado final de la animación
+    };
 
-      const mixer = new THREE.AnimationMixer(model.scene);
-      const action = mixer.clipAction(model.animations[0]);
-      action.play();
-      action.setLoop(THREE.LoopOnce);
-      action.clampWhenFinished = true;
-      mixers.push(mixer);
-      actions.push(action);
+    Portada2Anchor.onTargetFound = () => {
+      mixer2 = new THREE.AnimationMixer(Portada2Model.scene);
+      action2 = mixer2.clipAction(Portada2Model.animations[0]);
+      action2.play();
+      action2.setLoop(THREE.LoopOnce);
+      action2.clampWhenFinished = true; // Mantener el estado final de la animación
+    };
 
-      anchor.onTargetFound = () => {
-        mixers[i].update(delta);
-        renderer.render(scene, camera);
-        cssRenderer.render(cssScene, camera);
-      };
+    Anchor3.onTargetFound = () => {
+      mixer3 = new THREE.AnimationMixer(Model3.scene);
+      action3 = mixer3.clipAction(Model3.animations[0]);
+      action3.play();
+      action3.setLoop(THREE.LoopOnce);
+      action3.clampWhenFinished = true; // Mantener el estado final de la animación
+    };
 
-      anchor.onTargetLost = () => {
-        mixers[i].stopAllAction();
-      };
-    }
+    Anchor4.onTargetFound = () => {
+      mixer4 = new THREE.AnimationMixer(Model4.scene);
+      action4 = mixer4.clipAction(Model4.animations[0]);
+      action4.play();
+      action4.setLoop(THREE.LoopOnce);
+      action4.clampWhenFinished = true; // Mantener el estado final de la animación
+    };
+
+    Anchor5.onTargetFound = () => {
+      mixer5 = new THREE.AnimationMixer(Model5.scene);
+      action5 = mixer5.clipAction(Model5.animations[0]);
+      action5.play();
+      action5.setLoop(THREE.LoopOnce);
+      action5.clampWhenFinished = true; // Mantener el estado final de la animación
+    };
+
+    Anchor6.onTargetFound = () => {
+      mixer6 = new THREE.AnimationMixer(Model6.scene);
+      action6 = mixer6.clipAction(Model6.animations[0]);
+      action6.play();
+      action6.setLoop(THREE.LoopOnce);
+      action6.clampWhenFinished = true; // Mantener el estado final de la animación
+    };
+
+    Anchor7.onTargetFound = () => {
+      mixer7 = new THREE.AnimationMixer(Model7.scene);
+      action7 = mixer7.clipAction(Model7.animations[0]);
+      action7.play();
+      action7.setLoop(THREE.LoopOnce);
+      action7.clampWhenFinished = true; // Mantener el estado final de la animación
+    };
+
+    Anchor8.onTargetFound = () => {
+      mixer8 = new THREE.AnimationMixer(Model8.scene);
+      action8 = mixer8.clipAction(Model8.animations[0]);
+      action8.play();
+      action8.setLoop(THREE.LoopOnce);
+      action8.clampWhenFinished = true; // Mantener el estado final de la animación
+    };
+
+    Portada1Anchor.onTargetLost = () => {
+      if (mixer1) mixer1.stopAllAction();
+    };
+
+    Portada2Anchor.onTargetLost = () => {
+      if (mixer2) mixer2.stopAllAction();
+    };
+
+    Anchor3.onTargetLost = () => {
+      if (mixer3) mixer3.stopAllAction();
+    };
+
+    Anchor4.onTargetLost = () => {
+      if (mixer4) mixer4.stopAllAction();
+    };
+
+    Anchor5.onTargetLost = () => {
+      if (mixer5) mixer5.stopAllAction();
+    };
+
+    Anchor6.onTargetLost = () => {
+      if (mixer6) mixer6.stopAllAction();
+    };
+
+    Anchor7.onTargetLost = () => {
+      if (mixer7) mixer7.stopAllAction();
+    };
+
+    Anchor8.onTargetLost = () => {
+      if (mixer8) mixer8.stopAllAction();
+    };
 
     await mindarThree.start();
 
     const clock = new THREE.Clock();
     renderer.setAnimationLoop(() => {
       const delta = clock.getDelta();
-      mixers.forEach(mixer => mixer.update(delta));
+      if (mixer1) mixer1.update(delta);
+      if (mixer2) mixer2.update(delta);
+      if (mixer3) mixer3.update(delta);
+      if (mixer4) mixer4.update(delta);
+      if (mixer5) mixer5.update(delta);
+      if (mixer6) mixer6.update(delta);
+      if (mixer7) mixer7.update(delta);
+      if (mixer8) mixer8.update(delta);
       renderer.render(scene, camera);
       cssRenderer.render(cssScene, camera);
     });
@@ -94,10 +239,11 @@ document.addEventListener("DOMContentLoaded", () => {
   startButton.style.color = "#FFFFFF";
   startButton.style.fontFamily = "Segoe, sans-serif";
 
-  startButton.addEventListener("click", () => {
+  startButton.addEventListener("click", start);
+  document.body.appendChild(startButton);
+
+  document.getElementById("startButton").addEventListener("click", () => {
     document.getElementById("backgroundAudio").play();
     start();
   });
-  document.body.appendChild(startButton);
 });
-
