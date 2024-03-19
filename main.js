@@ -4,11 +4,9 @@ const THREE = window.MINDAR.IMAGE.THREE;
 document.addEventListener("DOMContentLoaded", () => {
   let mixers = [];
   let experienceStarted = false;
-  let touchStartX = 0;
   let touchStartY = 0;
-  let touchEndX = 0;
   let touchEndY = 0;
-  let models = []; // Definir la variable models fuera del alcance de la función start()
+  let models = []; // Definir la variable models
 
   const start = async () => {
     if (experienceStarted) {
@@ -50,15 +48,13 @@ document.addEventListener("DOMContentLoaded", () => {
       "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/8TINTOfix_v1.glb?v=1710854799462",
     ];
 
-    models = await Promise.all(
-      modelUrls.map(async (url) => await loadGLTF(url))
-    ); // Definir la variable models
+    models = await Promise.all(modelUrls.map(async (url) => await loadGLTF(url))); // Definir la variable models
 
     // Add anchors and models
     const anchors = models.map((model, index) => {
       const anchor = mindarThree.addAnchor(index);
       anchor.group.add(model.scene);
-
+      
       // Establecer la misma escala y posición para todos los modelos
       model.scene.scale.set(0.3, 0.3, 0.3);
       model.scene.position.set(0, -0.5, 0);
@@ -92,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  const startButton = document.getElementById("startButton");
+ const startButton = document.getElementById("startButton");
   startButton.addEventListener("click", () => {
     document.getElementById("backgroundAudio").play();
     start();
@@ -101,26 +97,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Detectar eventos táctiles para rotar modelos
   document.addEventListener("touchstart", (event) => {
-    touchStartX = event.touches[0].clientX;
     touchStartY = event.touches[0].clientY;
   });
 
   document.addEventListener("touchmove", (event) => {
-    touchEndX = event.touches[0].clientX;
     touchEndY = event.touches[0].clientY;
 
-    // Calcular la diferencia entre el inicio y el final del toque
-    const deltaX = touchEndX - touchStartX;
+    // Calcular la diferencia entre el inicio y el final del toque solo en el eje Y
     const deltaY = touchEndY - touchStartY;
 
-    // Rotar los modelos en función del movimiento del dedo
+    // Rotar los modelos solo en el eje Y
     models.forEach((model) => {
-      model.scene.rotation.y -= deltaX * 0.01; // Ajusta la sensibilidad según sea necesario
-      model.scene.rotation.x -= deltaY * 0.01;
+      model.scene.rotation.y -= deltaY * 0.05; // Ajusta la sensibilidad según sea necesario
     });
 
     // Actualizar las coordenadas de inicio del toque
-    touchStartX = touchEndX;
     touchStartY = touchEndY;
   });
 });
