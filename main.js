@@ -85,26 +85,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
- const startButton = document.createElement("button");
-  startButton.textContent = "COMENZAR";
-  startButton.id = "startButton";
-  startButton.classList.add("circle-button"); // Agregar una clase para aplicar estilos CSS
-  startButton.style.backgroundColor = "#a62424";
-  startButton.style.color = "#FFFFFF";
-  startButton.style.fontFamily = "Segoe, sans-serif";
-
-  startButton.addEventListener("click", start);
-  document.body.appendChild(startButton);
-
-  // Añadir event listener al botón "COMENZAR" después de que se haya creado
-  document.getElementById("startButton").addEventListener("click", () => {
+ const startButton = document.getElementById("startButton");
+  startButton.addEventListener("click", () => {
     document.getElementById("backgroundAudio").play();
     start();
+    startButton.style.display = "none"; // Ocultar el botón al hacer clic
   });
-
-  const infoText = document.createElement("p");
-  infoText.id = "infoText";
-  infoText.style.fontFamily = "Segoe, sans-serif";
-
-  document.body.appendChild(infoText);
 });
