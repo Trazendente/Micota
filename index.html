@@ -126,16 +126,15 @@
   <body>
     <div id="scanning" class="hidden">
       <div class="inner">
-        <img /* LA IMAGEN QUE APARECE JUNTO AL ESCANER */
-        src="https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/portada-v2.jpg?v=1710854637853"
-        alt="Image Alt Text" />
+        <img
+          src="https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/portada%20v2.JPG?v=1710261294885"
+          alt="Image Alt Text"
+        />
         <div class="scanline"></div>
       </div>
     </div>
 
     <div id="container"></div>
-
-    <button id="startButton">Start</button>
 
     <audio
       id="backgroundAudio"
@@ -143,30 +142,31 @@
       loop
     ></audio>
 
+    <!-- Botón para iniciar la primera aplicación -->
+    <button id="startButton" class="circle-button"></button>
+
     <script>
-  const backgroundAudio = document.getElementById("backgroundAudio");
-  
-  // Función para pausar los audios cuando la página se oculta
-  function handleVisibilityChange() {
-    if (document.visibilityState === "hidden") {
-      backgroundAudio.pause();
-    } else {
-      backgroundAudio.play();
-    }
-  }
-  // Agregar el event listener para el cambio de visibilidad
-  document.addEventListener("visibilitychange", handleVisibilityChange);
+      const backgroundAudio = document.getElementById("backgroundAudio");
 
-  // Esperar a que el DOM esté completamente cargado antes de manipularlo
-  document.addEventListener("DOMContentLoaded", function() {
-    const startButton = document.getElementById("startButton");
-    
-    startButton.addEventListener("click", function() {
-      backgroundAudio.play();
-    });
-  });
-</script>
+      // Función para pausar los audios cuando la página se oculta
+      function handleVisibilityChange() {
+        if (document.visibilityState === "hidden") {
+          backgroundAudio.pause();
+        } else {
+          backgroundAudio.play();
+        }
+      }
+      // Agregar el event listener para el cambio de visibilidad
+      document.addEventListener("visibilitychange", handleVisibilityChange);
 
+      // Esperar a que el DOM esté completamente cargado antes de manipularlo
+
+      document.getElementById("startButton").addEventListener("click", () => {
+        backgroundAudio.play();
+        newAudio.play();
+        start();
+      });
+    </script>
 
     <style>
       @font-face {
