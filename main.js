@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/5MOJITOfix_v1.glb?v=1710854801050",
       "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/6VODKAfix_v1.glb?v=1710854799817",
       "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/7SANGRIAfix_v1.glb?v=1710854800226",
-      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/8TINTOfix_v1.glb?v=1710854799462",
+      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/8TINTOfix_v1.glb?v=1710854799462"
     ];
 
     const anchors = [];
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const clock = new THREE.Clock();
     renderer.setAnimationLoop(() => {
       const delta = clock.getDelta();
-      mixers.forEach((mixer) => mixer.update(delta));
+      mixers.forEach(mixer => mixer.update(delta));
       renderer.render(scene, camera);
       cssRenderer.render(cssScene, camera);
     });
@@ -100,3 +100,4 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   document.body.appendChild(startButton);
 });
+
