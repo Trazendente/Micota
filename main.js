@@ -55,44 +55,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Modelos GLB
     const Portada1Model = await loadGLTF(
-      "https://cdn.glitch.global/532f8e34-feb5-4a7c-94c4-2f60eabb529e/1GINfix_v1.glb?v=1710778506403"
+      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/1GINfix_v1.glb?v=1710854799044"
     );
     Portada1Model.scene.scale.set(0.3, 0.3, 0.3);
     Portada1Model.scene.position.set(0, -0.5, 0);
 
     const Portada2Model = await loadGLTF(
-      "https://cdn.glitch.global/532f8e34-feb5-4a7c-94c4-2f60eabb529e/2MARGARITAfix_v1.glb?v=1710778506778"
+      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/2MARGARITAfix_v1.glb?v=1710854797901"
     );
 
     Portada2Model.scene.scale.set(0.3, 0.3, 0.3);
     Portada2Model.scene.position.set(0, -0.5, 0);
 
     const Model3 = await loadGLTF(
-      "https://cdn.glitch.global/532f8e34-feb5-4a7c-94c4-2f60eabb529e/3COCAfix_v1.glb?v=1710778507550"
+      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/3COCAfix_v1.glb?v=1710854800707"
     );
     Model3.scene.scale.set(0.3, 0.3, 0.3);
     Model3.scene.position.set(0, -0.5, 0);
 
     const Model4 = await loadGLTF(
-      "https://cdn.glitch.global/532f8e34-feb5-4a7c-94c4-2f60eabb529e/4PALOMAfix_v1.glb?v=1710778507894"
+      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/4PALOMAfix_v1.glb?v=1710854798650"
     );
     Model4.scene.scale.set(0.3, 0.3, 0.3);
     Model4.scene.position.set(0, -0.5, 0);
 
     const Model5 = await loadGLTF(
-      "https://cdn.glitch.global/532f8e34-feb5-4a7c-94c4-2f60eabb529e/5MOJITOfix_v1.glb?v=1710778508344"
+      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/5MOJITOfix_v1.glb?v=1710854801050"
     );
     Model5.scene.scale.set(0.3, 0.3, 0.3);
     Model5.scene.position.set(0, -0.5, 0);
 
     const Model6 = await loadGLTF(
-      "https://cdn.glitch.global/532f8e34-feb5-4a7c-94c4-2f60eabb529e/6VODKAfix_v1.glb?v=1710778508728"
+      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/6VODKAfix_v1.glb?v=1710854799817"
     );
     Model6.scene.scale.set(0.3, 0.3, 0.3);
     Model6.scene.position.set(0, -0.5, 0);
 
     const Model7 = await loadGLTF(
-      "https://cdn.glitch.global/532f8e34-feb5-4a7c-94c4-2f60eabb529e/7SANGRIAfix_v1.glb?v=1710778509192"
+      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/7SANGRIAfix_v1.glb?v=1710854800226"
     );
     Model7.scene.scale.set(0.3, 0.3, 0.3);
     Model7.scene.position.set(0, -0.5, 0);
