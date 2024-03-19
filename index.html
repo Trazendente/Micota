@@ -19,7 +19,7 @@
         align-items: center;
         justify-content: center;
         /* IMAGEN BLUR DEL FONDO */
-        background: url("https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/portada.jpg?v=1710854584417")
+        background: url("https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/portada.jpg?v=1710252685423")
           center/cover no-repeat;
         /* Escalar la imagen un poco */
         background-size: 110%; /* Cambia este valor según lo que consideres un escalado "un poco" */
@@ -135,35 +135,38 @@
 
     <div id="container"></div>
 
+    <button id="startButton">Start</button>
+
     <audio
       id="backgroundAudio"
-      src="https://cdn.glitch.global/67ab0bf3-4565-4426-9f58-a2ca9a65c7d3/1.Documentary%20Piano%20Loop_1.mp3"
+      src="https://cdn.glitch.global/ab9aea4b-3174-43cc-8f71-4e9ed0475f6b/1.Documentary%20Piano%20Loop_1.mp3?v=1706202845698"
       loop
     ></audio>
 
     <script>
-      const backgroundAudio = document.getElementById("backgroundAudio");
-      const newAudio = document.getElementById("newAudio");
+  const backgroundAudio = document.getElementById("backgroundAudio");
+  
+  // Función para pausar los audios cuando la página se oculta
+  function handleVisibilityChange() {
+    if (document.visibilityState === "hidden") {
+      backgroundAudio.pause();
+    } else {
+      backgroundAudio.play();
+    }
+  }
+  // Agregar el event listener para el cambio de visibilidad
+  document.addEventListener("visibilitychange", handleVisibilityChange);
 
-      // Función para pausar los audios cuando la página se oculta
-      function handleVisibilityChange() {
-        if (document.visibilityState === "hidden") {
-          backgroundAudio.pause();
-          newAudio.pause();
-        } else {
-          backgroundAudio.play();
-          newAudio.play();
-        }
-      }
-      // Agregar el event listener para el cambio de visibilidad
-      document.addEventListener("visibilitychange", handleVisibilityChange);
+  // Esperar a que el DOM esté completamente cargado antes de manipularlo
+  document.addEventListener("DOMContentLoaded", function() {
+    const startButton = document.getElementById("startButton");
+    
+    startButton.addEventListener("click", function() {
+      backgroundAudio.play();
+    });
+  });
+</script>
 
-      document.getElementById("startButton").addEventListener("click", () => {
-        backgroundAudio.play();
-        newAudio.play();
-        start();
-      });
-    </script>
 
     <style>
       @font-face {

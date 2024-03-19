@@ -38,20 +38,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const { renderer, cssRenderer, scene, cssScene, camera } = mindarThree;
 
-    var ambientLight = new THREE.AmbientLight(0xcccccc, 0.8);
+    var ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
     scene.add(ambientLight);
 
     var pointLight = new THREE.PointLight(0xffffff, 0.4);
-    pointLight.castShadow = true;
+    pointLight.castShadow = false;
     pointLight.position.y = 10;
     pointLight.position.z = 10;
     scene.add(pointLight);
 
     const startButton = document.getElementById("startButton");
-    const infoText = document.getElementById("infoText");
+ 
 
     startButton.style.display = "none";
-    infoText.style.display = "none";
+
 
     // Modelos GLB
     const Portada1Model = await loadGLTF(
@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
     Model7.scene.position.set(0, -0.5, 0);
 
     const Model8 = await loadGLTF(
-      "https://cdn.glitch.global/532f8e34-feb5-4a7c-94c4-2f60eabb529e/8TINTOfix_v1.glb?v=1710778509647"
+      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/8TINTOfix_v1.glb?v=1710854799462"
     );
     Model8.scene.scale.set(0.3, 0.3, 0.3);
     Model8.scene.position.set(0, -0.5, 0);
@@ -246,11 +246,6 @@ document.addEventListener("DOMContentLoaded", () => {
   startButton.addEventListener("click", start);
   document.body.appendChild(startButton);
 
-  const infoText = document.createElement("p");
-  infoText.id = "infoText";
-  infoText.style.fontFamily = "Segoe, sans-serif";
-
-  document.body.appendChild(infoText);
 
   document.getElementById("startButton").addEventListener("click", start);
 });
