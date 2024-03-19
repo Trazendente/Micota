@@ -1,3 +1,4 @@
+import { CSS3DObject } from "./CSS3DRenderer.js";
 import { loadGLTF } from "./loader.js";
 const THREE = window.MINDAR.IMAGE.THREE;
 
@@ -45,13 +46,17 @@ document.addEventListener("DOMContentLoaded", () => {
       "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/8TINTOfix_v1.glb?v=1710854799462",
     ];
 
-    const models = await Promise.all(modelUrls.map(async (url) => await loadGLTF(url)));
+    const models = await Promise.all(
+      modelUrls.map(async (url) => await loadGLTF(url))
+    );
+
+
 
     // Add anchors and models
     const anchors = models.map((model, index) => {
       const anchor = mindarThree.addAnchor(index);
       anchor.group.add(model.scene);
-      
+
       // Establecer la misma escala y posición para todos los modelos
       model.scene.scale.set(0.3, 0.3, 0.3);
       model.scene.position.set(0, -0.5, 0);
@@ -85,9 +90,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
- const startButton = document.getElementById("startButton");
+  const startButton = document.getElementById("startButton");
   startButton.addEventListener("click", () => {
     document.getElementById("backgroundAudio").play();
+    
     start();
     startButton.style.display = "none"; // Ocultar el botón al hacer clic
   });
