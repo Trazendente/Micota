@@ -85,16 +85,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  const startButton = document.createElement("button");
-  startButton.textContent = "COMENZAR";
-  startButton.id = "startButton";
-  startButton.classList.add("circle-button");
-
-  startButton.addEventListener("click", start);
-  document.body.appendChild(startButton);
-
-  document.getElementById("startButton").addEventListener("click", () => {
+ const startButton = document.getElementById("startButton");
+  startButton.addEventListener("click", () => {
     document.getElementById("backgroundAudio").play();
     start();
+    startButton.style.display = "none"; // Ocultar el botón al hacer clic
   });
 });

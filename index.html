@@ -40,10 +40,11 @@
           width: 50vh;
           height: 50vh;
         }
-      }      @media (max-aspect-ratio: 1/1) {
+      }
+      @media (max-aspect-ratio: 1/1) {
         #scanning .inner {
           width: 80vw;
-          height: 80vw;
+          height: 80vw
         }
       }
 
@@ -92,6 +93,10 @@
         }
       }
 
+      #backgroundAudio {
+        display: none; /* Ocultar el elemento de audio por defecto */
+      }
+
       #startButton {
         background-color: #a62424;
         color: #ffffff;
@@ -109,6 +114,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        font-family: "Segoe", sans-serif; /* Agregar la fuente aquí */
       }
     </style>
   </head>
@@ -125,12 +131,5 @@
     <audio id="backgroundAudio" src="https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/happy_reggae_loop.mp3?v=1710858328617" loop></audio>
 
     <button id="startButton" class="circle-button">COMENZAR</button>
-
-    <style>
-      @font-face {
-        font-family: "Segoe";
-        src: url("https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/Rabbits-Dummy.ttf?v=1710259693699") format("truetype");
-      }
-    </style>
   </body>
 </html>
