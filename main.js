@@ -2,13 +2,16 @@ import { loadGLTF, loadTextures } from "./loader.js";
 const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener("DOMContentLoaded", () => {
-  let mixers = []; // Array para almacenar los mixers
+  let mixers = [];
+  let experienceStarted = false; // Inicialización correcta de la variable
+
   const start = async () => {
     if (experienceStarted) {
       return;
     }
 
-    let experienceStarted = true; // Corrección en la declaración de la variable
+    experienceStarted = true;
+
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.body,
       imageTargetSrc:
@@ -69,68 +72,67 @@ document.addEventListener("DOMContentLoaded", () => {
     );
     coctel6.scene.scale.set(0.3, 0.3, 0.3);
     coctel6.scene.position.set(0, -0.5, 0);
-
     const coctel7 = await loadGLTF(
-      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/7SANGRIAfix_v1.glb?v=1710854800226"
-    );
-    coctel7.scene.scale.set(0.3, 0.3, 0.3);
-    coctel7.scene.position.set(0, -0.5, 0);
+  "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/7SANGRIAfix_v1.glb?v=1710854800226"
+);
+coctel7.scene.scale.set(0.3, 0.3, 0.3);
+coctel7.scene.position.set(0, -0.5, 0);
 
-    const coctel8 = await loadGLTF(
-      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/8TINTOfix_v1.glb?v=1710854799462"
-    );
-    coctel8.scene.scale.set(0.3, 0.3, 0.3);
-    coctel8.scene.position.set(0, -0.5, 0);
+const coctel8 = await loadGLTF(
+  "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/8TINTOfix_v1.glb?v=1710854799462"
+);
+coctel8.scene.scale.set(0.3, 0.3, 0.3);
+coctel8.scene.position.set(0, -0.5, 0);
 
-    const anchors = [];
-    for (let i = 0; i < 8; i++) {
-      anchors[i] = mindarThree.addAnchor(i);
-    }
+const anchors = [];
+for (let i = 0; i < 8; i++) {
+  anchors[i] = mindarThree.addAnchor(i);
+}
 
-    const models = [coctel1, coctel2, coctel3, coctel4, coctel5, coctel6, coctel7, coctel8];
+const models = [coctel1, coctel2, coctel3, coctel4, coctel5, coctel6, coctel7, coctel8];
 
-    for (let i = 0; i < models.length; i++) {
-      anchors[i].group.add(models[i].scene);
+for (let i = 0; i < models.length; i++) {
+  anchors[i].group.add(models[i].scene);
 
-      anchors[i].onTargetFound = () => {
-        mixers[i] = new THREE.AnimationMixer(models[i].scene);
-        const action = mixers[i].clipAction(models[i].animations[0]);
-        action.play();
-        action.setLoop(THREE.LoopOnce);
-        action.clampWhenFinished = true; // Mantener el estado final de la animación
-      };
-
-      anchors[i].onTargetLost = () => {
-        if (mixers[i]) mixers[i].stopAllAction();
-      };
-    }
-
-    await mindarThree.start();
-
-    const clock = new THREE.Clock();
-    renderer.setAnimationLoop(() => {
-      const delta = clock.getDelta();
-      for (const mixer of mixers) {
-        if (mixer) mixer.update(delta);
-      }
-      renderer.render(scene, camera);
-      cssRenderer.render(cssScene, camera);
-    });
+  anchors[i].onTargetFound = () => {
+    mixers[i] = new THREE.AnimationMixer(models[i].scene);
+    const action = mixers[i].clipAction(models[i].animations[0]);
+    action.play();
+    action.setLoop(THREE.LoopOnce);
+    action.clampWhenFinished = true; // Mantener el estado final de la animación
   };
 
-  const startButton = document.createElement("button");
-  startButton.textContent = "COMENZAR";
-  startButton.id = "startButton";
-  startButton.classList.add("circle-button");
-  startButton.style.backgroundColor = "#a62424";
-  startButton.style.color = "#FFFFFF";
-  startButton.style.fontFamily = "Segoe, sans-serif";
+  anchors[i].onTargetLost = () => {
+    if (mixers[i]) mixers[i].stopAllAction();
+  };
+}
 
-  startButton.addEventListener("click", start);
-  document.body.appendChild(startButton);
+await mindarThree.start();
 
-  document.getElementById("startButton").addEventListener("click", () => {
-    document.getElementById("backgroundAudio").play();
-    start();
-  });
+const clock = new THREE.Clock();
+renderer.setAnimationLoop(() => {
+  const delta = clock.getDelta();
+  for (const mixer of mixers) {
+    if (mixer) mixer.update(delta);
+  }
+  renderer.render(scene, camera);
+  cssRenderer.render(cssScene, camera);
+});
+    };
+
+const startButton = document.createElement("button");
+startButton.textContent = "COMENZAR";
+startButton.id = "startButton";
+startButton.classList.add("circle-button");
+startButton.style.backgroundColor = "#a62424";
+startButton.style.color = "#FFFFFF";
+startButton.style.fontFamily = "Segoe, sans-serif";
+
+startButton.addEventListener("click", start);
+document.body.appendChild(startButton);
+
+document.getElementById("startButton").addEventListener("click", () => {
+document.getElementById("backgroundAudio").play();
+start();
+});
 });
