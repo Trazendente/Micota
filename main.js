@@ -89,9 +89,6 @@ document.addEventListener("DOMContentLoaded", () => {
   startButton.textContent = "COMENZAR";
   startButton.id = "startButton";
   startButton.classList.add("circle-button");
-  startButton.style.backgroundColor = "#a62424";
-  startButton.style.color = "#FFFFFF";
-  startButton.style.fontFamily = "Segoe, sans-serif";
 
   startButton.addEventListener("click", start);
   document.body.appendChild(startButton);
