@@ -87,9 +87,11 @@ document.addEventListener("DOMContentLoaded", () => {
       cssRenderer.render(cssScene, camera);
     });
 
-    // Event listeners para el movimiento de los modelos al tocar la pantalla
+    // Event listeners para el movimiento de rotación al tocar la pantalla
     let touchStartX = 0;
     let touchStartY = 0;
+    let touchMoveX = 0;
+    let touchMoveY = 0;
     let touchDown = false;
 
     document.body.addEventListener("touchstart", (event) => {
@@ -101,24 +103,17 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.addEventListener("touchmove", (event) => {
       if (!touchDown) return;
 
-      const touchMoveX = event.touches[0].clientX;
-      const touchMoveY = event.touches[0].clientY;
+      touchMoveX = event.touches[0].clientX;
+      touchMoveY = event.touches[0].clientY;
 
       const deltaX = touchMoveX - touchStartX;
       const deltaY = touchMoveY - touchStartY;
 
       mixers.forEach((mixer) => {
         if (mixer) {
-          const mesh = mixer.scene.children[0]; // Obtener el mesh del modelo
-          const deltaRotationQuaternion = new THREE.Quaternion()
-            .setFromEuler(new THREE.Euler(
-              deltaY * Math.PI / 180,
-              deltaX * Math.PI / 180,
-              0,
-              'XYZ'
-            ));
-
-          mesh.quaternion.multiplyQuaternions(deltaRotationQuaternion, mesh.quaternion);
+          mixer.scene.children.forEach((model) => {
+            model.rotation.y -= deltaX * 0.01; // Rotar el modelo en función del desplazamiento X
+          });
         }
       });
 
