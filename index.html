@@ -139,31 +139,29 @@
 <div id="container"></div>
 
 <audio id="backgroundAudio" src="https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/happy_reggae_loop.mp3?v=1710858328617" loop></audio>
-<script>
-      const backgroundAudio = document.getElementById("backgroundAudio");
-      const newAudio = document.getElementById("newAudio");
-
-      // Función para pausar los audios cuando la página se oculta
-      function handleVisibilityChange() {
-        if (document.visibilityState === "hidden") {
-          backgroundAudio.pause();
-          newAudio.pause();
-        } else {
-          backgroundAudio.play();
-          newAudio.play();
-        }
-      }
-
-      // Agregar el event listener para el cambio de visibilidad
-      document.addEventListener("visibilitychange", handleVisibilityChange);
-
-      document.getElementById("startButton").addEventListener("click", () => {
-        backgroundAudio.play();
-        newAudio.play();
-        start();
-      });
-    </script>
 
 <button id="startButton" class="circle-button">COMENZAR</button>
+
+<script>
+    const backgroundAudio = document.getElementById("backgroundAudio");
+
+    // Función para pausar el audio cuando la página se oculta
+    function handleVisibilityChange() {
+        if (document.visibilityState === "hidden") {
+            backgroundAudio.pause();
+        } else {
+            backgroundAudio.play();
+        }
+    }
+
+    // Agregar el event listener para el cambio de visibilidad
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    // Agregar el event listener al botón de inicio
+    document.getElementById("startButton").addEventListener("click", () => {
+        backgroundAudio.play();
+        start();
+    });
+</script>
 </body>
 </html>
