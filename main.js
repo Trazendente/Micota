@@ -51,6 +51,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const anchors = models.map((model, index) => {
       const anchor = mindarThree.addAnchor(index);
       anchor.group.add(model.scene);
+      
+      // Establecer la misma escala y posición para todos los modelos
+      model.scene.scale.set(0.3, 0.3, 0.3);
+      model.scene.position.set(0, -0.5, 0);
 
       anchor.onTargetFound = () => {
         mixers[index] = new THREE.AnimationMixer(model.scene);
