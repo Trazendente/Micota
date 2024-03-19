@@ -3,8 +3,22 @@ const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener("DOMContentLoaded", () => {
   let experienceStarted = false;
-  let mixers = [];
-  let actions = [];
+  let mixer1,
+    action1,
+    mixer2,
+    action2,
+    mixer3,
+    action3,
+    mixer4,
+    action4,
+    mixer5,
+    action5,
+    mixer6,
+    action6,
+    mixer7,
+    action7,
+    mixer8,
+    action8;
 
   const start = async () => {
     if (experienceStarted) {
