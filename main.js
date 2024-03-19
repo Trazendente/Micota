@@ -50,8 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
       modelUrls.map(async (url) => await loadGLTF(url))
     );
 
-
-
     // Add anchors and models
     const anchors = models.map((model, index) => {
       const anchor = mindarThree.addAnchor(index);
@@ -87,6 +85,49 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       renderer.render(scene, camera);
       cssRenderer.render(cssScene, camera);
+    });
+
+    // Event listeners para el movimiento de los modelos al tocar la pantalla
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchDown = false;
+
+    document.body.addEventListener("touchstart", (event) => {
+      touchStartX = event.touches[0].clientX;
+      touchStartY = event.touches[0].clientY;
+      touchDown = true;
+    });
+
+    document.body.addEventListener("touchmove", (event) => {
+      if (!touchDown) return;
+
+      const touchMoveX = event.touches[0].clientX;
+      const touchMoveY = event.touches[0].clientY;
+
+      const deltaX = touchMoveX - touchStartX;
+      const deltaY = touchMoveY - touchStartY;
+
+      mixers.forEach((mixer) => {
+        if (mixer) {
+          const mesh = mixer.scene.children[0]; // Obtener el mesh del modelo
+          const deltaRotationQuaternion = new THREE.Quaternion()
+            .setFromEuler(new THREE.Euler(
+              deltaY * Math.PI / 180,
+              deltaX * Math.PI / 180,
+              0,
+              'XYZ'
+            ));
+
+          mesh.quaternion.multiplyQuaternions(deltaRotationQuaternion, mesh.quaternion);
+        }
+      });
+
+      touchStartX = touchMoveX;
+      touchStartY = touchMoveY;
+    });
+
+    document.body.addEventListener("touchend", () => {
+      touchDown = false;
     });
   };
 
