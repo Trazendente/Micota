@@ -151,22 +151,28 @@
 
     <button id="startButton" class="circle-button">COMENZAR</button>
 
-    <script>
-      const backgroundAudio = document.getElementById("backgroundAudio");
-
-      // Función para pausar el audio cuando la página se oculta
-      function handleVisibilityChange() {
-        if (document.visibilityState === "hidden") {
-          backgroundAudio.pause();
-        } else {
-          backgroundAudio.play();
-        }
-      }
-      // Agregar el event listener para el cambio de visibilidad
-      document.addEventListener("DOMContentLoaded", function () {
+     <script>
         const backgroundAudio = document.getElementById("backgroundAudio");
-        backgroundAudio.volume = 0.5; // Establecer el volumen al 50%
-      });
+
+        // Función para pausar el audio cuando la página se oculta
+        function handleVisibilityChange() {
+            if (document.visibilityState === "hidden") {
+                backgroundAudio.pause();
+            } else {
+                backgroundAudio.play();
+            }
+        }
+
+        // Agregar el event listener para el cambio de visibilidad
+        document.addEventListener("visibilitychange", handleVisibilityChange);
+
+        // Agregar el event listener al botón de inicio
+        document.getElementById("startButton").addEventListener("click", () => {
+            backgroundAudio.volume = 0.5; // Establecer el volumen al 50%
+            backgroundAudio.play();
+        });
+
+
     </script>
   </body>
 </html>

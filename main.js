@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Rotar los modelos solo en el eje Y
     models.forEach((model) => {
-      model.scene.rotation.y -= deltaY * 0.05; // Ajusta la sensibilidad según sea necesario
+      model.scene.rotation.y -= deltaY * 0.03; // Ajusta la sensibilidad según sea necesario
     });
 
     // Actualizar las coordenadas de inicio del toque
