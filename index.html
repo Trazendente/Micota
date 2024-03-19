@@ -1,167 +1,176 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="./mindar-image-three.prod.js"></script>
     <script src="./main.js" type="module"></script>
     <style>
-        html,
-        body {
-            position: relative;
-            margin: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            font-family: "Segoe", sans-serif;
-        }
+      html,
+      body {
+        position: relative;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        font-family: "Segoe", sans-serif;
+      }
 
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: url("https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/portada.jpg?v=1710252685423") center/cover no-repeat;
-            background-size: 110%;
-        }
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: url("https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/portada.jpg?v=1710252685423")
+          center/cover no-repeat;
+        background-size: 110%;
+      }
 
-        #scanning {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 0;
-            bottom: 0;
-            background: transparent;
-            z-index: 2;
-        }
+      #scanning {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: transparent;
+        z-index: 2;
+      }
 
-        @media (min-aspect-ratio: 1/1) {
-            #scanning .inner {
-                width: 50vh;
-                height: 50vh;
-            }
-        }
-
-        @media (max-aspect-ratio: 1/1) {
-            #scanning .inner {
-                width: 80vw;
-                height: 80vw
-            }
-        }
-
+      @media (min-aspect-ratio: 1/1) {
         #scanning .inner {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background: linear-gradient(to right, white 10px, transparent 10px) 0 0,
-            linear-gradient(to right, white 10px, transparent 10px) 0 100%,
-            linear-gradient(to left, white 10px, transparent 10px) 100% 0,
-            linear-gradient(to left, white 10px, transparent 10px) 100% 100%,
-            linear-gradient(to bottom, white 10px, transparent 10px) 0 0,
-            linear-gradient(to bottom, white 10px, transparent 10px) 100% 0,
-            linear-gradient(to top, white 10px, transparent 10px) 0 100%,
-            linear-gradient(to top, white 10px, transparent 10px) 100% 100%;
-            background-repeat: no-repeat;
-            background-size: 40px 40px;
+          width: 50vh;
+          height: 50vh;
+        }
+      }
+
+      @media (max-aspect-ratio: 1/1) {
+        #scanning .inner {
+          width: 80vw;
+          height: 80vw;
+        }
+      }
+
+      #scanning .inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background: linear-gradient(to right, white 10px, transparent 10px) 0 0,
+          linear-gradient(to right, white 10px, transparent 10px) 0 100%,
+          linear-gradient(to left, white 10px, transparent 10px) 100% 0,
+          linear-gradient(to left, white 10px, transparent 10px) 100% 100%,
+          linear-gradient(to bottom, white 10px, transparent 10px) 0 0,
+          linear-gradient(to bottom, white 10px, transparent 10px) 100% 0,
+          linear-gradient(to top, white 10px, transparent 10px) 0 100%,
+          linear-gradient(to top, white 10px, transparent 10px) 100% 100%;
+        background-repeat: no-repeat;
+        background-size: 40px 40px;
+      }
+
+      #scanning.hidden {
+        display: none;
+      }
+
+      #scanning img {
+        opacity: 0.6;
+        width: 90%;
+        align-self: center;
+      }
+
+      #scanning .inner .scanline {
+        position: absolute;
+        width: 100%;
+        height: 10px;
+        background: white;
+        animation: move 2s linear infinite;
+      }
+
+      @keyframes move {
+        0%,
+        100% {
+          top: 0%;
         }
 
-        #scanning.hidden {
-            display: none;
+        50% {
+          top: calc(100% - 10px);
         }
+      }
 
-        #scanning img {
-            opacity: 0.6;
-            width: 90%;
-            align-self: center;
-        }
+      #backgroundAudio {
+        display: none;
+      }
 
-        #scanning .inner .scanline {
-            position: absolute;
-            width: 100%;
-            height: 10px;
-            background: white;
-            animation: move 2s linear infinite;
-        }
-
-        @keyframes move {
-            0%,
-            100% {
-                top: 0%;
-            }
-
-            50% {
-                top: calc(100% - 10px);
-            }
-        }
-
-        #backgroundAudio {
-            display: none;
-        }
-
-        #startButton {
-            background-color: #a62424;
-            color: #ffffff;
-            border: none;
-            width: 150px;
-            height: 150px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            position: fixed;
-            bottom: 10px;
-            right: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: "Segoe", sans-serif;
-        }
+      #startButton {
+        background-color: #a62424;
+        color: #ffffff;
+        border: none;
+        width: 150px;
+        height: 150px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 30px;
+        border-radius: 50%;
+        cursor: pointer;
+        position: fixed;
+        bottom: 10px;
+        right: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Segoe", sans-serif;
+      }
     </style>
     <style>
-        @font-face {
-            font-family: "Segoe";
-            src: url("https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/Rabbits-Dummy.ttf?v=1710259693699") format("truetype");
-        }
+      @font-face {
+        font-family: "Segoe";
+        src: url("https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/Rabbits-Dummy.ttf?v=1710259693699")
+          format("truetype");
+      }
     </style>
-</head>
-<body>
-<div id="scanning" class="hidden">
-    <div class="inner">
-        <img src="https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/portada%20v2.JPG?v=1710261294885" alt="Image Alt Text" />
+  </head>
+  <body>
+    <div id="scanning" class="hidden">
+      <div class="inner">
+        <img
+          src="https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/portada%20v2.JPG?v=1710261294885"
+          alt="Image Alt Text"
+        />
         <div class="scanline"></div>
+      </div>
     </div>
-</div>
 
-<div id="container"></div>
+    <div id="container"></div>
 
-<audio id="backgroundAudio" src="https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/happy_reggae_loop.mp3?v=1710858328617" loop></audio>
+    <audio
+      id="backgroundAudio"
+      src="https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/happy_reggae_loop.mp3?v=1710858328617"
+      loop
+    ></audio>
 
-<button id="startButton" class="circle-button">COMENZAR</button>
+    <button id="startButton" class="circle-button">COMENZAR</button>
 
-<script>
-    const backgroundAudio = document.getElementById("backgroundAudio");
+    <script>
+      const backgroundAudio = document.getElementById("backgroundAudio");
 
-    // Función para pausar el audio cuando la página se oculta
-    function handleVisibilityChange() {
+      // Función para pausar el audio cuando la página se oculta
+      function handleVisibilityChange() {
         if (document.visibilityState === "hidden") {
-            backgroundAudio.pause();
+          backgroundAudio.pause();
         } else {
-            backgroundAudio.play();
+          backgroundAudio.play();
         }
-    }
+      }
 
-    // Agregar el event listener para el cambio de visibilidad
-    document.addEventListener("visibilitychange", handleVisibilityChange);
+      // Agregar el event listener para el cambio de visibilidad
+      document.addEventListener("visibilitychange", handleVisibilityChange);
 
-    // Agregar el event listener al botón de inicio
-    document.getElementById("startButton").addEventListener("click", () => {
+      document.getElementById("startButton").addEventListener("click", () => {
+        backgroundAudio.volume = 0.5; // Establecer el volumen al 50%
         backgroundAudio.play();
         start();
-    });
-</script>
-</body>
+      });
+    </script>
+  </body>
 </html>
