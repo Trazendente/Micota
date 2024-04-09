@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Load models
     const modelUrls = [
-      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/1GINfix_v1.glb?v=1710854799044",
+      "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/1GINfix_v2.glb?v=1712645586228",
       "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/2MARGARITAfix_v1.glb?v=1710854797901",
       "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/3COCAfix_v1.glb?v=1710854800707",
       "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/4PALOMAfix_v1.glb?v=1710854798650",
