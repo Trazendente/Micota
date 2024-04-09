@@ -38,14 +38,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Load models
     const modelUrls = [
-      "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/1GINfix_v2.glb?v=1712645586228",
-      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/2MARGARITAfix_v1.glb?v=1710854797901",
-      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/3COCAfix_v1.glb?v=1710854800707",
-      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/4PALOMAfix_v1.glb?v=1710854798650",
-      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/5MOJITOfix_v1.glb?v=1710854801050",
-      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/6VODKAfix_v1.glb?v=1710854799817",
-      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/7SANGRIAfix_v1.glb?v=1710854800226",
-      "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/8TINTOfix_v1.glb?v=1710854799462",
+      "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/1GINfix_v2.glb?v=1712669740980",
+      "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/2MARGARITAfix_v2.glb?v=1712669742462",
+      "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/3COCAfix_v2.glb?v=1712669744067",
+      "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/4PALOMAfix_v2.glb?v=1712669744936",
+      "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/5MOJITOfix_v2.glb?v=1712669746132",
+      "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/6VODKAfix_v2.glb?v=1712669746850",
+      "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/7SANGRIAfix_v2.glb?v=1712669747789",
+      "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/8TINTOfix_v2.glb?v=1712669748567",
     ];
 
     models = await Promise.all(modelUrls.map(async (url) => await loadGLTF(url))); // Definir la variable models
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
       anchor.group.add(model.scene);
       
       // Establecer la misma escala y posición para todos los modelos
-      model.scene.scale.set(0.3, 0.3, 0.3);
+      model.scene.scale.set(0.2, 0.2, 0.2);
       model.scene.position.set(0, -0.5, 0);
 
       anchor.onTargetFound = () => {
