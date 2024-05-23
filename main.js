@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.body,
       imageTargetSrc:
-        "https://cdn.glitch.global/b24066b4-44c1-4e97-82b5-a492cc7e9f6f/targets%20(16).mind?v=1710790349162",
+        "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/targets.mind?v=1716432712229",
       uiScanning: "#scanning",
       uiLoading: "no",
     });
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Load models
     const modelUrls = [
-      "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/1GINfix_v2.glb?v=1712669740980",
+      "https://cdn.glitch.global/31a3f2ac-0d60-4e6d-b97b-5b50583da073/corazon_v2.glb?v=1711578059235",
       "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/2MARGARITAfix_v2.glb?v=1712669742462",
       "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/3COCAfix_v2.glb?v=1712669744067",
       "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/4PALOMAfix_v2.glb?v=1712669744936",
@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/6VODKAfix_v2.glb?v=1712669746850",
       "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/7SANGRIAfix_v2.glb?v=1712669747789",
       "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/8TINTOfix_v2.glb?v=1712669748567",
+        "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/1GINfix_v2.glb?v=1712669740980",
     ];
 
     models = await Promise.all(modelUrls.map(async (url) => await loadGLTF(url))); // Definir la variable models
