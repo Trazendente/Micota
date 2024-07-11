@@ -1,3 +1,4 @@
+// Desarrollado por Trazendente Studio Interactivo
 import { loadGLTF } from "./loader.js";
 const THREE = window.MINDAR.IMAGE.THREE;
 
@@ -47,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Establecer la escala y posición para el modelo
     model.scene.scale.set(2, 2, 2);
-    model.scene.position.set(0, 0, 0);
+    model.scene.position.set(0, -1.5, 0);
 
     anchor.onTargetFound = () => {
       const mixer = new THREE.AnimationMixer(model.scene);
