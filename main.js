@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.body,
       imageTargetSrc:
-        "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/targets%20(1).mind?v=1717164863416",
+        "https://cdn.glitch.global/4ae5c157-47dd-4688-afdf-006929cf3c12/targets.mind?v=1720668099455",
       uiScanning: "#scanning",
       uiLoading: "no",
     });
@@ -36,44 +36,31 @@ document.addEventListener("DOMContentLoaded", () => {
     const startButton = document.getElementById("startButton");
     startButton.style.display = "none";
 
-    // Load models
-    const modelUrls = [
-      "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/9CERVEZA_V3.glb?v=1716469573385",
-      "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/2MARGARITAfix_v2.glb?v=1712669742462",
-      "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/3COCAfix_v2.glb?v=1712669744067",
-      "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/4PALOMAfix_v2.glb?v=1712669744936",
-      "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/5MOJITOfix_v2.glb?v=1712669746132",
-      "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/6VODKAfix_v2.glb?v=1712669746850",
-      "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/7SANGRIAfix_v2.glb?v=1712669747789",
-      "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/8TINTOfix_v2.glb?v=1712669748567",
-        "https://cdn.glitch.global/1a0292cf-4e80-4980-999f-90f2d2255db8/1GINfix_v2.glb?v=1712669740980",
-    ];
+    // Load a single model
+    const modelUrl = "https://cdn.glitch.global/4ae5c157-47dd-4688-afdf-006929cf3c12/Rosas_V3_.glb?v=1720668122756";
 
-    models = await Promise.all(modelUrls.map(async (url) => await loadGLTF(url))); // Definir la variable models
+    const model = await loadGLTF(modelUrl);
 
-    // Add anchors and models
-    const anchors = models.map((model, index) => {
-      const anchor = mindarThree.addAnchor(index);
-      anchor.group.add(model.scene);
-      
-      // Establecer la misma escala y posición para todos los modelos
-      model.scene.scale.set(0.165, 0.165, 0.165);
-      model.scene.position.set(0, -0.5, 0);
+    // Add anchor and model
+    const anchor = mindarThree.addAnchor(0);
+    anchor.group.add(model.scene);
+    
+    // Establecer la escala y posición para el modelo
+    model.scene.scale.set(0.165, 0.165, 0.165);
+    model.scene.position.set(0, -0.5, 0);
 
-      anchor.onTargetFound = () => {
-        mixers[index] = new THREE.AnimationMixer(model.scene);
-        const action = mixers[index].clipAction(model.animations[0]);
-        action.play();
-        action.setLoop(THREE.LoopOnce);
-        action.clampWhenFinished = true;
-      };
+    anchor.onTargetFound = () => {
+      const mixer = new THREE.AnimationMixer(model.scene);
+      mixers.push(mixer);
+      const action = mixer.clipAction(model.animations[0]);
+      action.play();
+      action.setLoop(THREE.LoopOnce);
+      action.clampWhenFinished = true;
+    };
 
-      anchor.onTargetLost = () => {
-        if (mixers[index]) mixers[index].stopAllAction();
-      };
-
-      return anchor;
-    });
+    anchor.onTargetLost = () => {
+      if (mixers[0]) mixers[0].stopAllAction();
+    };
 
     await mindarThree.start();
 
@@ -107,10 +94,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Calcular la diferencia entre el inicio y el final del toque solo en el eje Y
     const deltaY = touchEndY - touchStartY;
 
-    // Rotar los modelos solo en el eje Y
-    models.forEach((model) => {
-      model.scene.rotation.y -= deltaY * 0.03; // Ajusta la sensibilidad según sea necesario
-    });
+    // Rotar el modelo solo en el eje Y
+    if (models.length > 0) {
+      models[0].scene.rotation.y -= deltaY * 0.03; // Ajusta la sensibilidad según sea necesario
+    }
 
     // Actualizar las coordenadas de inicio del toque
     touchStartY = touchEndY;
