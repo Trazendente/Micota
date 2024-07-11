@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.body,
       imageTargetSrc:
-        "https://cdn.glitch.global/4ae5c157-47dd-4688-afdf-006929cf3c12/targets.mind?v=1720668099455",
+        "https://cdn.glitch.global/4ae5c157-47dd-4688-afdf-006929cf3c12/targets.mind?v=1720721733921",
       uiScanning: "#scanning",
       uiLoading: "no",
     });
@@ -47,8 +47,8 @@ document.addEventListener("DOMContentLoaded", () => {
     anchor.group.add(model.scene);
     
     // Establecer la escala y posición para el modelo
-    model.scene.scale.set(2, 2, 2);
-    model.scene.position.set(0, -1.5, 0);
+    model.scene.scale.set(1, 1, 1);
+    model.scene.position.set(0, -1, 0);
 
     anchor.onTargetFound = () => {
       const mixer = new THREE.AnimationMixer(model.scene);
