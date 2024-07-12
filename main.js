@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     startButton.style.display = "none";
 
     // Load a single model
-    const modelUrl = "https://cdn.glitch.global/4ae5c157-47dd-4688-afdf-006929cf3c12/Rosas_V3_.glb?v=1720668122756";
+    const modelUrl = "https://cdn.glitch.global/4ae5c157-47dd-4688-afdf-006929cf3c12/Rosas_V8_.glb?v=1720809237600";
 
     const model = await loadGLTF(modelUrl);
 
@@ -48,15 +48,16 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // Establecer la escala y posición para el modelo
     model.scene.scale.set(1, 1, 1);
-    model.scene.position.set(0, -1, 0);
+    model.scene.position.set(0, 0, 0);
+     model.scene.rotation.set(0, 0, 0);
 
     anchor.onTargetFound = () => {
       const mixer = new THREE.AnimationMixer(model.scene);
       mixers.push(mixer);
       const action = mixer.clipAction(model.animations[0]);
       action.play();
-      action.setLoop(THREE.LoopOnce);
-      action.clampWhenFinished = true;
+      action.setLoop(THREE.LoopRepeat); // Cambiado para que el bucle sea infinito
+      action.clampWhenFinished = false; // Asegurarse de que no se detenga
     };
 
     anchor.onTargetLost = () => {
