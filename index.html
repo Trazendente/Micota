@@ -122,6 +122,26 @@
         left: 50%;
         transform: translate(-50%, -50%);
       }
+
+      #button1, #button2 {
+        display: none; /* Ocultos por defecto */
+        position: absolute;
+        top: 20px;
+        padding: 10px 20px;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        cursor: pointer;
+        z-index: 10;
+      }
+      
+      #button1 {
+        left: 20px; /* Mover el primer botón a la izquierda */
+      }
+
+      #button2 {
+        right: 20px; /* Mover el segundo botón a la derecha */
+      }
     </style>
     <style>
       @font-face {
@@ -152,6 +172,9 @@
 
     <button id="startButton" class="circle-button">COMENZAR</button>
 
+    <button id="button1" onclick="window.location.href='https://link1.com'">Link 1</button>
+    <button id="button2" onclick="window.location.href='https://link2.com'">Link 2</button>
+
     <script>
       const backgroundAudio = document.getElementById("backgroundAudio");
 
@@ -163,10 +186,8 @@
           backgroundAudio.play();
         }
       }
-
       // Agregar el event listener para el cambio de visibilidad
       document.addEventListener("visibilitychange", handleVisibilityChange);
-
       // Agregar el event listener al botón de inicio
       document.getElementById("startButton").addEventListener("click", () => {
         backgroundAudio.volume = 0.5; // Establecer el volumen al 50%
@@ -175,3 +196,4 @@
     </script>
   </body>
 </html>
+

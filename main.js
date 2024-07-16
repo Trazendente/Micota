@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Establecer la escala y posición para el modelo
     model.scene.scale.set(1, 1, 1);
     model.scene.position.set(0, 0, 0);
-     model.scene.rotation.set(0, 0, 0);
+    model.scene.rotation.set(0, 0, 0);
 
     anchor.onTargetFound = () => {
       const mixer = new THREE.AnimationMixer(model.scene);
@@ -58,10 +58,18 @@ document.addEventListener("DOMContentLoaded", () => {
       action.play();
       action.setLoop(THREE.LoopRepeat); // Cambiado para que el bucle sea infinito
       action.clampWhenFinished = false; // Asegurarse de que no se detenga
+
+      // Mostrar los botones cuando se encuentra el objetivo
+      document.getElementById("button1").style.display = "block";
+      document.getElementById("button2").style.display = "block";
     };
 
     anchor.onTargetLost = () => {
       if (mixers[0]) mixers[0].stopAllAction();
+
+      // Ocultar los botones cuando se pierde el objetivo
+      document.getElementById("button1").style.display = "none";
+      document.getElementById("button2").style.display = "none";
     };
 
     await mindarThree.start();
@@ -78,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
- const startButton = document.getElementById("startButton");
+  const startButton = document.getElementById("startButton");
   startButton.addEventListener("click", () => {
     document.getElementById("backgroundAudio").play();
     start();
