@@ -124,24 +124,27 @@
       }
 
       #button1, #button2 {
-        display: none; /* Ocultos por defecto */
-        position: absolute;
-        top: 20px;
-        padding: 10px 20px;
-        background-color: rgba(0, 0, 0, 0.5);
-        color: white;
-        border: none;
-        cursor: pointer;
-        z-index: 10;
-      }
-      
-      #button1 {
-        left: 20px; /* Mover el primer botón a la izquierda */
-      }
+  display: none; /* Ocultos por defecto */
+  position: absolute;
+  top: 20px;
+  width: 100px; /* Ajusta el ancho según tus necesidades */
+  height: 50px; /* Ajusta la altura según tus necesidades */
+  background-size: cover;
+  background-position: center;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+}
 
-      #button2 {
-        right: 20px; /* Mover el segundo botón a la derecha */
-      }
+#button1 {
+  left: 20px; /* Mover el primer botón a la izquierda */
+  background-image: url('https://cdn.glitch.global/4ae5c157-47dd-4688-afdf-006929cf3c12/catalogo.png?v=1721141000731');
+}
+
+#button2 {
+  right: 20px; /* Mover el segundo botón a la derecha */
+  background-image: url('https://cdn.glitch.global/4ae5c157-47dd-4688-afdf-006929cf3c12/registrate.png?v=1721141001195');
+}
     </style>
     <style>
       @font-face {
@@ -172,8 +175,8 @@
 
     <button id="startButton" class="circle-button">INICIAR</button>
 
-    <button id="button1" onclick="window.location.href='https://link1.com'">Link 1</button>
-    <button id="button2" onclick="window.location.href='https://link2.com'">Link 2</button>
+    <button id="button1" onclick="window.location.href='https://link1.com'"></button>
+    <button id="button2" onclick="window.location.href='https://link2.com'"></button>
 
     <script>
       const backgroundAudio = document.getElementById("backgroundAudio");
