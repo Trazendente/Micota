@@ -122,29 +122,31 @@
         left: 50%;
         transform: translate(-50%, -50%);
       }
-#button1, #button2 {
+  #button1, #button2 {
   display: none; /* Ocultos por defecto */
   position: absolute;
   top: 70%; /* Ajusta según tus necesidades */
   width: 46%; /* Ajusta el ancho según tus necesidades */
   height: 26%; /* Ajusta la altura según tus necesidades */
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  border: none;
-  cursor: pointer;
-  z-index: 10;
-  background-color: transparent; /* Asegura que el fondo sea transparente */
+  background-size: contain; /* Ajusta la imagen para que se vea completa */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  border: none; /* Sin borde */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  z-index: 10; /* Asegura que el botón esté en el frente */
+  background-color: transparent; /* Fondo transparente */
+  outline: none; /* Sin borde al hacer clic */
+  -webkit-tap-highlight-color: transparent; /* Elimina la sombra gris al hacer clic en dispositivos táctiles */
 }
 
 #button1 {
-  right: 6%; /* Ajusta la posición izquierda según tus necesidades */
-  background-image: url('https://cdn.glitch.global/4ae5c157-47dd-4688-afdf-006929cf3c12/catalogo.png?v=1721141000731');
+  right: 6%; /* Ajusta la posición derecha según tus necesidades */
+  background-image: url("https://cdn.glitch.global/4ae5c157-47dd-4688-afdf-006929cf3c12/catalogo.png?v=1721141000731");
 }
 
 #button2 {
-  left: 6%; /* Ajusta la posición derecha según tus necesidades */
-  background-image: url('https://cdn.glitch.global/4ae5c157-47dd-4688-afdf-006929cf3c12/registrate.png?v=1721141001195');
+  left: 6%; /* Ajusta la posición izquierda según tus necesidades */
+  background-image: url("https://cdn.glitch.global/4ae5c157-47dd-4688-afdf-006929cf3c12/registrate.png?v=1721141001195");
 }
 
     </style>
@@ -177,8 +179,14 @@
 
     <button id="startButton" class="circle-button">INICIAR</button>
 
-    <button id="button1" onclick="window.location.href='https://trazendente.com/agrosisa-catalogo/'"></button>
-    <button id="button2" onclick="window.location.href='https://forms.gle/zASW1vGeRuVRrKXt7'"></button>
+    <button
+      id="button1"
+      onclick="window.location.href='https://trazendente.com/agrosisa-catalogo/'"
+    ></button>
+    <button
+      id="button2"
+      onclick="window.location.href='https://forms.gle/zASW1vGeRuVRrKXt7'"
+    ></button>
 
     <script>
       const backgroundAudio = document.getElementById("backgroundAudio");
@@ -201,4 +209,3 @@
     </script>
   </body>
 </html>
-
