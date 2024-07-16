@@ -27,9 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const { renderer, cssRenderer, scene, cssScene, camera } = mindarThree;
 
     // Add lights
-    const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+    const ambientLight = new THREE.AmbientLight(0xffffff, 2);
     scene.add(ambientLight);
-    const pointLight = new THREE.PointLight(0xffffff, 0.8);
+    const pointLight = new THREE.PointLight(0xffffff, 1.5);
     pointLight.castShadow = false;
     pointLight.position.set(0, 10, 10);
     scene.add(pointLight);
