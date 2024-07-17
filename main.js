@@ -47,9 +47,9 @@ document.addEventListener("DOMContentLoaded", () => {
     anchor.group.add(model.scene);
     
     // Establecer la escala y posición para el modelo
-    model.scene.scale.set(1, 1, 1);
+    model.scene.scale.set(1.5, 1.5, 1.5);
     model.scene.position.set(0, 0, 0);
-    model.scene.rotation.set(0, 0, 0);
+    model.scene.rotation.set(90, 0, 0);
 
     anchor.onTargetFound = () => {
       const mixer = new THREE.AnimationMixer(model.scene);
