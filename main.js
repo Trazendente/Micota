@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Create a plane for the video
     const videoGeometry = new THREE.PlaneGeometry(1, 1); // Ajusta el tamaño según sea necesario
     const videoMesh = new THREE.Mesh(videoGeometry, videoMaterial);
-    videoMesh.position.set(0, 1.5, 0); // Posición del video
+    videoMesh.position.set(0, 0, 0); // Posición del video
 
     // Add anchor and model
     const anchor = mindarThree.addAnchor(0);
@@ -72,8 +72,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Establecer la escala y posición para el modelo
     model.scene.scale.set(1.5, 1.5, 1.5);
-    model.scene.position.set(0, 0, 0);
-    model.scene.rotation.set(45, 0, 0);
+    model.scene.position.set(0, 1, 0);
+    model.scene.rotation.set(0, 0, 0);
 
     anchor.onTargetFound = () => {
       video.play(); // Reproducir el video cuando se detecte el objetivo
