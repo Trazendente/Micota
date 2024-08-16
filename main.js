@@ -1,5 +1,6 @@
 import { loadGLTF } from "./loader.js";
 import { loadVideo } from "./loader.js";
+import { loadAudio } from "./loader.js";
 
 const THREE = window.MINDAR.IMAGE.THREE;
 
@@ -49,7 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
     video.src = videoUrl;
     video.crossOrigin = "anonymous";
     video.loop = true;
-    video.muted = true;
     video.setAttribute("playsinline", "true");
 
     // Create a VideoTexture
