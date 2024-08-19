@@ -102,26 +102,27 @@
         display: none;
       }
 
-      #startButton {
-        background-color: #313131;
-        color: #ffffff;
-        border: none;
-        width: 150px;
-        height: 150;
-        text-align: center;
-        text-decoration: none;
-        font-size: 27px;
-        border-radius: 50%;
-        cursor: pointer;
-        position: fixed;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: "Segoe", sans-serif;
-        top: 56.5%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
+#startButton {
+    background-color: #313131;
+    color: #ffffff;
+    border: 1px solid #ffffff; /* Bordes blancos */
+    width: 40vw; /* 15% del ancho de la ventana */
+    height: 15vw; /* La misma altura para mantener la proporción */
+    text-align: center;
+    text-decoration: none;
+    font-size: 7vw; /* Tamaño de fuente proporcional al ancho de la ventana */
+    border-radius: 15px; /* Bordes redondeados */
+    cursor: pointer;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Segoe", sans-serif;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 #button1, #button2 {
   display: none; /* Ocultos por defecto */
   position: absolute;
