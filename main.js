@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Load a single model
     const modelUrl =
-      "https://cdn.glitch.global/4ae5c157-47dd-4688-afdf-006929cf3c12/Rosas_V8_.glb?v=1720809237600";
+      "https://cdn.glitch.global/e5e8f7de-a20d-45de-9a1f-9d2d18cd2c32/CerebroMicotaV7.glb?v=1724703636072";
     const model = await loadGLTF(modelUrl);
     models.push(model);
 
@@ -84,9 +84,9 @@ document.addEventListener("DOMContentLoaded", () => {
     anchor.group.add(videoMesh);
 
     // Establecer la escala y posición para el modelo
-    model.scene.scale.set(1.5, 1.5, 1.5);
-    model.scene.position.set(0, 0.5, 0);
-    model.scene.rotation.set(0, 0, 0);
+    model.scene.scale.set(.3, .3, .3);
+    model.scene.position.set(0, 0.5, .2);
+    model.scene.rotation.set(.5, 0, 0);
 
     anchor.onTargetFound = () => {
       video.play(); // Reproducir el video cuando se detecte el objetivo
