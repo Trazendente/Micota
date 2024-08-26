@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
     anchor.group.add(videoMesh);
 
     // Establecer la escala y posición para el modelo
-    model.scene.scale.set(0.3, 0.3, 0.3);
+    model.scene.scale.set(.3, .3, .3);
     model.scene.position.set(0, 0.5, .2);
     model.scene.rotation.set(0.5, 0, 0);
 
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Mostrar los botones cuando se encuentra el objetivo
       document.getElementById("button1").style.display = "block";
       document.getElementById("button2").style.display = "block";
-       document.getElementById("button3").style.display = "block";
+      document.getElementById("button3").style.display = "block";
     };
 
     anchor.onTargetLost = () => {
@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Ocultar los botones cuando se pierde el objetivo
       document.getElementById("button1").style.display = "none";
       document.getElementById("button2").style.display = "none";
-       document.getElementById("button3").style.display = "none";
+      document.getElementById("button3").style.display = "none";
     };
 
     await mindarThree.start();
