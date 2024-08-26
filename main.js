@@ -40,12 +40,14 @@ document.addEventListener("DOMContentLoaded", () => {
     startButton.style.display = "none";
 
     // Load a single model
-    const modelUrl = "https://cdn.glitch.global/4ae5c157-47dd-4688-afdf-006929cf3c12/Rosas_V8_.glb?v=1720809237600";
+    const modelUrl =
+      "https://cdn.glitch.global/e5e8f7de-a20d-45de-9a1f-9d2d18cd2c32/Brain.glb?v=1724683868547";
     const model = await loadGLTF(modelUrl);
     models.push(model);
 
     // Load the video
-    const videoUrl = "https://cdn.glitch.global/e5e8f7de-a20d-45de-9a1f-9d2d18cd2c32/Cerebrovideo-MAIN_V2.mp4?v=1724682711670"; // Reemplaza con la URL de tu video
+    const videoUrl =
+      "https://cdn.glitch.global/e5e8f7de-a20d-45de-9a1f-9d2d18cd2c32/Cerebrovideo-MAIN_V2.mp4?v=1724682711670"; // Reemplaza con la URL de tu video
     const video = document.createElement("video");
     video.src = videoUrl;
     video.crossOrigin = "anonymous";
@@ -58,11 +60,20 @@ document.addEventListener("DOMContentLoaded", () => {
     videoTexture.magFilter = THREE.LinearFilter;
     videoTexture.format = THREE.RGBFormat;
 
-    const videoMaterial = new THREE.MeshBasicMaterial({ map: videoTexture });
+    videoTexture.encoding = THREE.sRGBEncoding;
+    videoTexture.needsUpdate = true;
+
+    const videoMaterial = new THREE.MeshBasicMaterial({
+      map: videoTexture,
+      toneMapped: false, // Esto evitará que se aplique el mapeo de tono que podría estar causando el brillo adicional
+    });
 
     // Create a plane for the video
-const scaleFactor = 0.75;
-const videoGeometry = new THREE.PlaneGeometry(1.360 * scaleFactor, 0.752 * scaleFactor);
+    const scaleFactor = 0.76;
+    const videoGeometry = new THREE.PlaneGeometry(
+      1.34 * scaleFactor,
+      0.752 * scaleFactor
+    );
 
     const videoMesh = new THREE.Mesh(videoGeometry, videoMaterial);
     videoMesh.position.set(0, 0, 0); // Posición del video
