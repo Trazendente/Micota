@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.body,
       imageTargetSrc:
-        "https://cdn.glitch.global/4ae5c157-47dd-4688-afdf-006929cf3c12/targets.mind?v=1720721733921",
+        "https://cdn.glitch.global/e5e8f7de-a20d-45de-9a1f-9d2d18cd2c32/targets.mind?v=1724682790314",
       uiScanning: "#scanning",
       uiLoading: "no",
     });
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     models.push(model);
 
     // Load the video
-    const videoUrl = "https://cdn.glitch.global/d973aa47-f05c-49fc-acae-77c0674596f4/MAYO_68_FINAL_MAIN.mp4?v=1706656826921"; // Reemplaza con la URL de tu video
+    const videoUrl = "https://cdn.glitch.global/e5e8f7de-a20d-45de-9a1f-9d2d18cd2c32/Cerebrovideo-MAIN_V2.mp4?v=1724682711670"; // Reemplaza con la URL de tu video
     const video = document.createElement("video");
     video.src = videoUrl;
     video.crossOrigin = "anonymous";
@@ -61,7 +61,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const videoMaterial = new THREE.MeshBasicMaterial({ map: videoTexture });
 
     // Create a plane for the video
-    const videoGeometry = new THREE.PlaneGeometry(1, 1); // Ajusta el tamaño según sea necesario
+const scaleFactor = 0.75;
+const videoGeometry = new THREE.PlaneGeometry(1.360 * scaleFactor, 0.752 * scaleFactor);
+
     const videoMesh = new THREE.Mesh(videoGeometry, videoMaterial);
     videoMesh.position.set(0, 0, 0); // Posición del video
 
@@ -72,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Establecer la escala y posición para el modelo
     model.scene.scale.set(1.5, 1.5, 1.5);
-    model.scene.position.set(0, 1, 0);
+    model.scene.position.set(0, 0.5, 0);
     model.scene.rotation.set(0, 0, 0);
 
     anchor.onTargetFound = () => {
