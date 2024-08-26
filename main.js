@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Load a single model
     const modelUrl =
-      "https://cdn.glitch.global/e5e8f7de-a20d-45de-9a1f-9d2d18cd2c32/Brain.glb?v=1724683868547";
+      "https://cdn.glitch.global/4ae5c157-47dd-4688-afdf-006929cf3c12/Rosas_V8_.glb?v=1720809237600";
     const model = await loadGLTF(modelUrl);
     models.push(model);
 
