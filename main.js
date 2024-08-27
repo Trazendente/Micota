@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
     anchor.group.add(videoMesh);
 
     // Establecer la escala y posición para el modelo
-    model.scene.scale.set(.3, .3, .3);
+    model.scene.scale.set(0.3, 0.3, 0.3);
     model.scene.position.set(0, 0.5, .2);
     model.scene.rotation.set(0.5, 0, 0);
 
