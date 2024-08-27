@@ -187,21 +187,28 @@
       src="https://cdn.glitch.global/e5e8f7de-a20d-45de-9a1f-9d2d18cd2c32/audioMicotaV2.mp3?v=1724707957335"
       loop
     ></audio>
+    
+    <audio id="clickSound" src="https://cdn.glitch.global/e5e8f7de-a20d-45de-9a1f-9d2d18cd2c32/click.mp3?v=1724765725555"></audio>
+
 
     <button id="startButton" class="circle-button">INICIAR</button>
 
-    <button
-      id="button1"
-      onclick="window.location.href='https://youtube.com/@museo.interactivo.micota?si=yslzxYv2-7WNgy5X'"
-    ></button>
-    <button
-      id="button2"
-      onclick="window.location.href='https://www.youtube.com/watch?v=lQrgGtf-Czk'"
-    ></button>
-      <button
-      id="button3"
-      onclick="window.location.href='https://drive.google.com/drive/folders/1JZzf8x6mWbbOpMLwrDgnXAi13WYfJRja'"
-    ></button>
+<button
+  id="button1"
+  onclick="document.getElementById('clickSound').play(); window.location.href='https://youtube.com/@museo.interactivo.micota?si=yslzxYv2-7WNgy5X'"
+></button>
+
+<button
+  id="button2"
+  onclick="document.getElementById('clickSound').play(); window.location.href='https://www.youtube.com/watch?v=lQrgGtf-Czk'"
+></button>
+
+<button
+  id="button3"
+  onclick="document.getElementById('clickSound').play(); window.location.href='https://drive.google.com/drive/folders/1JZzf8x6mWbbOpMLwrDgnXAi13WYfJRja'"
+></button>
+
+
 
     <script>
       const backgroundAudio = document.getElementById("backgroundAudio");
