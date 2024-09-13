@@ -1,3 +1,5 @@
+// Desarrollado por Trazendente Studio Interactivo
+
 import { loadGLTF } from "./loader.js";
 import { loadVideo } from "./loader.js";
 import { loadAudio } from "./loader.js";
