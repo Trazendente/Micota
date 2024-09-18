@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "https://cdn.glitch.global/e5e8f7de-a20d-45de-9a1f-9d2d18cd2c32/Cerebrovideo-MAIN_V2.mp4?v=1724682711670"; // Reemplaza con la URL de tu video
     const video = document.createElement("video");
     video.src = videoUrl;
-    video.crossOrigin = "anonymous";
+    video.crossOrigin = "anonymous"; 
     video.loop = true;
     video.setAttribute("playsinline", "true");
 
